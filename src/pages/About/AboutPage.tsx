@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { SpaceScene } from "./SpaceScene";
+import { SpaceScene } from "../../components/SpaceScene";
 import { Chapter } from "./Chapter";
 import { OffKeyboard } from "./OffKeyboard";
 import { FamilySection } from "./FamilySection";

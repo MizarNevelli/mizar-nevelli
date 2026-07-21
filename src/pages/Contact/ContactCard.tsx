@@ -43,11 +43,11 @@ export function ContactCard({
   };
 
   return (
-    <div className="group relative glass rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-5 overflow-hidden">
+    <div className="group relative glass rounded-2xl p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden">
       {/* Ambient glow on hover */}
       <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-accent/15 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-      <div className="shrink-0 h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-soft">
+      <div className="shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-soft">
         {icon}
       </div>
 
@@ -55,12 +55,14 @@ export function ContactCard({
         <p className="text-xs uppercase tracking-widest text-white/40">
           {label}
         </p>
-        <p className="mt-1 text-white text-base md:text-lg font-medium truncate">
+        <p className="mt-1 text-white text-base md:text-lg font-medium break-all">
           {value}
         </p>
       </div>
 
-      <div className="flex items-center gap-2 shrink-0">
+      {/* On xs, actions wrap to a new row (w-full) and right-align, so the
+         value above gets the full width. On sm+ they sit inline on the right. */}
+      <div className="flex items-center gap-2 shrink-0 w-full justify-end sm:w-auto sm:justify-start">
         <button
           type="button"
           onClick={onCopy}

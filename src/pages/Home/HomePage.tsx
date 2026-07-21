@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Globe } from "../../components/Globe";
 import { ScrollReveal } from "../../components/ScrollReveal";
+import { SpaceScene } from "../../components/SpaceScene";
 import { HeroChip } from "./HeroChip";
 import { StatCard } from "./StatCard";
 import { FeatureCard } from "./FeatureCard";
@@ -37,8 +38,20 @@ export function HomePage() {
   return (
     <main className="relative">
       {/* ────────── HERO ────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise">
-        <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <SpaceScene />
+        {/* Radial vignette — darkest behind the centered copy, transparent at
+           the corners so the starfield stays visible around the edges. */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(5,6,10,0.9) 0%, rgba(5,6,10,0.7) 30%, rgba(5,6,10,0) 75%)",
+          }}
+        />
+        {/* Blend the hero into the sticky globe section below. */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
+
         <motion.div
           style={{
             opacity: heroOpacity,
@@ -48,17 +61,17 @@ export function HomePage() {
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <HeroChip />
-          <h1 className="mt-6 text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance">
+          <h1 className="mt-6 text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance [text-shadow:_0_2px_30px_rgba(5,6,10,0.6)]">
             {t("home.titleLine1")}
             <br />
             {t("home.titleLine2")}
           </h1>
-          <p className="mt-8 text-lg md:text-xl text-white/60 max-w-2xl mx-auto text-balance">
+          <p className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto text-balance [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
             {t("home.descriptionPrefix")}
             <span className="text-white">{t("home.descriptionName")}</span>
             {t("home.descriptionSuffix")}
           </p>
-          <div className="mt-12 flex items-center justify-center gap-3 text-sm text-white/40">
+          <div className="mt-12 flex items-center justify-center gap-3 text-sm text-white/40 [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
             <span>{t("home.scrollHint")}</span>
             <span className="inline-block h-6 w-[1px] bg-white/30 animate-pulse" />
           </div>
