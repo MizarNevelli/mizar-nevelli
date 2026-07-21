@@ -22,8 +22,8 @@
     "language": "Language"
   },
   "home": {
-    "chip": "Currently: somewhere between two flights",
-    "titleLine1": "Mizar & JavaScript,",
+    "chip": "Currently: somewhere with undefined location",
+    "titleLine1": "Mizar & JS,",
     "titleLine2": "in motion.",
     "descriptionPrefix": "I'm ",
     "descriptionName": "Mizar",
@@ -233,8 +233,8 @@
   "about": {
     "hero": {
       "eyebrow": "About",
-      "titleLine1": "There's a star",
-      "titleLine2": "named Mizar.",
+      "titleLine1": "Here I am!",
+      "titleLine2": "",
       "subtitle": "Software engineer, named after ζ Ursae Majoris — the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
       "scrollHint": "Read the story"
     },

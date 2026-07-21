@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { StarField } from "./StarField";
+import { SpaceScene } from "./SpaceScene";
 import { Chapter } from "./Chapter";
 import { OffKeyboard } from "./OffKeyboard";
 import { FamilySection } from "./FamilySection";
@@ -33,20 +33,30 @@ export function AboutPage() {
   return (
     <main className="relative">
       {/* ────────── HERO ────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise">
-        <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
-        <StarField />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <SpaceScene />
+        {/* Radial vignette — darkest exactly behind the centered text, fully
+           transparent at the corners so the starfield stays visible there. */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(5,6,10,0.9) 0%, rgba(5,6,10,0.7) 30%, rgba(5,6,10,0) 75%)",
+          }}
+        />
+        {/* Extra fade at the bottom edge so the hero blends into the chapters. */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
 
-        {/* Labeled Mizar star — a single glowing dot in the corner */}
-        <div className="absolute top-[22%] right-[18%] hidden md:flex flex-col items-end gap-1 pointer-events-none">
+        {/* Labeled Mizar star — a single glowing dot in the corner. */}
+        <div className="absolute top-[22%] right-[18%] hidden md:flex flex-col items-end gap-1 pointer-events-none z-10">
           <div className="flex items-baseline gap-2">
-            <span className="text-[10px] uppercase tracking-widest text-white/40 font-mono">
-              ζ UMa · Mizar
+            <span className="text-xs text-white/60 [text-shadow:_0_1px_10px_rgba(5,6,10,0.9)]">
+              Mizar, the star
             </span>
             <span className="inline-block h-2 w-2 rounded-full bg-white shadow-[0_0_20px_6px_rgba(170,140,255,0.7)]" />
           </div>
-          <span className="text-[10px] text-white/25 font-mono tabular-nums">
-            13h 23m 55.5s
+          <span className="text-[11px] text-white/40 [text-shadow:_0_1px_10px_rgba(5,6,10,0.9)]">
+            in the Big Dipper's handle
           </span>
         </div>
 
@@ -62,7 +72,7 @@ export function AboutPage() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-accent-soft uppercase tracking-widest text-xs mb-20"
+            className="text-accent-soft uppercase tracking-widest text-xs mb-6 [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]"
           >
             {t("about.hero.eyebrow")}
           </motion.p>
@@ -70,7 +80,7 @@ export function AboutPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance leading-[1.02]"
+            className="text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance leading-[1.02] [text-shadow:_0_2px_30px_rgba(5,6,10,0.6)]"
           >
             {t("about.hero.titleLine1")}
             <br />
@@ -80,7 +90,7 @@ export function AboutPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 text-base md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed text-balance"
+            className="mt-8 text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed text-balance [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]"
           >
             {t("about.hero.subtitle")}
           </motion.p>

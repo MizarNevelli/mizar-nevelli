@@ -48,7 +48,7 @@ export function HomePage() {
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <HeroChip />
-          <h1 className="mt-6 text-5xl md:text-6xl font-semibold tracking-tight gradient-text text-balance">
+          <h1 className="mt-6 text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance">
             {t("home.titleLine1")}
             <br />
             {t("home.titleLine2")}
