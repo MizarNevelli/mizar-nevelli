@@ -3,19 +3,84 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES, type LanguageCode } from "../i18n";
 
-/**
- * Compact language switcher. Shows the current flag + code and reveals a
- * dropdown with the supported languages on click. Keeps the same visual
- * language as the JS dropdown for consistency.
- */
-export function LanguageSwitcher() {
+type LanguageSwitcherProps = {
+  /**
+   * `"dropdown"` (default) — compact button opens a popover. Fits the desktop nav.
+   * `"inline"` — language options rendered as tappable pills, no hidden state.
+   *              Use inside surfaces where a downward-opening popover would
+   *              overflow (e.g. the bottom of the mobile menu).
+   */
+  variant?: "dropdown" | "inline";
+};
+
+export function LanguageSwitcher({ variant = "dropdown" }: LanguageSwitcherProps) {
   const { i18n, t } = useTranslation();
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
 
   const current =
     SUPPORTED_LANGUAGES.find((l) => l.code === i18n.resolvedLanguage) ??
     SUPPORTED_LANGUAGES[0];
+
+  const pick = (code: LanguageCode) => {
+    void i18n.changeLanguage(code);
+  };
+
+  if (variant === "inline") {
+    return (
+      <div
+        role="group"
+        aria-label={t("nav.language")}
+        className="flex items-center gap-1"
+      >
+        {SUPPORTED_LANGUAGES.map((lang) => {
+          const active = lang.code === current.code;
+          const disabled = lang.disabled;
+          return (
+            <button
+              key={lang.code}
+              type="button"
+              disabled={disabled}
+              onClick={() => !disabled && pick(lang.code)}
+              className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center gap-1.5 ${
+                disabled
+                  ? "text-white/25 cursor-not-allowed"
+                  : active
+                    ? "bg-accent/20 text-white"
+                    : "text-white/60 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span aria-hidden className={disabled ? "grayscale opacity-50" : ""}>
+                {lang.flag}
+              </span>
+              {lang.code}
+              {disabled && (
+                <span className="text-[9px] tracking-widest text-white/30">
+                  soon
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
+  return <DropdownSwitcher current={current} onPick={pick} label={t("nav.language")} />;
+}
+
+type DropdownProps = {
+  current: (typeof SUPPORTED_LANGUAGES)[number];
+  onPick: (code: LanguageCode) => void;
+  label: string;
+};
+
+/**
+ * Desktop-style compact dropdown. Extracted so we can keep the state (open,
+ * outside-click listener) close to the UI that actually needs it, without
+ * paying that cost in the inline variant.
+ */
+function DropdownSwitcher({ current, onPick, label }: DropdownProps) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -33,8 +98,8 @@ export function LanguageSwitcher() {
     };
   }, [open]);
 
-  const pick = (code: LanguageCode) => {
-    void i18n.changeLanguage(code);
+  const handlePick = (code: LanguageCode) => {
+    onPick(code);
     setOpen(false);
   };
 
@@ -45,11 +110,9 @@ export function LanguageSwitcher() {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        aria-label={t("nav.language")}
+        aria-label={label}
         className={`px-3 py-1.5 rounded-full transition-colors inline-flex items-center gap-1.5 text-sm ${
-          open
-            ? "text-white bg-white/10"
-            : "text-white/60 hover:text-white"
+          open ? "text-white bg-white/10" : "text-white/60 hover:text-white"
         }`}
       >
         <span aria-hidden>{current.flag}</span>
@@ -92,7 +155,7 @@ export function LanguageSwitcher() {
                     type="button"
                     role="menuitem"
                     disabled={disabled}
-                    onClick={() => !disabled && pick(lang.code)}
+                    onClick={() => !disabled && handlePick(lang.code)}
                     className={`w-full flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors ${
                       disabled
                         ? "text-white/30 cursor-not-allowed"

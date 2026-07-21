@@ -13,6 +13,10 @@
       "eventBubbling": {
         "label": "Event Bubbling",
         "description": "Propagazione degli eventi DOM, passo dopo passo"
+      },
+      "closures": {
+        "label": "Closure",
+        "description": "Funzioni che si portano dietro il proprio ambito"
       }
     },
     "language": "Lingua"
@@ -244,7 +248,7 @@
       },
       "leap": {
         "year": "2013",
-        "place": "Australia · +4",
+        "place": "Australia",
         "eyebrow": "Capitolo II · Il salto",
         "title": "Poi sono partito.",
         "body": "Vent'anni. Working-holiday visa. Uno zaino, e un paese che sembrava impossibilmente lontano. Sono rimasto in Australia un anno. Poi altri quattro paesi. Da qualche parte tra un autobus notturno e una fattoria dall'altra parte del mondo, ho capito che la curiosità insegna più in fretta di un'aula."
@@ -294,6 +298,12 @@
       "water": "Acqua",
       "waterSub": "da quando trattengo il fiato"
     },
+    "family": {
+      "eyebrow": "In famiglia",
+      "title": "Mio fratello, Akela.",
+      "body": "Gestisce una cucina come io provo a gestire un codebase — con l'ossessione per i dettagli. L'anno scorso ho passato sei mesi con lui a Melbourne, per lo più nella sua cucina, ogni tanto in sala durante i suoi eventi privati. Il mise en place insegna la stessa cosa di un buon deploy: ogni cosa al suo posto, e poi la calma.",
+      "cta": "chefakela.com"
+    },
     "stack": {
       "eyebrow": "Lo stack",
       "title": "Cosa uso, oggi.",
@@ -307,9 +317,101 @@
     },
     "closing": {
       "eyebrow": "Al momento",
-      "title": "Italia — ma in movimento.",
+      "title": "location: undefined",
       "body": "Se qualcosa di tutto questo ti sembra un progetto su cui costruire insieme, sono qui.",
       "cta": "Scrivimi"
+    }
+  },
+  "closures": {
+    "eyebrow": "Ambito & memoria",
+    "title": "Le closure, spiegate.",
+    "description": "Una closure è una funzione che si porta dietro l'ambito in cui è nata. È quello che permette alle callback di 'ricordare' il loro contesto — ed è la ragione del famoso bug del for con var.",
+    "stepLabel": "Passo",
+    "status": {
+      "idle": "Pronto",
+      "running": "In esecuzione",
+      "paused": "In pausa",
+      "finished": "Terminato"
+    },
+    "controls": {
+      "run": "Avvia scenario",
+      "pause": "Pausa",
+      "resume": "Riprendi",
+      "reset": "Ripristina",
+      "replay": "Ripeti",
+      "prev": "← Prec",
+      "next": "Succ →"
+    },
+    "speed": {
+      "slow": "lento",
+      "normal": "normale",
+      "fast": "veloce"
+    },
+    "idleNarration": "Scegli uno scenario, poi premi Avvia per procedere passo passo.",
+    "scopeStatus": {
+      "active": "attivo",
+      "captured": "catturato",
+      "gone": "eliminato"
+    },
+    "consoleTitle": "Output della console",
+    "consoleEmpty": "// niente loggato ancora.",
+    "queueLabel": "Coda dei task",
+    "scenarios": {
+      "basic": {
+        "label": "Cattura base",
+        "narrations": [
+          "Nulla è ancora stato eseguito — solo lo scope globale, che contiene la dichiarazione di outer.",
+          "const f = outer() chiama outer. Un nuovo scope di outer() viene messo sullo stack.",
+          "const secret = 42 aggiunge secret allo scope di outer.",
+          "inner viene creata dentro outer. Porta con sé un riferimento allo scope di outer.",
+          "outer ritorna inner. Normalmente il suo scope sparirebbe — ma f ora tiene un riferimento a inner, che tiene lo scope di outer. Resta vivo come 'catturato'.",
+          "f() esegue la inner catturata. Un nuovo scope di inner() viene creato, collegato allo scope catturato di outer.",
+          "return secret cerca secret — non lo trova localmente, quindi risale la catena fino allo scope catturato e legge 42.",
+          "inner ritorna 42. La console stampa 42. Questa è una closure."
+        ]
+      },
+      "counter": {
+        "label": "Contatore condiviso",
+        "narrations": [
+          "makeCounter() parte. Il suo scope viene messo sullo stack.",
+          "let count = 0 vincola count nello scope di makeCounter.",
+          "Viene creato un oggetto con inc e get. Entrambe le arrow function catturano lo scope di makeCounter.",
+          "makeCounter ritorna. Il suo scope è ora tenuto in vita da due closure — resta come 'catturato'.",
+          "c.inc() parte. ++count porta count da 0 a 1, nello scope catturato.",
+          "c.inc() parte di nuovo. count passa da 1 a 2 — stesso scope, stesso binding.",
+          "c.get() legge count dallo scope condiviso: 2.",
+          "console.log stampa 2. Entrambe le closure vedono lo stesso stato privato — è il pattern del modulo."
+        ]
+      },
+      "forVar": {
+        "label": "for + var (il bug)",
+        "narrations": [
+          "for (var i = 0; ...) parte. Trattandosi di var, i vive nello scope circostante — non in ogni iterazione.",
+          "setTimeout pianifica una callback. La sua arrow cattura lo scope circostante — quello che contiene i.",
+          "i++ → i ora è 1. Secondo setTimeout, seconda callback pianificata, cattura lo stesso scope.",
+          "i++ → i è 2. Terzo setTimeout, terza callback in coda — sempre lo stesso scope.",
+          "i++ → i è 3. La condizione fallisce, il ciclo termina. Ma i nello scope condiviso ora è bloccato a 3.",
+          "Lo stack è vuoto. L'event loop pesca dalla coda dei task.",
+          "Callback 1 parte. Legge i dallo scope condiviso — 3. Stampa 3.",
+          "Callback 2 parte. Stesso scope condiviso, stesso i — stampa 3.",
+          "Callback 3 parte. Stampa 3. Tutte e tre hanno visto lo stesso binding, nello stesso istante."
+        ]
+      },
+      "forLet": {
+        "label": "for + let (la soluzione)",
+        "narrations": [
+          "Stesso ciclo, ma con let. let è block-scoped — ogni iterazione riceve il proprio scope nuovo.",
+          "Iterazione 0: viene creato un nuovo block scope con il suo i = 0. setTimeout lo cattura.",
+          "L'iterazione termina. Normalmente il block scope sparirebbe — ma la callback in coda lo tiene in vita. Resta come 'catturato'.",
+          "Iterazione 1: un nuovo block scope con i = 1. Il secondo setTimeout cattura questo.",
+          "Anche quello scope è catturato. Ora sono due gli scope indipendenti tenuti in vita.",
+          "Iterazione 2: scope nuovo, i = 2. Terzo setTimeout, terza cattura.",
+          "Il ciclo termina. Tre scope catturati restano vivi, ciascuno con il proprio i.",
+          "Callback 1 parte. Legge dallo scope dell'iterazione 0 — 0. Stampa 0.",
+          "Callback 2 parte. Scope dell'iterazione 1 — 1.",
+          "Callback 3 parte. Scope dell'iterazione 2 — 2. Tre memorie separate, una per iterazione."
+        ]
+      }
     }
   }
 }

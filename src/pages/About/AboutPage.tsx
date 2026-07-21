@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { StarField } from "./StarField";
 import { Chapter } from "./Chapter";
 import { OffKeyboard } from "./OffKeyboard";
+import { FamilySection } from "./FamilySection";
 import { StackGrid } from "./StackGrid";
 
 const CHAPTER_KEYS = [
@@ -61,7 +62,7 @@ export function AboutPage() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-accent-soft uppercase tracking-widest text-xs mb-6"
+            className="text-accent-soft uppercase tracking-widest text-xs mb-20"
           >
             {t("about.hero.eyebrow")}
           </motion.p>
@@ -114,6 +115,9 @@ export function AboutPage() {
       {/* ────────── OFF THE KEYBOARD ────────── */}
       <OffKeyboard />
 
+      {/* ────────── FAMILY ────────── */}
+      <FamilySection />
+
       {/* ────────── STACK ────────── */}
       <StackGrid />
 
@@ -135,7 +139,7 @@ export function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-6xl font-semibold tracking-tight gradient-text text-balance"
+            className="text-3xl md:text-5xl font-mono font-medium tracking-tight gradient-text text-balance"
           >
             {t("about.closing.title")}
           </motion.h2>

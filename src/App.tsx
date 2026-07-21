@@ -4,6 +4,7 @@ import { HomePage } from './pages/Home/HomePage'
 import { AboutPage } from './pages/About/AboutPage'
 import { EventLoopPage } from './pages/EventLoop/EventLoopPage'
 import { EventBubblingPage } from './pages/EventBubbling/EventBubblingPage'
+import { ClosuresPage } from './pages/Closures/ClosuresPage'
 import { ContactPage } from './pages/Contact/ContactPage'
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/event-loop" element={<EventLoopPage />} />
         <Route path="/event-bubbling" element={<EventBubblingPage />} />
+        <Route path="/closures" element={<ClosuresPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </div>

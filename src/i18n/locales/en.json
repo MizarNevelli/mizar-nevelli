@@ -13,6 +13,10 @@
       "eventBubbling": {
         "label": "Event Bubbling",
         "description": "DOM event propagation, step by step"
+      },
+      "closures": {
+        "label": "Closures",
+        "description": "Functions that carry their scope with them"
       }
     },
     "language": "Language"
@@ -23,7 +27,7 @@
     "titleLine2": "in motion.",
     "descriptionPrefix": "I'm ",
     "descriptionName": "Mizar",
-    "descriptionSuffix": " a JavaScript engineer building from wherever the wifi holds. This is a small playground for the language I love, told through pixels instead of paragraphs.",
+    "descriptionSuffix": " a JavaScript engineer building from wherever the wifi holds. This is a small playground for the language I love, told through pixels and some paragraphs.",
     "scrollHint": "Scroll to explore",
     "panels": {
       "one": {
@@ -244,7 +248,7 @@
       },
       "leap": {
         "year": "2013",
-        "place": "Australia · +4",
+        "place": "Australia",
         "eyebrow": "Chapter II · The leap",
         "title": "Then I left.",
         "body": "Twenty years old. Working-holiday visa. One backpack, and one country that seemed impossibly far away. I stayed in Australia for a year. Four more countries followed. Somewhere between a night bus and a farm on the other side of the world, I learned that curiosity teaches faster than a lecture hall."
@@ -294,6 +298,12 @@
       "water": "Water",
       "waterSub": "since I could hold my breath"
     },
+    "family": {
+      "eyebrow": "In the family",
+      "title": "My brother, Akela.",
+      "body": "He runs a kitchen the way I try to run a codebase — with an obsession for the small things. Last year I spent six months with him in Melbourne, mostly in his kitchen, occasionally on the floor at his private events. Turns out mise en place teaches the same lesson as a good deploy: everything in its place, and then the calm.",
+      "cta": "chefakela.com"
+    },
     "stack": {
       "eyebrow": "The stack",
       "title": "What I build with, today.",
@@ -307,9 +317,101 @@
     },
     "closing": {
       "eyebrow": "Currently",
-      "title": "Italy — but roaming.",
+      "title": "location: undefined",
       "body": "If any of this feels like something you'd want to work on together, I'd like to hear from you.",
       "cta": "Write to me"
+    }
+  },
+  "closures": {
+    "eyebrow": "Scope & memory",
+    "title": "Closures, unpacked.",
+    "description": "A closure is a function bundled with the scope it was born in. That's what lets callbacks 'remember' their surroundings — and it's why the loop-with-var has that famous bug.",
+    "stepLabel": "Step",
+    "status": {
+      "idle": "Ready",
+      "running": "Running",
+      "paused": "Paused",
+      "finished": "Finished"
+    },
+    "controls": {
+      "run": "Run scenario",
+      "pause": "Pause",
+      "resume": "Resume",
+      "reset": "Reset",
+      "replay": "Replay",
+      "prev": "← Prev",
+      "next": "Next →"
+    },
+    "speed": {
+      "slow": "slow",
+      "normal": "normal",
+      "fast": "fast"
+    },
+    "idleNarration": "Pick a scenario, then press Run to walk through it.",
+    "scopeStatus": {
+      "active": "active",
+      "captured": "captured",
+      "gone": "gone"
+    },
+    "consoleTitle": "Console output",
+    "consoleEmpty": "// nothing logged yet.",
+    "queueLabel": "Task queue",
+    "scenarios": {
+      "basic": {
+        "label": "Basic capture",
+        "narrations": [
+          "Nothing has run yet — just the global scope, holding the declaration of outer.",
+          "const f = outer() calls outer. A fresh outer() scope is pushed on the stack.",
+          "const secret = 42 adds secret to outer's scope.",
+          "inner is created inside outer. It carries a reference to outer's scope.",
+          "outer returns inner. Normally its scope would vanish — but f now holds a reference to inner, which holds outer's scope. It stays alive as 'captured'.",
+          "f() runs the captured inner. A new inner() scope is pushed, linked to the captured outer.",
+          "return secret looks up secret — not found locally, so it walks the chain to the captured outer, and reads 42.",
+          "inner returns 42. The console prints 42. That's a closure."
+        ]
+      },
+      "counter": {
+        "label": "Shared counter",
+        "narrations": [
+          "makeCounter() runs. Its scope pushes on the stack.",
+          "let count = 0 binds count in makeCounter's scope.",
+          "An object with inc and get is created. Both arrow functions capture makeCounter's scope.",
+          "makeCounter returns. Its scope is held by two closures now — it stays as 'captured'.",
+          "c.inc() runs. ++count bumps count from 0 to 1 in the captured scope.",
+          "c.inc() runs again. count goes from 1 to 2 — same scope, same binding.",
+          "c.get() reads count from the shared captured scope: 2.",
+          "console.log prints 2. Both closures agree on the same private state — that's the module pattern."
+        ]
+      },
+      "forVar": {
+        "label": "for + var (the bug)",
+        "narrations": [
+          "for (var i = 0; ...) starts. Because it's var, i lives in the surrounding scope — not in each iteration.",
+          "setTimeout schedules a callback. Its arrow captures the surrounding scope — the one holding i.",
+          "i++ → i is now 1. Second setTimeout schedules another callback, capturing the same scope.",
+          "i++ → i is 2. Third setTimeout, third callback in the queue — still capturing the same scope.",
+          "i++ → i is 3. The condition fails, the loop exits. But i in the shared scope is now stuck at 3.",
+          "The stack is empty. The event loop reaches for the task queue.",
+          "Callback 1 fires. It reads i from the shared scope — 3. Logs 3.",
+          "Callback 2 fires. Same shared scope, same i — logs 3.",
+          "Callback 3 fires. Logs 3. All three saw the same binding, at the same moment in time."
+        ]
+      },
+      "forLet": {
+        "label": "for + let (the fix)",
+        "narrations": [
+          "Same loop, but with let. let is block-scoped — each iteration gets its own fresh scope.",
+          "Iteration 0: a new block scope is created with its own i = 0. setTimeout captures it.",
+          "The iteration ends. Normally the block scope would vanish — but the queued callback holds it. It stays as 'captured'.",
+          "Iteration 1: a brand-new block scope with i = 1. Second setTimeout captures this one.",
+          "That scope is captured too. Now two independent scopes are being kept alive.",
+          "Iteration 2: fresh scope, i = 2. Third setTimeout captures it.",
+          "The loop exits. Three captured scopes are still around, each with its own i.",
+          "Callback 1 fires. It reads from iteration 0's scope — 0. Logs 0.",
+          "Callback 2 fires. Iteration 1's scope — 1.",
+          "Callback 3 fires. Iteration 2's scope — 2. Three separate memories, one per iteration."
+        ]
+      }
     }
   }
 }
