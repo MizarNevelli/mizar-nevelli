@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Home",
+    "about": "Chi sono",
     "js": "JS",
     "jsFeatures": "Feature JS",
     "contact": "Contatti",
@@ -224,5 +225,91 @@
       }
     },
     "copyAria": "Copia {{label}}"
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Chi sono",
+      "titleLine1": "C'è una stella",
+      "titleLine2": "che si chiama Mizar.",
+      "subtitle": "Software engineer, prendo il nome da ζ Ursae Majoris — la seconda stella dalla punta del manico del Grande Carro. Visibile a occhio nudo, parte di un sistema sestuplo. A me è toccato il nome; al cielo, i diritti di battesimo.",
+      "scrollHint": "Leggi la storia"
+    },
+    "chapters": {
+      "origin": {
+        "year": "2012",
+        "place": "Padova",
+        "eyebrow": "Capitolo I · L'origine",
+        "title": "All'inizio, ho provato a leggere il mondo con i numeri.",
+        "body": "Diciannove anni, iscritto a Statistica e Finanza all'Università di Padova. Imparavo a vedere il mondo come distribuzioni e intervalli di confidenza. Sulla carta funzionava. Ma non mi muoveva davvero."
+      },
+      "leap": {
+        "year": "2013",
+        "place": "Australia · +4",
+        "eyebrow": "Capitolo II · Il salto",
+        "title": "Poi sono partito.",
+        "body": "Vent'anni. Working-holiday visa. Uno zaino, e un paese che sembrava impossibilmente lontano. Sono rimasto in Australia un anno. Poi altri quattro paesi. Da qualche parte tra un autobus notturno e una fattoria dall'altra parte del mondo, ho capito che la curiosità insegna più in fretta di un'aula."
+      },
+      "pivot": {
+        "year": "2016",
+        "place": "Brescia · Machina Lonati",
+        "eyebrow": "Capitolo III · Il cambio di rotta",
+        "title": "Un diploma tecnico europeo, e un cavallo di Troia.",
+        "body": "Tornato in Italia. Machina Lonati, un percorso ITS di due anni in Digital Marketing. Mi ero iscritto per il marketing. Sono rimasto per quello che c'era dietro — più capivo come i siti <em>convertivano</em>, più volevo sapere come venivano <em>costruiti</em>."
+      },
+      "firstCommit": {
+        "year": "2018",
+        "place": "Magma Studio",
+        "eyebrow": "Capitolo IV · Il primo commit",
+        "title": "Il piccolo brivido di spedire qualcosa di vero.",
+        "body": "Primo stage. Temi WordPress, landing page custom, un po' di jQuery — lo stack quotidiano dei piccoli studi. Ho anche fatto da ponte tra lo studio e un medico che voleva una piattaforma: fatturato +20% quel trimestre. È stato il momento in cui ho capito la leva del codice."
+      },
+      "engineering": {
+        "year": "2019",
+        "place": "Jakala",
+        "eyebrow": "Capitolo V · Ingegneria vera",
+        "title": "Dove 'stakeholder alignment' ha smesso di suonare come una barzelletta.",
+        "body": "GIS + JavaScript + Python. Ho costruito una dashboard di geolocalizzazione per un brand automotive europeo, e uno strumento di location-analytics per un cliente globale del food & beverage, arrivato tra i top 5% dei progetti interni. Due anni per imparare a tradurre problemi umani disordinati in query strutturate."
+      },
+      "matures": {
+        "year": "2020",
+        "place": "Palmabit",
+        "eyebrow": "Capitolo VI · Lo stack matura",
+        "title": "I problemi più difficili, in ingegneria, raramente sono il codice.",
+        "body": "Due anni a rilasciare React e Node in team multidisciplinari — un gestionale automotive, poi una piattaforma per un operatore telco italiano. La comunicazione tra team è diventata una competenza a cui potevo puntare il dito. I test, quelli veri, sono diventati un'abitudine."
+      },
+      "now": {
+        "year": "2022 →",
+        "place": "Spartan Tech",
+        "eyebrow": "Capitolo VII · Oggi",
+        "title": "React, Next, e notarizzato on-chain.",
+        "body": "Il full restyling di un marketplace di orologi di lusso notarizzato su Algorand — Core Web Vitals +10%. Una piattaforma custom per una società medica — il 95% delle feature richieste, spedite in un MVP misurato in mesi, non in trimestri. Nel 2023–24 ho studiato blockchain seriamente a Masterz, così il lavoro on-chain ha una base solida sotto."
+      }
+    },
+    "offKeyboard": {
+      "eyebrow": "Fuori tastiera",
+      "title": "Colleziono due tipi di orizzonti.",
+      "body": "Quelli coperti di neve, e quelli che si allungano sull'acqua. Sciando da quando mi reggevo in piedi. Nuotando da quando so trattenere il fiato. Entrambi mi ricordano che la fluidità è la stessa ovunque — pratica profonda, che sembra facile.",
+      "snow": "Neve",
+      "snowSub": "da quando mi reggo in piedi",
+      "water": "Acqua",
+      "waterSub": "da quando trattengo il fiato"
+    },
+    "stack": {
+      "eyebrow": "Lo stack",
+      "title": "Cosa uso, oggi.",
+      "body": "Preferenze, non dogmi. Scelgo ciò che rende più leggero il martedì mattina di chi eredita il codice.",
+      "groups": {
+        "frontend": "Frontend",
+        "runtime": "Runtime & data",
+        "cloud": "Cloud & tooling",
+        "adjacent": "E, ogni tanto"
+      }
+    },
+    "closing": {
+      "eyebrow": "Al momento",
+      "title": "Italia — ma in movimento.",
+      "body": "Se qualcosa di tutto questo ti sembra un progetto su cui costruire insieme, sono qui.",
+      "cta": "Scrivimi"
+    }
   }
 }

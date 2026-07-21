@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Home",
+    "about": "About",
     "js": "JS",
     "jsFeatures": "JS features",
     "contact": "Contact",
@@ -224,5 +225,91 @@
       }
     },
     "copyAria": "Copy {{label}}"
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About",
+      "titleLine1": "There's a star",
+      "titleLine2": "named Mizar.",
+      "subtitle": "Software engineer, named after ζ Ursae Majoris — the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
+      "scrollHint": "Read the story"
+    },
+    "chapters": {
+      "origin": {
+        "year": "2012",
+        "place": "Padua",
+        "eyebrow": "Chapter I · The origin",
+        "title": "First, I tried to make sense of the world in numbers.",
+        "body": "Nineteen, enrolled in Statistics & Finance at the University of Padua. I was learning to see the world as distributions and confidence intervals. It made sense on paper. It didn't move me."
+      },
+      "leap": {
+        "year": "2013",
+        "place": "Australia · +4",
+        "eyebrow": "Chapter II · The leap",
+        "title": "Then I left.",
+        "body": "Twenty years old. Working-holiday visa. One backpack, and one country that seemed impossibly far away. I stayed in Australia for a year. Four more countries followed. Somewhere between a night bus and a farm on the other side of the world, I learned that curiosity teaches faster than a lecture hall."
+      },
+      "pivot": {
+        "year": "2016",
+        "place": "Brescia · Machina Lonati",
+        "eyebrow": "Chapter III · The pivot",
+        "title": "A European Technical Degree, and a Trojan horse.",
+        "body": "Back in Italy. Machina Lonati, a two-year technical program in Digital Marketing. I signed up for the marketing. I stayed for what came after — the more I learned about how websites <em>converted</em>, the more I wanted to know how they were <em>built</em>."
+      },
+      "firstCommit": {
+        "year": "2018",
+        "place": "Magma Studio",
+        "eyebrow": "Chapter IV · The first commit",
+        "title": "The small thrill of shipping something real.",
+        "body": "First internship. WordPress themes, custom landing pages, occasional jQuery — the workhorse stack of small studios. I also brokered a deal with a doctor who wanted a platform: turnover went up 20% that quarter. That was the moment I understood the leverage of code."
+      },
+      "engineering": {
+        "year": "2019",
+        "place": "Jakala",
+        "eyebrow": "Chapter V · Real engineering",
+        "title": "Where 'stakeholder alignment' stopped sounding like a joke.",
+        "body": "GIS + JavaScript + Python. I built a geolocation dashboard for a European automotive brand, and a location-analytics tool for a global F&B client that landed in the internal top 5%. Two years of learning to translate messy human problems into structured queries."
+      },
+      "matures": {
+        "year": "2020",
+        "place": "Palmabit",
+        "eyebrow": "Chapter VI · The stack matures",
+        "title": "The hardest problems in engineering are rarely the code.",
+        "body": "Two years shipping React and Node across cross-disciplinary teams — an automotive management platform, then something for an Italian telco supplier. Cross-team communication became a skill I could point to. Tests, real tests, became a habit."
+      },
+      "now": {
+        "year": "2022 →",
+        "place": "Spartan Tech",
+        "eyebrow": "Chapter VII · Now",
+        "title": "React, Next, and notarized on-chain.",
+        "body": "A full restyling of a luxury watch marketplace notarized on Algorand — Core Web Vitals up 10%. A custom platform for a medical society — 95% of requested features shipped in an MVP measured in months, not quarters. In 2023–24 I studied blockchain properly at Masterz, so the on-chain work has real ground under it."
+      }
+    },
+    "offKeyboard": {
+      "eyebrow": "Off the keyboard",
+      "title": "I collect two kinds of horizons.",
+      "body": "The ones covered in snow, and the ones that stretch across water. Skiing since I could stand. Swimming since I could hold my breath. Both remind me that fluency is the same everywhere — deep practice, made to look effortless.",
+      "snow": "Snow",
+      "snowSub": "since I could stand",
+      "water": "Water",
+      "waterSub": "since I could hold my breath"
+    },
+    "stack": {
+      "eyebrow": "The stack",
+      "title": "What I build with, today.",
+      "body": "Preferences, not dogma. I reach for what makes the next teammate's Tuesday morning easier.",
+      "groups": {
+        "frontend": "Frontend",
+        "runtime": "Runtime & data",
+        "cloud": "Cloud & tooling",
+        "adjacent": "And, occasionally"
+      }
+    },
+    "closing": {
+      "eyebrow": "Currently",
+      "title": "Italy — but roaming.",
+      "body": "If any of this feels like something you'd want to work on together, I'd like to hear from you.",
+      "cta": "Write to me"
+    }
   }
 }
