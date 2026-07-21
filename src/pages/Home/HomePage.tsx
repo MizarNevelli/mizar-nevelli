@@ -71,12 +71,12 @@ export function HomePage() {
       <section
         ref={globeSectionRef}
         className="relative"
-        style={{ height: "400vh" }}
+        style={{ height: "400dvh" }}
       >
         <div className="sticky top-0 h-[100dvh] flex items-center overflow-hidden">
           <div className="mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl px-6 w-full">
             {/* Globe — capped on mobile so it never overflows 100vh alongside the text */}
-            <div className="relative order-2 md:order-1 mx-auto w-full max-w-[min(52vh,100%)] md:max-w-none">
+            <div className="relative order-2 md:order-1 mx-auto w-full max-w-[min(52dvh,100%)] md:max-w-none">
               <div className="absolute -inset-20 bg-radial-fade blur-2xl pointer-events-none" />
               <div className="relative">
                 <Globe progress={globeProgress} />

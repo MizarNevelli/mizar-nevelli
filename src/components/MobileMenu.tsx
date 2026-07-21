@@ -74,7 +74,7 @@ export function MobileMenu({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="min-h-screen flex flex-col px-6 pt-24 pb-10"
+        className="min-h-[100dvh] flex flex-col px-6 py-10"
       >
         <ul className="flex-1 flex flex-col justify-center gap-6">
           {topLinks.map((link, i) => (
