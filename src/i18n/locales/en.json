@@ -1,0 +1,228 @@
+{
+  "nav": {
+    "home": "Home",
+    "js": "JS",
+    "jsFeatures": "JS features",
+    "contact": "Contact",
+    "features": {
+      "eventLoop": {
+        "label": "Event Loop",
+        "description": "Call stack, microtasks & tasks"
+      },
+      "eventBubbling": {
+        "label": "Event Bubbling",
+        "description": "DOM event propagation, step by step"
+      }
+    },
+    "language": "Language"
+  },
+  "home": {
+    "chip": "Currently: somewhere between two flights",
+    "titleLine1": "Mizar & JavaScript,",
+    "titleLine2": "in motion.",
+    "descriptionPrefix": "I'm ",
+    "descriptionName": "Mizar",
+    "descriptionSuffix": " a JavaScript engineer building from wherever the wifi holds. This is a small playground for the language I love, told through pixels instead of paragraphs.",
+    "scrollHint": "Scroll to explore",
+    "panels": {
+      "one": {
+        "eyebrow": "01 · Remote by design",
+        "line1": "A laptop, a signal,",
+        "line2": "and the world becomes an office."
+      },
+      "two": {
+        "eyebrow": "02 · Fifteen time zones",
+        "line1": "Shipping features from cafés,",
+        "line2": "trains, and rooftop balconies."
+      },
+      "three": {
+        "eyebrow": "03 · One language, one loop",
+        "line1": "JavaScript runs the browser",
+        "line2": "and it powers the journey."
+      }
+    },
+    "stats": {
+      "countries": "Countries",
+      "writingJs": "Writing JS",
+      "coffees": "Coffees",
+      "eventLoop": "Event loop"
+    },
+    "explainers": {
+      "eyebrow": "Explainers",
+      "line1": "The parts of JavaScript",
+      "line2": "that deserve a picture."
+    },
+    "features": {
+      "eventLoop": {
+        "eyebrow": "Concurrency",
+        "title": "The event loop",
+        "body": "Call stack, task queue, microtasks — watch them collaborate frame by frame."
+      },
+      "eventBubbling": {
+        "eyebrow": "DOM events",
+        "title": "Event bubbling",
+        "body": "A click starts deep and rises. Trace its path through the tree, live."
+      }
+    },
+    "featureCardCta": "Explore",
+    "footer": "Built with React, Framer Motion & a lot of espresso."
+  },
+  "eventLoop": {
+    "eyebrow": "Concurrency",
+    "title": "The event loop, visualized.",
+    "description": "JavaScript runs on a single thread. The event loop is how it juggles synchronous code, promises, and timers without ever blocking.",
+    "stepLabel": "Step",
+    "status": {
+      "idle": "Ready",
+      "running": "Running",
+      "paused": "Paused",
+      "finished": "Finished"
+    },
+    "controls": {
+      "run": "Run scenario",
+      "pause": "Pause",
+      "resume": "Resume",
+      "reset": "Reset",
+      "replay": "Replay",
+      "prev": "← Prev",
+      "next": "Next →"
+    },
+    "speed": {
+      "slow": "slow",
+      "normal": "normal",
+      "fast": "fast"
+    },
+    "idleNarration": "Pick a scenario, then press Run to step through it.",
+    "visualizer": {
+      "stack": {
+        "title": "Call stack",
+        "hint": "LIFO — one function at a time"
+      },
+      "microtasks": {
+        "title": "Microtask queue",
+        "hint": "Promises, queueMicrotask"
+      },
+      "macrotasks": {
+        "title": "Task queue",
+        "hint": "Timers, I/O, UI events"
+      }
+    },
+    "scenarios": {
+      "classic": {
+        "label": "setTimeout + Promise",
+        "narrations": [
+          "Line 1 runs synchronously — 'A' is logged.",
+          "setTimeout hands its callback to the Web APIs.",
+          "Even with a 0 ms delay, the callback waits in the macrotask queue.",
+          "The .then handler is scheduled on the microtask queue.",
+          "Microtasks always run before the next macrotask.",
+          "Line 11 runs — 'D' is logged. Sync code still first.",
+          "Call stack is empty. The loop drains microtasks next.",
+          "The .then callback runs — 'C' is logged.",
+          "Now the macrotask fires — 'B' is logged. Final order: A, D, C, B."
+        ]
+      },
+      "promises": {
+        "label": "Chained promises",
+        "narrations": [
+          "A resolved promise is created.",
+          "The first .then is scheduled as a microtask.",
+          "Sync code runs first — 'sync' is logged.",
+          "Stack empty. Microtask queue drains.",
+          "'start' is logged; returning 'next' schedules the next .then.",
+          "The second .then joins the microtask queue immediately.",
+          "'next' is logged. Order: sync, start, next."
+        ]
+      },
+      "nested": {
+        "label": "Microtasks starving tasks",
+        "narrations": [
+          "Timer scheduled.",
+          "Timer callback waits in the macrotask queue.",
+          "chain() is queued as a microtask.",
+          "Call stack empties. Microtasks always run first.",
+          "'micro' is logged.",
+          "chain() re-schedules itself — new microtask.",
+          "Loop drains microtasks before touching the timer again…",
+          "'micro' is logged again — the timer keeps waiting.",
+          "This is how a runaway promise chain can starve macrotasks."
+        ]
+      }
+    }
+  },
+  "eventBubbling": {
+    "eyebrow": "DOM events",
+    "title": "Event bubbling, up close.",
+    "description": "A single click travels down the DOM tree (capture), hits its target, then rises back up (bubble). Every ancestor gets a turn.",
+    "hopLabel": "Hop",
+    "toggles": {
+      "useCapture": "useCapture",
+      "stopPropagation": "stopPropagation at:",
+      "none": "— none —"
+    },
+    "status": {
+      "idle": "Ready",
+      "running": "Tracing",
+      "paused": "Paused",
+      "finished": "Finished"
+    },
+    "controls": {
+      "run": "Run trace",
+      "pause": "Pause",
+      "resume": "Resume",
+      "reset": "Reset",
+      "replay": "Replay",
+      "prev": "← Prev",
+      "next": "Next →"
+    },
+    "speed": {
+      "slow": "slow",
+      "normal": "normal",
+      "fast": "fast"
+    },
+    "log": {
+      "title": "Propagation log",
+      "empty_prefix": "Click ",
+      "empty_suffix": " or press Run to fire an event.",
+      "listener": "listener ({{phase}})"
+    },
+    "innerButton": {
+      "idle": "Click me to fire an event",
+      "default": "Click me"
+    },
+    "idleNarration": "Ready. Click the inner box to fire an event and trace its journey.",
+    "narrations": {
+      "captureStart": "Capture phase begins. The event starts at the very top — window — and travels down.",
+      "capture": "Capture phase: passing through {{layer}} on the way down.",
+      "target": "Reached the target: {{layer}}. This is the target phase — where the click actually happened.",
+      "bubbleEnd": "Back at window. The event has finished bubbling all the way up.",
+      "bubble": "Bubble phase: the event rises through {{layer}}."
+    }
+  },
+  "contact": {
+    "eyebrow": "Say hi",
+    "titleLine1": "Let's build something,",
+    "titleLine2": "or just chat.",
+    "description": "Wherever the wifi holds, I'll answer. Drop a note or a message — whichever fits the moment.",
+    "footer": "Usually reply within a day — timezone permitting.",
+    "cards": {
+      "email": {
+        "label": "Email",
+        "action": "Compose"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "action": "Open chat"
+      },
+      "github": {
+        "label": "GitHub",
+        "action": "View profile"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "action": "Connect"
+      }
+    },
+    "copyAria": "Copy {{label}}"
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "nav": {
+    "home": "Home",
+    "js": "JS",
+    "jsFeatures": "Feature JS",
+    "contact": "Contatti",
+    "features": {
+      "eventLoop": {
+        "label": "Event Loop",
+        "description": "Call stack, microtask e task"
+      },
+      "eventBubbling": {
+        "label": "Event Bubbling",
+        "description": "Propagazione degli eventi DOM, passo dopo passo"
+      }
+    },
+    "language": "Lingua"
+  },
+  "home": {
+    "chip": "Al momento: da qualche parte tra due voli",
+    "titleLine1": "Mizar & JavaScript,",
+    "titleLine2": "in movimento.",
+    "descriptionPrefix": "Sono ",
+    "descriptionName": "Mizar",
+    "descriptionSuffix": ", uno sviluppatore JavaScript che lavora da remoto, ovunque ci sia una connessione. Questo è un piccolo playground dedicato al linguaggio che amo, raccontato con i pixel invece delle parole.",
+    "scrollHint": "Scorri per esplorare",
+    "panels": {
+      "one": {
+        "eyebrow": "01 · Da remoto, per scelta",
+        "line1": "Un laptop, un segnale,",
+        "line2": "e il mondo diventa un ufficio."
+      },
+      "two": {
+        "eyebrow": "02 · Quindici fusi orari",
+        "line1": "Rilasciando feature da caffè,",
+        "line2": "treni e terrazze sui tetti."
+      },
+      "three": {
+        "eyebrow": "03 · Un linguaggio, un loop",
+        "line1": "JavaScript muove il browser",
+        "line2": "e alimenta il viaggio."
+      }
+    },
+    "stats": {
+      "countries": "Paesi",
+      "writingJs": "Anni di JS",
+      "coffees": "Caffè",
+      "eventLoop": "Event loop"
+    },
+    "explainers": {
+      "eyebrow": "Approfondimenti",
+      "line1": "Le parti di JavaScript",
+      "line2": "che meritano un'immagine."
+    },
+    "features": {
+      "eventLoop": {
+        "eyebrow": "Concorrenza",
+        "title": "L'event loop",
+        "body": "Call stack, task queue, microtask — guardali collaborare frame dopo frame."
+      },
+      "eventBubbling": {
+        "eyebrow": "Eventi DOM",
+        "title": "Event bubbling",
+        "body": "Un click parte in profondità e sale. Traccia il suo percorso nell'albero, in tempo reale."
+      }
+    },
+    "featureCardCta": "Esplora",
+    "footer": "Costruito con React, Framer Motion e molto espresso."
+  },
+  "eventLoop": {
+    "eyebrow": "Concorrenza",
+    "title": "L'event loop, visualizzato.",
+    "description": "JavaScript gira su un singolo thread. L'event loop è ciò che gli permette di gestire codice sincrono, promise e timer senza mai bloccarsi.",
+    "stepLabel": "Passo",
+    "status": {
+      "idle": "Pronto",
+      "running": "In esecuzione",
+      "paused": "In pausa",
+      "finished": "Terminato"
+    },
+    "controls": {
+      "run": "Avvia scenario",
+      "pause": "Pausa",
+      "resume": "Riprendi",
+      "reset": "Ripristina",
+      "replay": "Ripeti",
+      "prev": "← Prec",
+      "next": "Succ →"
+    },
+    "speed": {
+      "slow": "lento",
+      "normal": "normale",
+      "fast": "veloce"
+    },
+    "idleNarration": "Scegli uno scenario, poi premi Avvia per procedere passo passo.",
+    "visualizer": {
+      "stack": {
+        "title": "Call stack",
+        "hint": "LIFO — una funzione alla volta"
+      },
+      "microtasks": {
+        "title": "Coda dei microtask",
+        "hint": "Promise, queueMicrotask"
+      },
+      "macrotasks": {
+        "title": "Coda dei task",
+        "hint": "Timer, I/O, eventi UI"
+      }
+    },
+    "scenarios": {
+      "classic": {
+        "label": "setTimeout + Promise",
+        "narrations": [
+          "La riga 1 viene eseguita in modo sincrono — viene loggato 'A'.",
+          "setTimeout consegna la callback alle Web API.",
+          "Anche con un ritardo di 0 ms, la callback attende nella coda dei macrotask.",
+          "L'handler .then viene messo in coda tra i microtask.",
+          "I microtask vengono sempre eseguiti prima del prossimo macrotask.",
+          "La riga 11 parte — viene loggato 'D'. Il codice sincrono viene sempre prima.",
+          "Il call stack è vuoto. Il loop svuota ora la coda dei microtask.",
+          "La callback .then viene eseguita — viene loggato 'C'.",
+          "Ora scatta il macrotask — viene loggato 'B'. Ordine finale: A, D, C, B."
+        ]
+      },
+      "promises": {
+        "label": "Promise concatenate",
+        "narrations": [
+          "Viene creata una promise già risolta.",
+          "Il primo .then viene messo in coda come microtask.",
+          "Il codice sincrono viene per primo — viene loggato 'sync'.",
+          "Stack vuoto. La coda dei microtask si svuota.",
+          "Viene loggato 'start'; restituire 'next' pianifica il prossimo .then.",
+          "Il secondo .then si unisce subito alla coda dei microtask.",
+          "Viene loggato 'next'. Ordine: sync, start, next."
+        ]
+      },
+      "nested": {
+        "label": "Microtask che affamano i task",
+        "narrations": [
+          "Timer pianificato.",
+          "La callback del timer attende nella coda dei macrotask.",
+          "chain() viene messa in coda come microtask.",
+          "Il call stack si svuota. I microtask vengono sempre prima.",
+          "Viene loggato 'micro'.",
+          "chain() si ripianifica da sola — nuovo microtask.",
+          "Il loop svuota i microtask prima di tornare al timer…",
+          "Viene loggato di nuovo 'micro' — il timer continua ad aspettare.",
+          "Ecco come una catena di promise fuori controllo può affamare i macrotask."
+        ]
+      }
+    }
+  },
+  "eventBubbling": {
+    "eyebrow": "Eventi DOM",
+    "title": "Event bubbling, da vicino.",
+    "description": "Un singolo click scende lungo l'albero del DOM (fase di cattura), colpisce il target, poi risale (fase di bubbling). Ogni antenato ha il suo turno.",
+    "hopLabel": "Salto",
+    "toggles": {
+      "useCapture": "useCapture",
+      "stopPropagation": "stopPropagation a:",
+      "none": "— nessuno —"
+    },
+    "status": {
+      "idle": "Pronto",
+      "running": "Tracciamento",
+      "paused": "In pausa",
+      "finished": "Terminato"
+    },
+    "controls": {
+      "run": "Avvia traccia",
+      "pause": "Pausa",
+      "resume": "Riprendi",
+      "reset": "Ripristina",
+      "replay": "Ripeti",
+      "prev": "← Prec",
+      "next": "Succ →"
+    },
+    "speed": {
+      "slow": "lento",
+      "normal": "normale",
+      "fast": "veloce"
+    },
+    "log": {
+      "title": "Log di propagazione",
+      "empty_prefix": "Clicca ",
+      "empty_suffix": " o premi Avvia per lanciare un evento.",
+      "listener": "listener ({{phase}})"
+    },
+    "innerButton": {
+      "idle": "Cliccami per lanciare un evento",
+      "default": "Cliccami"
+    },
+    "idleNarration": "Pronto. Clicca il box interno per lanciare un evento e tracciarne il percorso.",
+    "narrations": {
+      "captureStart": "Inizia la fase di cattura. L'evento parte dall'alto — window — e scende.",
+      "capture": "Fase di cattura: passa attraverso {{layer}} scendendo.",
+      "target": "Raggiunto il target: {{layer}}. Questa è la fase target — dove il click è effettivamente avvenuto.",
+      "bubbleEnd": "Di nuovo a window. L'evento ha finito di risalire.",
+      "bubble": "Fase di bubbling: l'evento risale attraverso {{layer}}."
+    }
+  },
+  "contact": {
+    "eyebrow": "Fatti sentire",
+    "titleLine1": "Costruiamo qualcosa,",
+    "titleLine2": "o solo due chiacchiere.",
+    "description": "Ovunque ci sia una connessione, rispondo. Manda una mail o un messaggio — quello che preferisci nel momento.",
+    "footer": "Di solito rispondo entro un giorno — fuso permettendo.",
+    "cards": {
+      "email": {
+        "label": "Email",
+        "action": "Scrivi"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "action": "Apri chat"
+      },
+      "github": {
+        "label": "GitHub",
+        "action": "Vedi profilo"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "action": "Connettiti"
+      }
+    },
+    "copyAria": "Copia {{label}}"
+  }
+}
