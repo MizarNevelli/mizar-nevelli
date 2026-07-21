@@ -152,7 +152,7 @@ export function HomePage() {
             <StatCard value="∞" label={t("home.stats.coffees")} />
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
-            <StatCard value="10" label={t("home.stats.cigarettes")} />
+            <StatCard value="1000+" label={t("home.stats.cigarettes")} />
           </ScrollReveal>
         </div>
       </section>
