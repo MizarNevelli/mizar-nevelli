@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { EventLoopVisualizer } from "./EventLoopVisualizer";
 import { CodeBlock } from "../../components/CodeBlock";
+import { CornerLabels } from "../../components/CornerLabels";
 import {
   SCENARIOS,
   SCENARIO_IDS,
@@ -26,11 +27,6 @@ const IDLE_FRAME: Frame = {
   macrotasks: [],
 };
 
-/**
- * Event Loop explainer. State machine:
- *   idle | running | paused | finished
- * Narration and scenario labels are pulled from i18n by scenario id + step.
- */
 export function EventLoopPage() {
   const { t } = useTranslation();
   const [scenarioId, setScenarioId] = useState<ScenarioId>("classic");
@@ -42,7 +38,6 @@ export function EventLoopPage() {
   const lastStep = scenario.timeline.length - 1;
   const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[step];
 
-  // Dynamic key path — cast around the strict typed t() to look up by index.
   const tAny = t as (key: string) => string;
   const narration: string =
     status === "idle"
@@ -91,29 +86,39 @@ export function EventLoopPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
-      <header className="text-center max-w-3xl mx-auto">
-        <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
-          {t("eventLoop.eyebrow")}
-        </p>
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight gradient-text text-balance">
+    <main className="pt-24 pb-24 px-6 max-w-6xl mx-auto">
+      <CornerLabels
+        topLeft="OBS. I · THE LOOP"
+        topRight="single-threaded, 60 Hz"
+        bottomLeft="fig. 02"
+        bottomRight="scenario · playing"
+      />
+
+      <header className="max-w-3xl mx-auto pt-12">
+        <div className="flex items-baseline gap-4 mb-6">
+          <span className="obs-label">Obs. I</span>
+          <span className="hair-t flex-1 mt-3" />
+          <span className="coord">{t("eventLoop.eyebrow")}</span>
+        </div>
+        <h1 className="font-display text-5xl md:text-7xl text-bone leading-[1.05] text-balance">
           {t("eventLoop.title")}
         </h1>
-        <p className="mt-6 text-white/60 text-lg text-balance">
+        <p className="mt-6 text-bone/60 text-base md:text-lg leading-relaxed">
           {t("eventLoop.description")}
         </p>
       </header>
 
       {/* Scenario picker */}
-      <div className="mt-12 flex justify-center flex-wrap gap-2">
+      <div className="mt-14 hair-t hair-b py-4 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+        <span className="coord">scenario ·</span>
         {SCENARIO_IDS.map((id) => (
           <button
             key={id}
             onClick={() => setScenarioId(id)}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
+            className={`text-sm transition-colors ${
               scenarioId === id
-                ? "bg-accent text-white"
-                : "glass text-white/70 hover:text-white"
+                ? "text-bone link-underline"
+                : "text-bone/50 hover:text-bone"
             }`}
           >
             {tAny(`eventLoop.scenarios.${id}.label`)}
@@ -121,21 +126,21 @@ export function EventLoopPage() {
         ))}
       </div>
 
-      {/* Progress + status pill */}
+      {/* Progress + status */}
       <div className="mt-8 max-w-3xl mx-auto">
-        <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
+        <div className="flex items-baseline justify-between mb-2">
           <StatusPill status={status} />
-          <span>
+          <span className="coord">
             {t("eventLoop.stepLabel")}{" "}
-            <span className="text-white/80">
+            <span className="text-bone tnum">
               {status === "idle" ? 0 : step + 1}
             </span>{" "}
-            / {scenario.timeline.length}
+            / <span className="tnum">{scenario.timeline.length}</span>
           </span>
         </div>
-        <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+        <div className="h-px bg-bone/10 overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-accent to-accent-soft"
+            className="h-full bg-star"
             initial={false}
             animate={{
               width:
@@ -148,7 +153,7 @@ export function EventLoopPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-6 items-start">
+      <div className="mt-10 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-6 items-start">
         <CodeBlock
           code={scenario.code}
           highlightLine={status === "idle" ? undefined : frame.line}
@@ -157,23 +162,23 @@ export function EventLoopPage() {
       </div>
 
       {/* Narration */}
-      <div className="mt-8 min-h-[3.5rem] flex items-start justify-center">
+      <div className="mt-10 min-h-[3.5rem] flex items-start justify-center">
         <AnimatePresence mode="wait">
           <motion.p
             key={`${scenarioId}-${status}-${step}`}
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.28 }}
-            className="text-center text-white/80 max-w-2xl text-lg leading-relaxed"
+            className="text-center text-bone/80 max-w-2xl font-display text-xl md:text-2xl leading-snug"
           >
-            {narration}
+            <em>{narration}</em>
           </motion.p>
         </AnimatePresence>
       </div>
 
       {/* Controls */}
-      <div className="mt-8 flex flex-col items-center gap-4">
+      <div className="mt-10 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}
           onStart={start}
@@ -181,18 +186,18 @@ export function EventLoopPage() {
           onPause={pause}
           onReset={reset}
         />
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-baseline gap-6 text-sm">
           <button
             onClick={stepBack}
             disabled={status === "idle" || step === 0}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="text-bone/60 hover:text-bone transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
           >
             {t("eventLoop.controls.prev")}
           </button>
           <button
             onClick={stepForward}
             disabled={status === "finished"}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="text-bone/60 hover:text-bone transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
           >
             {t("eventLoop.controls.next")}
           </button>
@@ -206,13 +211,15 @@ export function EventLoopPage() {
 function StatusPill({ status }: { status: Status }) {
   const { t } = useTranslation();
   const color: Record<Status, string> = {
-    idle: "text-white/50",
-    running: "text-emerald-400",
-    paused: "text-amber-400",
-    finished: "text-accent-soft",
+    idle: "text-bone/40",
+    running: "text-star",
+    paused: "text-ember",
+    finished: "text-bone",
   };
   return (
-    <span className={color[status]}>● {t(`eventLoop.status.${status}`)}</span>
+    <span className={`coord ${color[status]}`}>
+      [ {t(`eventLoop.status.${status}`)} ]
+    </span>
   );
 }
 
@@ -232,12 +239,14 @@ function PrimaryControls({
   onReset,
 }: PrimaryControlsProps) {
   const { t } = useTranslation();
+  const primaryClass =
+    "inline-flex items-center gap-2 border border-bone px-6 py-2.5 text-bone hover:bg-bone hover:text-night transition-colors font-mono text-xs uppercase tracking-[0.18em]";
+  const ghostClass =
+    "hair px-5 py-2.5 text-bone/70 hover:text-bone hover:border-bone/50 transition-colors font-mono text-xs uppercase tracking-[0.18em]";
+
   if (status === "idle") {
     return (
-      <button
-        onClick={onStart}
-        className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-      >
+      <button onClick={onStart} className={primaryClass}>
         <PlayIcon />
         {t("eventLoop.controls.run")}
       </button>
@@ -246,17 +255,11 @@ function PrimaryControls({
   if (status === "running") {
     return (
       <div className="flex items-center gap-3">
-        <button
-          onClick={onPause}
-          className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-white hover:bg-white/10 transition-colors"
-        >
+        <button onClick={onPause} className={primaryClass}>
           <PauseIcon />
           {t("eventLoop.controls.pause")}
         </button>
-        <button
-          onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
-        >
+        <button onClick={onReset} className={ghostClass}>
           {t("eventLoop.controls.reset")}
         </button>
       </div>
@@ -265,27 +268,18 @@ function PrimaryControls({
   if (status === "paused") {
     return (
       <div className="flex items-center gap-3">
-        <button
-          onClick={onResume}
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-        >
+        <button onClick={onResume} className={primaryClass}>
           <PlayIcon />
           {t("eventLoop.controls.resume")}
         </button>
-        <button
-          onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
-        >
+        <button onClick={onReset} className={ghostClass}>
           {t("eventLoop.controls.reset")}
         </button>
       </div>
     );
   }
   return (
-    <button
-      onClick={onStart}
-      className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-    >
+    <button onClick={onStart} className={primaryClass}>
       <ReplayIcon />
       {t("eventLoop.controls.replay")}
     </button>
@@ -302,15 +296,16 @@ function SpeedControl({
   const { t } = useTranslation();
   const options: Speed[] = ["slow", "normal", "fast"];
   return (
-    <div className="glass rounded-full p-1 flex items-center text-xs ml-2">
+    <div className="flex items-baseline gap-3 pl-6 hair-l">
+      <span className="coord">rate ·</span>
       {options.map((s) => (
         <button
           key={s}
           onClick={() => onChange(s)}
-          className={`px-3 py-1.5 rounded-full transition-colors capitalize ${
+          className={`transition-colors font-mono text-[11px] uppercase tracking-[0.16em] ${
             speed === s
-              ? "bg-white/15 text-white"
-              : "text-white/50 hover:text-white"
+              ? "text-star link-underline"
+              : "text-bone/45 hover:text-bone"
           }`}
         >
           {t(`eventLoop.speed.${s}`)}
@@ -321,17 +316,17 @@ function SpeedControl({
 }
 
 const PlayIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
     <path d="M8 5v14l11-7z" />
   </svg>
 );
 const PauseIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
     <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
   </svg>
 );
 const ReplayIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
     <path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" />
   </svg>
 );

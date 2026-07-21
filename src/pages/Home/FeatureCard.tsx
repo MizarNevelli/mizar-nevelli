@@ -6,27 +6,38 @@ type FeatureCardProps = {
   title: string;
   body: string;
   cta: string;
+  /** Roman-numeral index for the corner tag (e.g. "I", "II"). */
+  index: string;
 };
 
-export function FeatureCard({ to, eyebrow, title, body, cta }: FeatureCardProps) {
+/**
+ * An index-card feature reference. Flat, hairline-bordered, roman-numeral tag
+ * top-left. On hover the arrow slides and the border brightens — no glow.
+ */
+export function FeatureCard({
+  to,
+  eyebrow,
+  title,
+  body,
+  cta,
+  index,
+}: FeatureCardProps) {
   return (
     <Link
       to={to}
-      className="group relative block glass rounded-3xl p-8 md:p-10 overflow-hidden transition-transform duration-500 hover:-translate-y-1"
+      className="group relative block hair p-8 md:p-10 transition-colors hover:border-star/50"
     >
-      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-      <p className="text-accent-soft uppercase tracking-widest text-xs">
-        {eyebrow}
-      </p>
-      <h3 className="mt-3 text-3xl md:text-4xl font-semibold text-white tracking-tight">
+      <div className="flex items-baseline justify-between">
+        <span className="obs-label">Obs. {index}</span>
+        <span className="coord">{eyebrow}</span>
+      </div>
+      <h3 className="mt-8 font-display text-3xl md:text-4xl text-bone leading-tight">
         {title}
       </h3>
-      <p className="mt-4 text-white/60 max-w-md">{body}</p>
-      <div className="mt-8 inline-flex items-center gap-2 text-white/80 group-hover:text-accent-soft transition-colors">
-        {cta}
-        <span className="transition-transform group-hover:translate-x-1">
-          →
-        </span>
+      <p className="mt-4 text-bone/60 max-w-md leading-relaxed">{body}</p>
+      <div className="mt-10 hair-t pt-4 flex items-center justify-between text-sm text-bone/70 group-hover:text-star transition-colors">
+        <span className="link-underline">{cta}</span>
+        <span className="transition-transform group-hover:translate-x-1">→</span>
       </div>
     </Link>
   );

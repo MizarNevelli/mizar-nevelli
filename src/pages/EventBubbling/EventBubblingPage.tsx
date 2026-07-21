@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { CornerLabels } from "../../components/CornerLabels";
 
 type Phase = "capture" | "target" | "bubble";
 type TraceEntry = {
   id: number;
   layer: string;
   phase: Phase;
-  /** i18n key for the narration, plus optional interpolation params. */
   narrationKey: string;
   narrationParams?: Record<string, string>;
 };
@@ -30,11 +30,6 @@ const SPEED_MS: Record<Speed, number> = {
   fast: 550,
 };
 
-/**
- * Event bubbling explainer. Trace is pre-computed based on the toggles and
- * stepped through by a state machine (idle | running | paused | finished).
- * Narration text is looked up from i18n by key + interpolated params.
- */
 export function EventBubblingPage() {
   const { t } = useTranslation();
   const [stopAt, setStopAt] = useState<string | null>(null);
@@ -95,7 +90,6 @@ export function EventBubblingPage() {
     setStep(Math.max(0, step - 1));
   };
 
-  // Cast around strict i18n typing for dynamic key lookups.
   const tAny = t as (key: string, params?: Record<string, string>) => string;
   const narration =
     status === "idle"
@@ -105,40 +99,53 @@ export function EventBubblingPage() {
         : "";
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
-      <header className="text-center max-w-3xl mx-auto">
-        <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
-          {t("eventBubbling.eyebrow")}
-        </p>
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight gradient-text text-balance">
+    <main className="pt-24 pb-24 px-6 max-w-6xl mx-auto">
+      <CornerLabels
+        topLeft="OBS. II · THE CASCADE"
+        topRight="capture ↓  ·  bubble ↑"
+        bottomLeft="fig. 03"
+        bottomRight="dom · tracing"
+      />
+
+      <header className="max-w-3xl mx-auto pt-12">
+        <div className="flex items-baseline gap-4 mb-6">
+          <span className="obs-label">Obs. II</span>
+          <span className="hair-t flex-1 mt-3" />
+          <span className="coord">{t("eventBubbling.eyebrow")}</span>
+        </div>
+        <h1 className="font-display text-5xl md:text-7xl text-bone leading-[1.05] text-balance">
           {t("eventBubbling.title")}
         </h1>
-        <p className="mt-6 text-white/60 text-lg text-balance">
+        <p className="mt-6 text-bone/60 text-base md:text-lg leading-relaxed">
           {t("eventBubbling.description")}
         </p>
       </header>
 
       {/* Toggles */}
-      <div className="mt-10 flex justify-center flex-wrap gap-3 text-sm">
-        <label className="glass rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer">
+      <div className="mt-14 hair-t hair-b py-4 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+        <label className="flex items-baseline gap-2 cursor-pointer text-sm text-bone/70 hover:text-bone transition-colors">
           <input
             type="checkbox"
             checked={useCapture}
             onChange={(e) => setUseCapture(e.target.checked)}
-            className="accent-accent"
+            className="accent-star translate-y-[3px]"
           />
-          {t("eventBubbling.toggles.useCapture")}
+          <span className="font-mono text-xs uppercase tracking-[0.14em]">
+            {t("eventBubbling.toggles.useCapture")}
+          </span>
         </label>
-        <label className="glass rounded-full px-4 py-2 flex items-center gap-2">
-          {t("eventBubbling.toggles.stopPropagation")}
+        <label className="flex items-baseline gap-2 text-sm text-bone/70">
+          <span className="coord">{t("eventBubbling.toggles.stopPropagation")}</span>
           <select
             value={stopAt ?? ""}
             onChange={(e) => setStopAt(e.target.value || null)}
-            className="bg-transparent outline-none text-white"
+            className="bg-transparent outline-none text-bone hair px-2 py-1 font-mono text-xs"
           >
-            <option value="">{t("eventBubbling.toggles.none")}</option>
+            <option value="" className="bg-ink">
+              {t("eventBubbling.toggles.none")}
+            </option>
             {LAYERS.map((l) => (
-              <option key={l} value={l} className="bg-ink-800">
+              <option key={l} value={l} className="bg-ink">
                 {l}
               </option>
             ))}
@@ -148,19 +155,19 @@ export function EventBubblingPage() {
 
       {/* Progress + status */}
       <div className="mt-8 max-w-3xl mx-auto">
-        <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
+        <div className="flex items-baseline justify-between mb-2">
           <StatusPill status={status} />
-          <span>
+          <span className="coord">
             {t("eventBubbling.hopLabel")}{" "}
-            <span className="text-white/80">
+            <span className="text-bone tnum">
               {status === "idle" ? 0 : step + 1}
             </span>{" "}
-            / {trace.length}
+            / <span className="tnum">{trace.length}</span>
           </span>
         </div>
-        <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+        <div className="h-px bg-bone/10 overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-accent to-accent-soft"
+            className="h-full bg-star"
             initial={false}
             animate={{
               width:
@@ -173,49 +180,51 @@ export function EventBubblingPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-8 items-start">
+      <div className="mt-10 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-8 items-start">
         <NestedBoxes
           activeLayer={activeLayer}
           phase={phase}
           onClickTarget={start}
           idle={status === "idle"}
         />
-        <div className="glass rounded-3xl p-6 min-h-[420px]">
-          <h3 className="text-white font-medium mb-4">
-            {t("eventBubbling.log.title")}
-          </h3>
-          <div className="space-y-2 font-mono text-sm">
+
+        <div className="hair flex flex-col min-h-[420px] bg-ink/40">
+          <div className="hair-b px-4 py-3 flex items-baseline justify-between">
+            <span className="obs-label">Propagation log</span>
+            <span className="coord">fig. 03a</span>
+          </div>
+          <div className="p-4 font-mono text-sm space-y-1">
             <AnimatePresence initial={false}>
               {log.length === 0 && (
                 <motion.p
                   key="empty"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="text-white/40"
+                  className="text-bone/40 text-xs"
                 >
                   {t("eventBubbling.log.empty_prefix")}
-                  <code className="text-accent-soft">#inner</code>
+                  <code className="text-star">#inner</code>
                   {t("eventBubbling.log.empty_suffix")}
                 </motion.p>
               )}
               {log.map((entry, i) => (
                 <motion.div
                   key={entry.id}
-                  initial={{ opacity: 0, x: -8 }}
+                  initial={{ opacity: 0, x: -6 }}
                   animate={{
                     opacity: 1,
                     x: 0,
-                    backgroundColor:
-                      i === step
-                        ? "rgba(255,255,255,0.06)"
-                        : "rgba(255,255,255,0)",
                   }}
-                  transition={{ duration: 0.3 }}
-                  className="flex items-center gap-3 rounded-lg px-2 py-1"
+                  transition={{ duration: 0.28 }}
+                  className={`flex items-baseline gap-3 px-2 py-1 border-l-2 transition-colors ${
+                    i === step
+                      ? "border-star bg-star/[0.06] text-bone"
+                      : "border-transparent text-bone/70"
+                  }`}
                 >
                   <PhaseBadge phase={entry.phase} />
-                  <span className="text-white/90">{entry.layer}</span>
-                  <span className="text-white/40 truncate">
+                  <span className="text-bone/90 tnum">{entry.layer}</span>
+                  <span className="text-bone/40 truncate text-xs">
                     {t("eventBubbling.log.listener", { phase: entry.phase })}
                   </span>
                 </motion.div>
@@ -226,23 +235,23 @@ export function EventBubblingPage() {
       </div>
 
       {/* Narration */}
-      <div className="mt-8 min-h-[3.5rem] flex items-start justify-center">
+      <div className="mt-10 min-h-[3.5rem] flex items-start justify-center">
         <AnimatePresence mode="wait">
           <motion.p
             key={`${status}-${step}`}
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.28 }}
-            className="text-center text-white/80 max-w-2xl text-lg leading-relaxed"
+            className="text-center text-bone/80 max-w-2xl font-display text-xl md:text-2xl leading-snug"
           >
-            {narration}
+            <em>{narration}</em>
           </motion.p>
         </AnimatePresence>
       </div>
 
       {/* Controls */}
-      <div className="mt-8 flex flex-col items-center gap-4">
+      <div className="mt-10 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}
           onStart={start}
@@ -250,18 +259,18 @@ export function EventBubblingPage() {
           onPause={pause}
           onReset={reset}
         />
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-baseline gap-6 text-sm">
           <button
             onClick={stepBack}
             disabled={status === "idle" || step === 0}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="text-bone/60 hover:text-bone transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
           >
             {t("eventBubbling.controls.prev")}
           </button>
           <button
             onClick={stepForward}
             disabled={status === "finished"}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="text-bone/60 hover:text-bone transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
           >
             {t("eventBubbling.controls.next")}
           </button>
@@ -272,11 +281,6 @@ export function EventBubblingPage() {
   );
 }
 
-/**
- * Turn the current toggle state into a full ordered list of hops. Each hop
- * carries an i18n key + params instead of rendered text, so re-rendering in a
- * different language just re-looks-up the key.
- */
 function buildTrace({
   useCapture,
   stopAt,
@@ -295,7 +299,6 @@ function buildTrace({
     entries.push({ id: id++, layer, phase, narrationKey, narrationParams });
   };
 
-  // Capture phase — top-down, up to (but not including) the target.
   for (const layer of LAYERS) {
     if (layer === TARGET) break;
     const key =
@@ -309,7 +312,6 @@ function buildTrace({
   push(TARGET, "target", "eventBubbling.narrations.target", { layer: TARGET });
   if (stopAt === TARGET) return entries;
 
-  // Bubble phase — bottom-up, skipping the target itself.
   for (const layer of [...LAYERS].reverse()) {
     if (layer === TARGET) continue;
     const key =
@@ -325,14 +327,14 @@ function buildTrace({
 function StatusPill({ status }: { status: Status }) {
   const { t } = useTranslation();
   const color: Record<Status, string> = {
-    idle: "text-white/50",
-    running: "text-emerald-400",
-    paused: "text-amber-400",
-    finished: "text-accent-soft",
+    idle: "text-bone/40",
+    running: "text-star",
+    paused: "text-ember",
+    finished: "text-bone",
   };
   return (
-    <span className={color[status]}>
-      ● {t(`eventBubbling.status.${status}`)}
+    <span className={`coord ${color[status]}`}>
+      [ {t(`eventBubbling.status.${status}`)} ]
     </span>
   );
 }
@@ -353,12 +355,14 @@ function PrimaryControls({
   onReset,
 }: PrimaryControlsProps) {
   const { t } = useTranslation();
+  const primaryClass =
+    "inline-flex items-center gap-2 border border-bone px-6 py-2.5 text-bone hover:bg-bone hover:text-night transition-colors font-mono text-xs uppercase tracking-[0.18em]";
+  const ghostClass =
+    "hair px-5 py-2.5 text-bone/70 hover:text-bone hover:border-bone/50 transition-colors font-mono text-xs uppercase tracking-[0.18em]";
+
   if (status === "idle") {
     return (
-      <button
-        onClick={onStart}
-        className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-      >
+      <button onClick={onStart} className={primaryClass}>
         <PlayIcon />
         {t("eventBubbling.controls.run")}
       </button>
@@ -367,17 +371,11 @@ function PrimaryControls({
   if (status === "running") {
     return (
       <div className="flex items-center gap-3">
-        <button
-          onClick={onPause}
-          className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-white hover:bg-white/10 transition-colors"
-        >
+        <button onClick={onPause} className={primaryClass}>
           <PauseIcon />
           {t("eventBubbling.controls.pause")}
         </button>
-        <button
-          onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
-        >
+        <button onClick={onReset} className={ghostClass}>
           {t("eventBubbling.controls.reset")}
         </button>
       </div>
@@ -386,27 +384,18 @@ function PrimaryControls({
   if (status === "paused") {
     return (
       <div className="flex items-center gap-3">
-        <button
-          onClick={onResume}
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-        >
+        <button onClick={onResume} className={primaryClass}>
           <PlayIcon />
           {t("eventBubbling.controls.resume")}
         </button>
-        <button
-          onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
-        >
+        <button onClick={onReset} className={ghostClass}>
           {t("eventBubbling.controls.reset")}
         </button>
       </div>
     );
   }
   return (
-    <button
-      onClick={onStart}
-      className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-    >
+    <button onClick={onStart} className={primaryClass}>
       <ReplayIcon />
       {t("eventBubbling.controls.replay")}
     </button>
@@ -423,15 +412,16 @@ function SpeedControl({
   const { t } = useTranslation();
   const options: Speed[] = ["slow", "normal", "fast"];
   return (
-    <div className="glass rounded-full p-1 flex items-center text-xs ml-2">
+    <div className="flex items-baseline gap-3 pl-6 hair-l">
+      <span className="coord">rate ·</span>
       {options.map((s) => (
         <button
           key={s}
           onClick={() => onChange(s)}
-          className={`px-3 py-1.5 rounded-full transition-colors capitalize ${
+          className={`transition-colors font-mono text-[11px] uppercase tracking-[0.16em] ${
             speed === s
-              ? "bg-white/15 text-white"
-              : "text-white/50 hover:text-white"
+              ? "text-star link-underline"
+              : "text-bone/45 hover:text-bone"
           }`}
         >
           {t(`eventBubbling.speed.${s}`)}
@@ -442,18 +432,20 @@ function SpeedControl({
 }
 
 function PhaseBadge({ phase }: { phase: Phase }) {
-  const styles: Record<Phase, string> = {
-    capture: "bg-sky-500/20 text-sky-300",
-    target: "bg-accent/30 text-accent-soft",
-    bubble: "bg-emerald-500/20 text-emerald-300",
-  };
   const arrow: Record<Phase, string> = {
     capture: "↓",
     target: "◉",
     bubble: "↑",
   };
+  const color: Record<Phase, string> = {
+    capture: "text-star",
+    target: "text-bone",
+    bubble: "text-ember",
+  };
   return (
-    <span className={`px-2 py-0.5 rounded text-xs ${styles[phase]}`}>
+    <span
+      className={`font-mono text-[10px] uppercase tracking-[0.14em] ${color[phase]}`}
+    >
       {arrow[phase]} {phase}
     </span>
   );
@@ -467,8 +459,8 @@ type NestedBoxesProps = {
 };
 
 /**
- * Concentric boxes representing window ⤳ #inner. The active layer glows in the
- * color of the current phase so the user can trace the propagation visually.
+ * Concentric orbits. Border style shifts per phase: dashed for capture,
+ * solid for target, dotted for bubble. Active layer glows in the phase color.
  */
 function NestedBoxes({
   activeLayer,
@@ -477,31 +469,38 @@ function NestedBoxes({
   idle,
 }: NestedBoxesProps) {
   const { t } = useTranslation();
-  const phaseColor = (p: Phase | null) => {
+  const phaseGlow = (p: Phase | null) => {
     if (!p) return "transparent";
-    if (p === "capture") return "rgba(56,189,248,0.55)";
-    if (p === "bubble") return "rgba(52,211,153,0.55)";
-    return "rgba(124,92,255,0.65)";
+    if (p === "capture") return "rgba(123,197,255,0.55)";
+    if (p === "bubble") return "rgba(240,184,114,0.55)";
+    return "rgba(232,230,221,0.65)";
   };
-  const glow = phaseColor(phase);
+  const borderStyle = (p: Phase | null) => {
+    if (p === "capture") return "dashed";
+    if (p === "bubble") return "dotted";
+    return "solid";
+  };
+  const glow = phaseGlow(phase);
+  const bStyle = borderStyle(phase);
 
-  const layer = (name: string, children: React.ReactNode, extraClass = "") => (
-    <motion.div
-      animate={{
-        boxShadow:
-          activeLayer === name
-            ? `0 0 0 3px ${glow}, 0 0 50px ${glow}`
-            : "0 0 0 1px rgba(255,255,255,0.08)",
-      }}
-      transition={{ duration: 0.35 }}
-      className={`rounded-2xl p-6 relative ${extraClass}`}
-    >
-      <span className="absolute top-2 left-3 text-xs font-mono text-white/40">
-        {name}
-      </span>
-      {children}
-    </motion.div>
-  );
+  const layer = (name: string, children: React.ReactNode, extraClass = "") => {
+    const active = activeLayer === name;
+    return (
+      <motion.div
+        animate={{
+          boxShadow: active
+            ? `0 0 0 1px ${glow}, 0 0 30px ${glow}`
+            : "0 0 0 1px rgba(232,230,221,0.15)",
+        }}
+        transition={{ duration: 0.35 }}
+        style={active ? { borderStyle: bStyle } : undefined}
+        className={`p-6 relative ${active ? "border border-transparent" : "hair"} ${extraClass}`}
+      >
+        <span className="absolute top-2 left-3 coord">{name}</span>
+        {children}
+      </motion.div>
+    );
+  };
 
   return layer(
     "window",
@@ -515,50 +514,48 @@ function NestedBoxes({
             "#middle",
             <motion.button
               onClick={onClickTarget}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               animate={{
                 boxShadow:
                   activeLayer === "#inner"
-                    ? `0 0 0 3px ${glow}, 0 0 50px ${glow}`
+                    ? `0 0 0 1px ${glow}, 0 0 30px ${glow}`
                     : idle
-                      ? "0 0 0 1px rgba(124,92,255,0.5), 0 0 30px rgba(124,92,255,0.25)"
-                      : "0 0 0 1px rgba(255,255,255,0.15)",
+                      ? "0 0 0 1px rgba(123,197,255,0.35), 0 0 20px rgba(123,197,255,0.15)"
+                      : "0 0 0 1px rgba(232,230,221,0.15)",
               }}
               transition={{ duration: 0.35 }}
-              className="w-full rounded-2xl bg-accent/20 text-white py-8 px-4 mt-6 font-medium relative"
+              className="w-full text-bone py-8 px-4 mt-6 font-mono text-sm uppercase tracking-[0.18em] relative bg-ink/60"
             >
-              <span className="absolute top-2 left-3 text-xs font-mono text-white/60">
-                #inner
-              </span>
+              <span className="absolute top-2 left-3 coord">#inner</span>
               {idle
                 ? t("eventBubbling.innerButton.idle")
                 : t("eventBubbling.innerButton.default")}
             </motion.button>,
-            "mt-6 bg-white/[0.02]",
+            "mt-6 bg-transparent",
           ),
-          "mt-6 bg-white/[0.02]",
+          "mt-6 bg-transparent",
         ),
-        "mt-6 bg-white/[0.02]",
+        "mt-6 bg-transparent",
       ),
-      "mt-6 bg-white/[0.02]",
+      "mt-6 bg-transparent",
     ),
-    "bg-white/[0.02]",
+    "bg-transparent",
   );
 }
 
 const PlayIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
     <path d="M8 5v14l11-7z" />
   </svg>
 );
 const PauseIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
     <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
   </svg>
 );
 const ReplayIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
     <path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" />
   </svg>
 );

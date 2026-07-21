@@ -8,169 +8,194 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Globe } from "../../components/Globe";
 import { ScrollReveal } from "../../components/ScrollReveal";
+import { Starfield } from "../../components/Starfield";
+import { CornerLabels } from "../../components/CornerLabels";
 import { HeroChip } from "./HeroChip";
 import { StatCard } from "./StatCard";
 import { FeatureCard } from "./FeatureCard";
 
 /**
- * Apple-style long-scroll homepage:
- *  1. Hero: name + tagline over a soft radial glow
- *  2. Sticky globe section: globe pins while text panels swap on scroll
- *  3. Stats strip: travel + remote work in numbers
- *  4. Feature grid: pointers to the JS explainers
+ * Observatory / star chart aesthetic.
+ *  1. Hero — quiet serif display over dot-grid + starfield, coord labels
+ *  2. Sticky observation — globe pinned in a hairline card, obs. panels swap
+ *  3. Log — ruled table of stats (countries, years, coffees…)
+ *  4. Index — two obs. cards linking to the explainers
  */
 export function HomePage() {
   const { t } = useTranslation();
   const globeSectionRef = useRef<HTMLElement>(null);
 
-  // Scroll progress *within* the pinned globe section (0 at entry, 1 at exit).
   const { scrollYProgress: globeProgress } = useScroll({
     target: globeSectionRef,
     offset: ["start start", "end end"],
   });
 
-  // Hero fades out as user starts to scroll (Apple hero pattern).
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const heroY = useTransform(scrollY, [0, 400], [0, -80]);
 
   return (
     <main className="relative">
+      <CornerLabels
+        topLeft="MIZAR · ζ UMa · 13h 23m 55.5s"
+        topRight="LAT 45.46°N — Milano"
+        bottomLeft="fig. 00"
+        bottomRight="recording · 2026"
+      />
+
       {/* ────────── HERO ────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise">
-        <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden dot-grid">
+        <Starfield seed="hero" count={60} />
         <motion.div
           style={{
             opacity: heroOpacity,
             y: heroY,
             willChange: "transform, opacity",
           }}
-          className="relative z-10 text-center px-6 max-w-4xl"
+          className="relative z-10 text-center px-6 max-w-3xl"
         >
           <HeroChip />
-          <h1 className="mt-6 text-5xl md:text-6xl font-semibold tracking-tight gradient-text text-balance">
+          <h1 className="mt-10 font-display text-5xl md:text-7xl text-bone leading-[1.05] text-balance">
             {t("home.titleLine1")}
             <br />
-            {t("home.titleLine2")}
+            <em className="text-bone/85">{t("home.titleLine2")}</em>
           </h1>
-          <p className="mt-8 text-lg md:text-xl text-white/60 max-w-2xl mx-auto text-balance">
+          <p className="mt-8 text-base md:text-lg text-bone/60 max-w-xl mx-auto leading-relaxed">
             {t("home.descriptionPrefix")}
-            <span className="text-white">{t("home.descriptionName")}</span>
+            <span className="text-bone">{t("home.descriptionName")}</span>
             {t("home.descriptionSuffix")}
           </p>
-          <div className="mt-12 flex items-center justify-center gap-3 text-sm text-white/40">
-            <span>{t("home.scrollHint")}</span>
-            <span className="inline-block h-6 w-[1px] bg-white/30 animate-pulse" />
+          <div className="mt-16 flex items-center justify-center gap-3">
+            <span className="hair-t w-8" />
+            <span className="coord">{t("home.scrollHint")}</span>
+            <span className="hair-t w-8" />
           </div>
         </motion.div>
       </section>
 
-      {/* ────────── STICKY GLOBE STORY ──────────
-         Height is 400vh so each of the 3 panels gets ~one full viewport of
-         scroll (≈ real seconds of reading time). */}
+      {/* ────────── STICKY OBSERVATION ────────── */}
       <section
         ref={globeSectionRef}
         className="relative"
         style={{ height: "400vh" }}
       >
         <div className="sticky top-0 h-[100dvh] flex items-center overflow-hidden">
-          <div className="mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl px-6 w-full">
-            {/* Globe — capped on mobile so it never overflows 100vh alongside the text */}
+          <div className="mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl px-6 w-full">
+            {/* Globe wrapped in an observation card */}
             <div className="relative order-2 md:order-1 mx-auto w-full max-w-[min(52vh,100%)] md:max-w-none">
-              <div className="absolute -inset-20 bg-radial-fade blur-2xl pointer-events-none" />
-              <div className="relative">
+              <div className="relative corner-ticks hair p-4 md:p-6">
+                <span className="tick-bl" />
+                <span className="tick-br" />
+                <div className="flex items-center justify-between mb-3">
+                  <span className="coord">obs. terrestrial</span>
+                  <span className="coord">fig. 01</span>
+                </div>
                 <Globe progress={globeProgress} />
               </div>
             </div>
 
-            {/* Panel column — three headings crossfade + slide */}
+            {/* Observation panels */}
             <div className="relative order-1 md:order-2 h-56 md:h-96">
               <StoryPanel
                 progress={globeProgress}
                 range={[0.0, 0.28]}
+                index="I"
                 eyebrow={t("home.panels.one.eyebrow")}
-                heading={
-                  <>
-                    {t("home.panels.one.line1")}
-                    <br />
-                    {t("home.panels.one.line2")}
-                  </>
-                }
+                line1={t("home.panels.one.line1")}
+                line2={t("home.panels.one.line2")}
               />
               <StoryPanel
                 progress={globeProgress}
                 range={[0.36, 0.62]}
+                index="II"
                 eyebrow={t("home.panels.two.eyebrow")}
-                heading={
-                  <>
-                    {t("home.panels.two.line1")}
-                    <br />
-                    {t("home.panels.two.line2")}
-                  </>
-                }
+                line1={t("home.panels.two.line1")}
+                line2={t("home.panels.two.line2")}
               />
               <StoryPanel
                 progress={globeProgress}
                 range={[0.72, 1.0]}
+                index="III"
                 eyebrow={t("home.panels.three.eyebrow")}
-                heading={
-                  <>
-                    {t("home.panels.three.line1")}
-                    <br />
-                    {t("home.panels.three.line2")}
-                  </>
-                }
+                line1={t("home.panels.three.line1")}
+                line2={t("home.panels.three.line2")}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ────────── STATS ────────── */}
+      {/* ────────── LOG / STATS ────────── */}
       <section className="relative py-32 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-          <ScrollReveal delay={0}>
-            <StatCard value="27" label={t("home.stats.countries")} />
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <div className="flex items-baseline justify-between hair-b pb-3 mb-8">
+              <span className="obs-label">Log</span>
+              <span className="coord">n = 4</span>
+            </div>
           </ScrollReveal>
-          <ScrollReveal delay={0.1}>
-            <StatCard value="8yrs" label={t("home.stats.writingJs")} />
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <StatCard value="∞" label={t("home.stats.coffees")} />
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <StatCard value="1" label={t("home.stats.eventLoop")} />
-          </ScrollReveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8">
+            <ScrollReveal delay={0}>
+              <StatCard
+                value="27"
+                label={t("home.stats.countries")}
+                index="i"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.08}>
+              <StatCard
+                value="8yr"
+                label={t("home.stats.writingJs")}
+                index="ii"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.16}>
+              <StatCard
+                value="∞"
+                label={t("home.stats.coffees")}
+                index="iii"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.24}>
+              <StatCard
+                value="1"
+                label={t("home.stats.eventLoop")}
+                index="iv"
+              />
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* ────────── EXPLAINERS ────────── */}
+      {/* ────────── INDEX / EXPLAINERS ────────── */}
       <section className="relative py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
-            <p className="text-accent-soft uppercase tracking-widest text-xs mb-3 text-center">
-              {t("home.explainers.eyebrow")}
-            </p>
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-center text-balance">
-              {t("home.explainers.line1")}
-              <br />
-              {t("home.explainers.line2")}
+            <div className="flex items-baseline justify-between hair-b pb-3 mb-12">
+              <span className="obs-label">Index — Observations</span>
+              <span className="coord">02 entries</span>
+            </div>
+            <h2 className="font-display text-4xl md:text-6xl text-bone leading-tight text-balance max-w-3xl">
+              {t("home.explainers.line1")}{" "}
+              <em>{t("home.explainers.line2")}</em>
             </h2>
           </ScrollReveal>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-6">
-            <ScrollReveal delay={0.1}>
+          <div className="mt-16 grid md:grid-cols-2 gap-6 md:gap-8">
+            <ScrollReveal delay={0.08}>
               <FeatureCard
                 to="/event-loop"
+                index="I"
                 eyebrow={t("home.features.eventLoop.eyebrow")}
                 title={t("home.features.eventLoop.title")}
                 body={t("home.features.eventLoop.body")}
                 cta={t("home.featureCardCta")}
               />
             </ScrollReveal>
-            <ScrollReveal delay={0.2}>
+            <ScrollReveal delay={0.16}>
               <FeatureCard
                 to="/event-bubbling"
+                index="II"
                 eyebrow={t("home.features.eventBubbling.eyebrow")}
                 title={t("home.features.eventBubbling.title")}
                 body={t("home.features.eventBubbling.body")}
@@ -181,8 +206,8 @@ export function HomePage() {
         </div>
       </section>
 
-      <footer className="py-16 text-center text-white/40 text-sm">
-        {t("home.footer")}
+      <footer className="hair-t py-10 text-center">
+        <p className="coord">{t("home.footer")}</p>
       </footer>
     </main>
   );
@@ -190,20 +215,25 @@ export function HomePage() {
 
 type StoryPanelProps = {
   progress: MotionValue<number>;
-  /** [enter, exit] on the parent scroll progress. Panel is fully visible in
-   *  the middle 70% of the range and hard-crossfades in/out at the edges so
-   *  two panels never overlap while readable. */
   range: [number, number];
+  index: string;
   eyebrow: string;
-  heading: React.ReactNode;
+  line1: string;
+  line2: string;
 };
 
 /**
- * A single story panel. Fades and slides in/out on a dedicated slice of scroll
- * progress. Non-overlapping ranges prevent the double-text unreadability that
- * naive opacity crossfades produce.
+ * Observation panel — serif italic pull-quote with an obs. index leader.
+ * Non-overlapping scroll ranges + subtle y-slide, no double-vision crossfade.
  */
-function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
+function StoryPanel({
+  progress,
+  range,
+  index,
+  eyebrow,
+  line1,
+  line2,
+}: StoryPanelProps) {
   const [enter, exit] = range;
   const span = exit - enter;
   const fadeIn = enter + span * 0.15;
@@ -212,14 +242,12 @@ function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
   const opacity = useTransform(
     progress,
     [enter, fadeIn, fadeOut, exit],
-    [0, 1, 1, 0]
+    [0, 1, 1, 0],
   );
-  // Panels slide up 24px as they leave and start 24px below as they enter —
-  // Apple's classic "vertical replace" motion.
   const y = useTransform(
     progress,
     [enter, fadeIn, fadeOut, exit],
-    [24, 0, 0, -24]
+    [16, 0, 0, -16],
   );
 
   return (
@@ -227,11 +255,15 @@ function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
       style={{ opacity, y, willChange: "transform, opacity" }}
       className="absolute inset-0 flex flex-col justify-center"
     >
-      <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
-        {eyebrow}
-      </p>
-      <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white [text-shadow:_0_2px_20px_rgba(5,6,10,0.6)]">
-        {heading}
+      <div className="flex items-baseline gap-4 mb-6">
+        <span className="obs-label">Obs. {index}</span>
+        <span className="hair-t flex-1 mt-3" />
+        <span className="coord">{eyebrow}</span>
+      </div>
+      <h2 className="font-display text-3xl md:text-5xl text-bone leading-tight">
+        {line1}
+        <br />
+        <em className="text-bone/85">{line2}</em>
       </h2>
     </motion.div>
   );

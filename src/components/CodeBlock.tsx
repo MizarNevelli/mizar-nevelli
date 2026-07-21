@@ -5,25 +5,26 @@ type Props = {
 };
 
 /**
- * Minimal monospace code block with a single highlighted line for step-through
- * visualizations. Intentionally not full syntax highlighting — the surrounding
- * animation is what carries the meaning.
+ * Minimal monospace code block. Active line gets a hairline `star` left border
+ * and a very faint tint. Reads like a printed log column.
  */
 export function CodeBlock({ code, highlightLine }: Props) {
   const lines = code.split("\n");
   return (
-    <pre className="glass rounded-3xl p-6 overflow-x-auto text-sm font-mono leading-relaxed">
+    <pre className="hair p-6 overflow-x-auto text-sm font-mono leading-relaxed bg-ink/40">
       <code>
         {lines?.map((line, i) => {
           const active = highlightLine === i + 1;
           return (
             <div
               key={i}
-              className={`px-3 -mx-3 rounded transition-colors ${
-                active ? "bg-accent/20 text-white" : "text-white/70"
+              className={`pl-3 -ml-3 border-l-2 transition-colors ${
+                active
+                  ? "border-star bg-star/[0.06] text-bone"
+                  : "border-transparent text-bone/60"
               }`}
             >
-              <span className="inline-block w-8 text-white/25 select-none">
+              <span className="inline-block w-8 text-bone/25 select-none tnum">
                 {i + 1}
               </span>
               {line || " "}

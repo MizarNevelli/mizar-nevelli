@@ -17,26 +17,26 @@
     "language": "Lingua"
   },
   "home": {
-    "chip": "Al momento: da qualche parte tra due voli",
-    "titleLine1": "Mizar & JavaScript,",
-    "titleLine2": "in movimento.",
+    "chip": "in registrazione · da qualche parte tra due voli",
+    "titleLine1": "JavaScript,",
+    "titleLine2": "un'osservazione.",
     "descriptionPrefix": "Sono ",
     "descriptionName": "Mizar",
     "descriptionSuffix": ", uno sviluppatore JavaScript che lavora da remoto, ovunque ci sia una connessione. Questo è un piccolo playground dedicato al linguaggio che amo, raccontato con i pixel invece delle parole.",
     "scrollHint": "Scorri per esplorare",
     "panels": {
       "one": {
-        "eyebrow": "01 · Da remoto, per scelta",
-        "line1": "Un laptop, un segnale,",
-        "line2": "e il mondo diventa un ufficio."
+        "eyebrow": "da remoto · per scelta",
+        "line1": "Un laptop, un segnale —",
+        "line2": "il mondo diventa un ufficio."
       },
       "two": {
-        "eyebrow": "02 · Quindici fusi orari",
+        "eyebrow": "quindici fusi orari",
         "line1": "Rilasciando feature da caffè,",
         "line2": "treni e terrazze sui tetti."
       },
       "three": {
-        "eyebrow": "03 · Un linguaggio, un loop",
+        "eyebrow": "un linguaggio, un loop",
         "line1": "JavaScript muove il browser",
         "line2": "e alimenta il viaggio."
       }
@@ -48,7 +48,7 @@
       "eventLoop": "Event loop"
     },
     "explainers": {
-      "eyebrow": "Approfondimenti",
+      "eyebrow": "Indice — Osservazioni",
       "line1": "Le parti di JavaScript",
       "line2": "che meritano un'immagine."
     },
@@ -64,12 +64,12 @@
         "body": "Un click parte in profondità e sale. Traccia il suo percorso nell'albero, in tempo reale."
       }
     },
-    "featureCardCta": "Esplora",
-    "footer": "Costruito con React, Framer Motion e molto espresso."
+    "featureCardCta": "Apri osservazione",
+    "footer": "Registrato da varie latitudini.  ·  M. Nevelli, 2026"
   },
   "eventLoop": {
     "eyebrow": "Concorrenza",
-    "title": "L'event loop, visualizzato.",
+    "title": "Il loop.",
     "description": "JavaScript gira su un singolo thread. L'event loop è ciò che gli permette di gestire codice sincrono, promise e timer senza mai bloccarsi.",
     "stepLabel": "Passo",
     "status": {
@@ -152,7 +152,7 @@
   },
   "eventBubbling": {
     "eyebrow": "Eventi DOM",
-    "title": "Event bubbling, da vicino.",
+    "title": "La cascata.",
     "description": "Un singolo click scende lungo l'albero del DOM (fase di cattura), colpisce il target, poi risale (fase di bubbling). Ogni antenato ha il suo turno.",
     "hopLabel": "Salto",
     "toggles": {
@@ -200,11 +200,11 @@
     }
   },
   "contact": {
-    "eyebrow": "Fatti sentire",
-    "titleLine1": "Costruiamo qualcosa,",
-    "titleLine2": "o solo due chiacchiere.",
-    "description": "Ovunque ci sia una connessione, rispondo. Manda una mail o un messaggio — quello che preferisci nel momento.",
-    "footer": "Di solito rispondo entro un giorno — fuso permettendo.",
+    "eyebrow": "Trasmissione",
+    "titleLine1": "Contatta",
+    "titleLine2": "l'osservatore.",
+    "description": "Quattro canali, un osservatore. Quello che ti torna più comodo — ovunque ci sia connessione, rispondo.",
+    "footer": "tempo di risposta · una rotazione terrestre, all'incirca",
     "cards": {
       "email": {
         "label": "Email",

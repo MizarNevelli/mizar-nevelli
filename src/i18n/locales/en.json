@@ -17,28 +17,28 @@
     "language": "Language"
   },
   "home": {
-    "chip": "Currently: somewhere between two flights",
-    "titleLine1": "Mizar & JavaScript,",
-    "titleLine2": "in motion.",
+    "chip": "recording · somewhere between two flights",
+    "titleLine1": "JavaScript,",
+    "titleLine2": "an observation.",
     "descriptionPrefix": "I'm ",
     "descriptionName": "Mizar",
     "descriptionSuffix": " a JavaScript engineer building from wherever the wifi holds. This is a small playground for the language I love, told through pixels instead of paragraphs.",
     "scrollHint": "Scroll to explore",
     "panels": {
       "one": {
-        "eyebrow": "01 · Remote by design",
-        "line1": "A laptop, a signal,",
-        "line2": "and the world becomes an office."
+        "eyebrow": "remote · by design",
+        "line1": "A laptop, a signal —",
+        "line2": "the world becomes an office."
       },
       "two": {
-        "eyebrow": "02 · Fifteen time zones",
-        "line1": "Shipping features from cafés,",
+        "eyebrow": "fifteen time zones",
+        "line1": "Shipping from cafés,",
         "line2": "trains, and rooftop balconies."
       },
       "three": {
-        "eyebrow": "03 · One language, one loop",
+        "eyebrow": "one language, one loop",
         "line1": "JavaScript runs the browser",
-        "line2": "and it powers the journey."
+        "line2": "and powers the journey."
       }
     },
     "stats": {
@@ -48,7 +48,7 @@
       "eventLoop": "Event loop"
     },
     "explainers": {
-      "eyebrow": "Explainers",
+      "eyebrow": "Index — Observations",
       "line1": "The parts of JavaScript",
       "line2": "that deserve a picture."
     },
@@ -64,12 +64,12 @@
         "body": "A click starts deep and rises. Trace its path through the tree, live."
       }
     },
-    "featureCardCta": "Explore",
-    "footer": "Built with React, Framer Motion & a lot of espresso."
+    "featureCardCta": "Open observation",
+    "footer": "Recorded from various latitudes.  ·  M. Nevelli, 2026"
   },
   "eventLoop": {
     "eyebrow": "Concurrency",
-    "title": "The event loop, visualized.",
+    "title": "The loop.",
     "description": "JavaScript runs on a single thread. The event loop is how it juggles synchronous code, promises, and timers without ever blocking.",
     "stepLabel": "Step",
     "status": {
@@ -152,7 +152,7 @@
   },
   "eventBubbling": {
     "eyebrow": "DOM events",
-    "title": "Event bubbling, up close.",
+    "title": "The cascade.",
     "description": "A single click travels down the DOM tree (capture), hits its target, then rises back up (bubble). Every ancestor gets a turn.",
     "hopLabel": "Hop",
     "toggles": {
@@ -200,11 +200,11 @@
     }
   },
   "contact": {
-    "eyebrow": "Say hi",
-    "titleLine1": "Let's build something,",
-    "titleLine2": "or just chat.",
-    "description": "Wherever the wifi holds, I'll answer. Drop a note or a message — whichever fits the moment.",
-    "footer": "Usually reply within a day — timezone permitting.",
+    "eyebrow": "Transmission",
+    "titleLine1": "Reach",
+    "titleLine2": "the observer.",
+    "description": "Four channels, one observer. Whichever suits the moment — wherever the wifi holds, I'll answer.",
+    "footer": "response time · one earth rotation, roughly",
     "cards": {
       "email": {
         "label": "Email",

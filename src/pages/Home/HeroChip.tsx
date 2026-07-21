@@ -5,13 +5,13 @@ export function HeroChip() {
   const { t } = useTranslation();
   return (
     <motion.div
-      initial={{ opacity: 0, y: -12 }}
+      initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs text-white/70"
+      transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+      className="inline-flex items-baseline gap-2 hair px-3 py-1.5"
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-glow" />
-      {t("home.chip")}
+      <span className="w-[3px] h-[3px] bg-star animate-twinkle" />
+      <span className="coord">{t("home.chip")}</span>
     </motion.div>
   );
 }

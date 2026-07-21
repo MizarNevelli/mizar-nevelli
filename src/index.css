@@ -3,24 +3,46 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
   html,
   body,
   #root {
-    @apply bg-ink-950 text-white/80 antialiased;
+    background: #050813;
+    color: rgba(232, 230, 221, 0.85);
   }
   body {
-    font-family: 'SF Pro Display', Inter, system-ui, -apple-system,
-      BlinkMacSystemFont, sans-serif;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-feature-settings: 'ss01', 'cv11';
   }
   ::selection {
-    background: #7c5cff;
-    color: white;
+    background: #7bc5ff;
+    color: #050813;
   }
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Custom hairline scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(232, 230, 221, 0.15);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(232, 230, 221, 0.3);
   }
 }
 
@@ -28,21 +50,116 @@
   .text-balance {
     text-wrap: balance;
   }
-  .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+
+  /* Hairline border — the single visual language for surfaces */
+  .hair {
+    border: 1px solid rgba(232, 230, 221, 0.15);
   }
-  .gradient-text {
-    background: linear-gradient(180deg, #ffffff 0%, #a68cff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .hair-t {
+    border-top: 1px solid rgba(232, 230, 221, 0.15);
   }
-  .noise::after {
+  .hair-b {
+    border-bottom: 1px solid rgba(232, 230, 221, 0.15);
+  }
+  .hair-l {
+    border-left: 1px solid rgba(232, 230, 221, 0.15);
+  }
+  .hair-r {
+    border-right: 1px solid rgba(232, 230, 221, 0.15);
+  }
+
+  /* Coordinate label — tabular monospace uppercase, low-contrast */
+  .coord {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 10px;
+    color: rgba(232, 230, 221, 0.4);
+  }
+
+  /* Observation label (Obs. I / II / III) — mono with wide letter spacing */
+  .obs-label {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    color: #7bc5ff;
+  }
+
+  /* Tabular numerals utility */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Serif italic pull-quote flavor */
+  .quote {
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Faint dot-grid background — replaces the old noise/radial */
+  .dot-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(232, 230, 221, 0.06) 1px,
+      transparent 0
+    );
+    background-size: 24px 24px;
+  }
+
+  /* Corner ticks for observation cards */
+  .corner-ticks::before,
+  .corner-ticks::after,
+  .corner-ticks > .tick-tl,
+  .corner-ticks > .tick-tr,
+  .corner-ticks > .tick-bl,
+  .corner-ticks > .tick-br {
     content: '';
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(232, 230, 221, 0.35);
+  }
+  .corner-ticks::before {
+    top: -1px;
+    left: -1px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .corner-ticks::after {
+    top: -1px;
+    right: -1px;
+    border-left: 0;
+    border-bottom: 0;
+  }
+  .corner-ticks > .tick-bl {
+    bottom: -1px;
+    left: -1px;
+    border-right: 0;
+    border-top: 0;
+  }
+  .corner-ticks > .tick-br {
+    bottom: -1px;
+    right: -1px;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  /* Hairline underline link */
+  .link-underline {
+    background-image: linear-gradient(
+      to right,
+      rgba(232, 230, 221, 0.5) 0%,
+      rgba(232, 230, 221, 0.5) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    padding-bottom: 2px;
+  }
+  .link-underline:hover {
+    background-image: linear-gradient(to right, #7bc5ff 0%, #7bc5ff 100%);
   }
 }

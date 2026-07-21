@@ -4,49 +4,35 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: [
-          '"SF Pro Display"',
-          'Inter',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'sans-serif',
-        ],
+        display: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        ink: {
-          950: '#05060a',
-          900: '#0a0b12',
-          800: '#12141c',
-          700: '#1c1f2a',
-          600: '#2a2e3d',
+        night: '#050813',
+        ink: '#0d1226',
+        bone: {
+          DEFAULT: '#e8e6dd',
+          soft: 'rgba(232, 230, 221, 0.65)',
+          faint: 'rgba(232, 230, 221, 0.35)',
         },
-        accent: {
-          DEFAULT: '#7c5cff',
-          soft: '#a68cff',
-          glow: 'rgba(124, 92, 255, 0.35)',
+        star: {
+          DEFAULT: '#7bc5ff',
+          dim: 'rgba(123, 197, 255, 0.55)',
         },
+        ember: '#f0b872',
       },
-      backgroundImage: {
-        'radial-fade':
-          'radial-gradient(ellipse at top, rgba(124,92,255,0.25), transparent 60%)',
-        'grid-fade':
-          'linear-gradient(to bottom, transparent, #05060a 80%), radial-gradient(circle at center, rgba(124,92,255,0.15), transparent 60%)',
+      borderColor: {
+        hair: 'rgba(232, 230, 221, 0.15)',
       },
       keyframes: {
-        float: {
-          '0%,100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-6px)' },
-        },
-        pulseGlow: {
-          '0%,100%': { boxShadow: '0 0 0 0 rgba(124,92,255,0.5)' },
-          '50%': { boxShadow: '0 0 40px 8px rgba(124,92,255,0.5)' },
+        twinkle: {
+          '0%, 100%': { opacity: '0.25' },
+          '50%': { opacity: '1' },
         },
       },
       animation: {
-        float: 'float 4s ease-in-out infinite',
-        'pulse-glow': 'pulseGlow 2.4s ease-in-out infinite',
+        twinkle: 'twinkle 6s ease-in-out infinite',
       },
     },
   },
