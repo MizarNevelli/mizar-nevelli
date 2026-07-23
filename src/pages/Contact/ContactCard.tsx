@@ -43,11 +43,9 @@ export function ContactCard({
   };
 
   return (
-    <div className="group relative glass rounded-2xl p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden">
-      {/* Ambient glow on hover */}
-      <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-accent/15 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+    <div className="group relative rounded-xl border border-white/[0.09] bg-white/[0.03] p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden hover:border-white/[0.15] transition-colors duration-500">
 
-      <div className="shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent-soft">
+      <div className="shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl border border-white/[0.12] flex items-center justify-center text-white/50">
         {icon}
       </div>
 

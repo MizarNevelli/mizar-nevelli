@@ -107,10 +107,10 @@ export function EventBubblingPage() {
   return (
     <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <header className="text-center max-w-3xl mx-auto">
-        <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
+        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventBubbling.eyebrow")}
         </p>
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight gradient-text text-balance">
+        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white text-balance">
           {t("eventBubbling.title")}
         </h1>
         <p className="mt-6 text-white/60 text-lg text-balance">

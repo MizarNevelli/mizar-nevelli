@@ -72,7 +72,7 @@ export function AboutPage() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-accent-soft uppercase tracking-widest text-xs mb-6 [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]"
+            className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/35 mb-6 [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]"
           >
             {t("about.hero.eyebrow")}
           </motion.p>
@@ -80,7 +80,7 @@ export function AboutPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance leading-[1.02] [text-shadow:_0_2px_30px_rgba(5,6,10,0.6)]"
+            className="text-5xl md:text-8xl font-semibold tracking-tight text-white text-balance leading-[1.02] [text-shadow:_0_2px_40px_rgba(5,6,10,0.5)]"
           >
             {t("about.hero.titleLine1")}
             <br />
@@ -140,7 +140,7 @@ export function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-accent-soft uppercase tracking-widest text-xs mb-4"
+            className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4"
           >
             {t("about.closing.eyebrow")}
           </motion.p>
@@ -149,7 +149,7 @@ export function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-5xl font-mono font-medium tracking-tight gradient-text text-balance"
+            className="text-3xl md:text-5xl font-mono font-medium tracking-tight text-white text-balance"
           >
             {t("about.closing.title")}
           </motion.h2>

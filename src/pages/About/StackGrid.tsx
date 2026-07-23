@@ -47,7 +47,7 @@ export function StackGrid() {
           initial={{ opacity: 0, y: 8 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-accent-soft uppercase tracking-widest text-xs mb-4"
+          className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4"
         >
           {t("about.stack.eyebrow")}
         </motion.p>
@@ -95,7 +95,7 @@ export function StackGrid() {
                       delay: 0.4 + gi * 0.1 + i * 0.03,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="glass rounded-full px-3.5 py-1.5 text-sm text-white/80 hover:text-white hover:border-accent/50 transition-colors"
+                    className="rounded-full border border-white/[0.12] px-3.5 py-1.5 text-sm text-white/55 hover:text-white/80 hover:border-white/25 transition-colors"
                   >
                     {item}
                   </motion.li>

@@ -80,7 +80,7 @@ export function Nav() {
             className="flex items-center gap-2 group"
             onClick={() => setMobileOpen(false)}
           >
-            <span className="h-2 w-2 rounded-full bg-accent animate-pulse-glow" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
             <span className="text-white font-medium tracking-tight">
               Mizar<span className="text-accent-soft">.js</span>
             </span>

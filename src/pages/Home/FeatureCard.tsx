@@ -12,19 +12,20 @@ export function FeatureCard({ to, eyebrow, title, body, cta }: FeatureCardProps)
   return (
     <Link
       to={to}
-      className="group relative block glass rounded-3xl p-8 md:p-10 overflow-hidden transition-transform duration-500 hover:-translate-y-1"
+      className="group block border-t border-white/10 pt-8 pb-4 hover:border-white/20 transition-colors duration-500"
     >
-      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-      <p className="text-accent-soft uppercase tracking-widest text-xs">
+      <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/30">
         {eyebrow}
       </p>
-      <h3 className="mt-3 text-3xl md:text-4xl font-semibold text-white tracking-tight">
+      <h3 className="mt-5 text-2xl md:text-3xl font-semibold tracking-tight text-white">
         {title}
       </h3>
-      <p className="mt-4 text-white/60 max-w-md">{body}</p>
-      <div className="mt-8 inline-flex items-center gap-2 text-white/80 group-hover:text-accent-soft transition-colors">
+      <p className="mt-3 text-white/45 text-sm leading-relaxed max-w-sm">
+        {body}
+      </p>
+      <div className="mt-6 flex items-center gap-1.5 text-[11px] font-mono text-white/30 group-hover:text-accent-soft transition-colors duration-300">
         {cta}
-        <span className="transition-transform group-hover:translate-x-1">
+        <span className="transition-transform group-hover:translate-x-1 inline-block">
           →
         </span>
       </div>

@@ -25,10 +25,10 @@ export function ContactPage() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
         >
-          <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
+          <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
             {t("contact.eyebrow")}
           </p>
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight gradient-text text-balance">
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white text-balance">
             {t("contact.titleLine1")}
             <br />
             {t("contact.titleLine2")}

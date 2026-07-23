@@ -5,11 +5,11 @@ type StatCardProps = {
 
 export function StatCard({ value, label }: StatCardProps) {
   return (
-    <div className="glass rounded-2xl p-6 text-center">
-      <div className="text-2xl md:text-3xl font-semibold gradient-text">
+    <div>
+      <div className="text-[3.25rem] md:text-[4rem] font-semibold leading-none tracking-tighter text-white tabular-nums">
         {value}
       </div>
-      <div className="mt-2 text-xs uppercase tracking-widest text-white/50">
+      <div className="mt-3 text-[10px] font-mono uppercase tracking-[0.22em] text-white/30">
         {label}
       </div>
     </div>

@@ -88,7 +88,7 @@ export function MobileMenu({
           {/* Flattened JS features */}
           <MobileLink delay={0.05 + topLinks.length * 0.06}>
             <div className="pt-4 border-t border-white/10">
-              <p className="text-[10px] uppercase tracking-widest text-accent-soft mb-4">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 font-mono mb-4">
                 {t("nav.jsFeatures")}
               </p>
               <ul className="space-y-3">

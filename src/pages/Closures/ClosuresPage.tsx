@@ -90,10 +90,10 @@ export function ClosuresPage() {
   return (
     <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <header className="text-center max-w-3xl mx-auto">
-        <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
+        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("closures.eyebrow")}
         </p>
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight gradient-text text-balance">
+        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white text-balance">
           {t("closures.title")}
         </h1>
         <p className="mt-6 text-white/60 text-lg text-balance">

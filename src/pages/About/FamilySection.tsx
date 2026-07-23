@@ -25,22 +25,20 @@ export function FamilySection() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative block glass rounded-3xl p-8 md:p-10 overflow-hidden transition-transform duration-500 hover:-translate-y-0.5"
+          className="group block border-t border-white/10 pt-8 pb-4 hover:border-white/20 transition-colors duration-500"
         >
-          <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-          <p className="text-accent-soft uppercase tracking-widest text-xs">
+          <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">
             {t("about.family.eyebrow")}
           </p>
-          <h3 className="mt-3 text-3xl md:text-4xl font-semibold text-white tracking-tight">
+          <h3 className="mt-5 text-2xl md:text-3xl font-semibold text-white tracking-tight">
             {t("about.family.title")}
           </h3>
-          <p className="mt-4 text-white/60 leading-relaxed max-w-2xl">
+          <p className="mt-3 text-white/45 text-sm leading-relaxed max-w-xl">
             {t("about.family.body")}
           </p>
 
-          <div className="mt-8 inline-flex items-center gap-2 text-white/80 group-hover:text-accent-soft transition-colors">
-            <span className="font-mono text-sm">{t("about.family.cta")}</span>
+          <div className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-mono text-white/30 group-hover:text-accent-soft transition-colors duration-300">
+            {t("about.family.cta")}
             <ExternalArrow />
           </div>
         </motion.a>

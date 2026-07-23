@@ -61,20 +61,16 @@ export function HomePage() {
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <HeroChip />
-          <h1 className="mt-6 text-5xl md:text-8xl font-semibold tracking-tight gradient-text text-balance [text-shadow:_0_2px_30px_rgba(5,6,10,0.6)]">
+          <h1 className="mt-5 text-5xl md:text-8xl font-semibold tracking-tight text-white text-balance [text-shadow:_0_2px_40px_rgba(5,6,10,0.5)]">
             {t("home.titleLine1")}
             <br />
             {t("home.titleLine2")}
           </h1>
-          <p className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto text-balance [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
+          <p className="mt-8 text-base md:text-lg text-white/50 max-w-xl mx-auto text-balance [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
             {t("home.descriptionPrefix")}
-            <span className="text-white">{t("home.descriptionName")}</span>
+            <span className="text-white/80">{t("home.descriptionName")}</span>
             {t("home.descriptionSuffix")}
           </p>
-          <div className="mt-12 flex items-center justify-center gap-3 text-sm text-white/40 [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
-            <span>{t("home.scrollHint")}</span>
-            <span className="inline-block h-6 w-[1px] bg-white/30 animate-pulse" />
-          </div>
         </motion.div>
       </section>
 
@@ -140,8 +136,8 @@ export function HomePage() {
       </section>
 
       {/* ────────── STATS ────────── */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="relative py-28 px-6 border-t border-white/[0.07]">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-14 md:gap-y-0">
           <ScrollReveal delay={0}>
             <StatCard value="27" label={t("home.stats.countries")} />
           </ScrollReveal>
@@ -158,20 +154,17 @@ export function HomePage() {
       </section>
 
       {/* ────────── EXPLAINERS ────────── */}
-      <section className="relative py-32 px-6">
+      <section className="relative py-28 px-6 border-t border-white/[0.07]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
-            <p className="text-accent-soft uppercase tracking-widest text-xs mb-3 text-center">
-              {t("home.explainers.eyebrow")}
-            </p>
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-center text-balance">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance">
               {t("home.explainers.line1")}
               <br />
-              {t("home.explainers.line2")}
+              <span className="text-white/40">{t("home.explainers.line2")}</span>
             </h2>
           </ScrollReveal>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-6">
+          <div className="mt-14 grid md:grid-cols-2 md:gap-x-16">
             <ScrollReveal delay={0.1}>
               <FeatureCard
                 to="/event-loop"

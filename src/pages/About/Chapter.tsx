@@ -43,7 +43,7 @@ export function Chapter({ chapterKey }: ChapterProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-accent-soft uppercase tracking-widest text-xs mb-4"
+          className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4"
         >
           {tAny(`${base}.eyebrow`)}
         </motion.p>
