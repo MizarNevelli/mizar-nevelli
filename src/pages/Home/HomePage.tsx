@@ -37,9 +37,16 @@ export function HomePage() {
 
   return (
     <main className="relative">
-      {/* ────────── HERO ────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Fixed starfield — one Three.js canvas locked to the viewport.
+         Hero and globe sections are z-10 with no background, so stars show
+         through both. Stats / explainers / footer have bg-ink-950 to cover
+         the fixed layer once the starfield portion of the page is done. */}
+      <div className="fixed inset-0 pointer-events-none z-0">
         <SpaceScene />
+      </div>
+
+      {/* ────────── HERO ────────── */}
+      <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden">
         {/* Radial vignette — darkest behind the centered copy, transparent at
            the corners so the starfield stays visible around the edges. */}
         <div
@@ -49,8 +56,6 @@ export function HomePage() {
               "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(5,6,10,0.9) 0%, rgba(5,6,10,0.7) 30%, rgba(5,6,10,0) 75%)",
           }}
         />
-        {/* Blend the hero into the sticky globe section below. */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
 
         <motion.div
           style={{
@@ -76,10 +81,11 @@ export function HomePage() {
 
       {/* ────────── STICKY GLOBE STORY ──────────
          Height is 400vh so each of the 3 panels gets ~one full viewport of
-         scroll (≈ real seconds of reading time). */}
+         scroll (≈ real seconds of reading time). z-10 + no background means
+         the fixed starfield shows through for the full scroll distance. */}
       <section
         ref={globeSectionRef}
-        className="relative"
+        className="relative z-10"
         style={{ height: "400dvh" }}
       >
         <div className="sticky top-0 h-[100dvh] flex items-center overflow-hidden">
@@ -133,10 +139,16 @@ export function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* Fade from stars into ink-950. Placed at the absolute bottom of the
+           400dvh section — not inside the sticky div — so it only scrolls
+           into view during the final portion of the globe scroll, never
+           visible at the top where it would look like a hard cut. */}
+        <div className="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
       </section>
 
       {/* ────────── STATS ────────── */}
-      <section className="relative py-28 px-6 border-t border-white/[0.07]">
+      <section className="relative z-10 bg-ink-950 py-28 px-6 border-t border-white/[0.07]">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-14 md:gap-y-0">
           <ScrollReveal delay={0}>
             <StatCard value="27" label={t("home.stats.countries")} />
@@ -154,17 +166,19 @@ export function HomePage() {
       </section>
 
       {/* ────────── EXPLAINERS ────────── */}
-      <section className="relative py-28 px-6 border-t border-white/[0.07]">
+      <section className="relative z-10 bg-ink-950 py-28 px-6 border-t border-white/[0.07]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance">
               {t("home.explainers.line1")}
               <br />
-              <span className="text-white/40">{t("home.explainers.line2")}</span>
+              <span className="text-white/40">
+                {t("home.explainers.line2")}
+              </span>
             </h2>
           </ScrollReveal>
 
-          <div className="mt-14 grid md:grid-cols-2 md:gap-x-16">
+          <div className="mt-14 grid md:grid-cols-3 md:gap-x-12">
             <ScrollReveal delay={0.1}>
               <FeatureCard
                 to="/event-loop"
@@ -183,13 +197,23 @@ export function HomePage() {
                 cta={t("home.featureCardCta")}
               />
             </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <FeatureCard
+                to="/closures"
+                eyebrow={t("home.features.closures.eyebrow")}
+                title={t("home.features.closures.title")}
+                body={t("home.features.closures.body")}
+                cta={t("home.featureCardCta")}
+              />
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      <footer className="py-16 text-center text-white/40 text-sm">
-        {t("home.footer")}
-      </footer>
+      <footer
+        className="relative z-10 bg-ink-950 py-16 text-center text-white/40 text-sm"
+        dangerouslySetInnerHTML={{ __html: t("home.footer") }}
+      ></footer>
     </main>
   );
 }

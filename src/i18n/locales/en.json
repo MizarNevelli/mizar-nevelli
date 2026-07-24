@@ -51,7 +51,7 @@
       "writingJs": "Writing JS",
       "coffees": "Coffees",
       "eventLoop": "Event loop",
-      "cigarettes": "Cigarettes"
+      "cigarettes": "Hours & Cigarrettes"
     },
     "explainers": {
       "eyebrow": "Explainers",
@@ -68,10 +68,15 @@
         "eyebrow": "DOM events",
         "title": "Event bubbling",
         "body": "A click starts deep and rises. Trace its path through the tree, live."
+      },
+      "closures": {
+        "eyebrow": "Scope & memory",
+        "title": "Closures",
+        "body": "Functions that carry their birthplace with them. The source of callbacks, hooks, and that infamous loop bug."
       }
     },
     "featureCardCta": "Explore",
-    "footer": "Built with React, Framer Motion & a lot of espresso."
+    "footer": "Built with &hearts;"
   },
   "eventLoop": {
     "eyebrow": "Concurrency",

@@ -68,6 +68,11 @@
         "eyebrow": "Eventi DOM",
         "title": "Event bubbling",
         "body": "Un click parte in profondità e sale. Traccia il suo percorso nell'albero, in tempo reale."
+      },
+      "closures": {
+        "eyebrow": "Ambito & memoria",
+        "title": "Closure",
+        "body": "Funzioni che portano con sé il luogo in cui sono nate. La fonte delle callback, degli hook e del famoso bug del ciclo."
       }
     },
     "featureCardCta": "Esplora",
