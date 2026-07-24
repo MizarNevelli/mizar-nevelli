@@ -107,10 +107,10 @@ export function ClosuresPage() {
           <button
             key={id}
             onClick={() => setScenarioId(id)}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
+            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
               scenarioId === id
                 ? "bg-accent text-white"
-                : "glass text-white/70 hover:text-white"
+                : "border border-white/15 text-white/60 hover:text-white hover:border-white/25"
             }`}
           >
             {tAny(`closures.scenarios.${id}.label`)}
@@ -190,14 +190,14 @@ export function ClosuresPage() {
           <button
             onClick={stepBack}
             disabled={status === "idle" || step === 0}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="border border-white/15 px-4 py-2 rounded-lg text-white/60 hover:text-white hover:border-white/30 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {t("closures.controls.prev")}
           </button>
           <button
             onClick={stepForward}
             disabled={status === "finished"}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="border border-white/15 px-4 py-2 rounded-lg text-white/60 hover:text-white hover:border-white/30 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {t("closures.controls.next")}
           </button>
@@ -253,14 +253,14 @@ function PrimaryControls({
       <div className="flex items-center gap-3">
         <button
           onClick={onPause}
-          className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-white hover:bg-white/10 transition-colors"
+          className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-white hover:border-white/30 transition-colors"
         >
           <PauseIcon />
           {t("closures.controls.pause")}
         </button>
         <button
           onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
+          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
         >
           {t("closures.controls.reset")}
         </button>
@@ -279,7 +279,7 @@ function PrimaryControls({
         </button>
         <button
           onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
+          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
         >
           {t("closures.controls.reset")}
         </button>
@@ -307,14 +307,14 @@ function SpeedControl({
   const { t } = useTranslation();
   const options: Speed[] = ["slow", "normal", "fast"];
   return (
-    <div className="glass rounded-full p-1 flex items-center text-xs ml-2">
+    <div className="border border-white/15 rounded-lg p-1 flex items-center text-xs ml-2">
       {options.map((s) => (
         <button
           key={s}
           onClick={() => onChange(s)}
-          className={`px-3 py-1.5 rounded-full transition-colors capitalize ${
+          className={`px-3 py-1.5 rounded-md transition-colors capitalize ${
             speed === s
-              ? "bg-white/15 text-white"
+              ? "bg-white/10 text-white"
               : "text-white/50 hover:text-white"
           }`}
         >

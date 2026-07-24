@@ -120,7 +120,7 @@ export function EventBubblingPage() {
 
       {/* Toggles */}
       <div className="mt-10 flex justify-center flex-wrap gap-3 text-sm">
-        <label className="glass rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer">
+        <label className="border border-white/15 rounded-lg px-4 py-2 flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
             checked={useCapture}
@@ -129,7 +129,7 @@ export function EventBubblingPage() {
           />
           {t("eventBubbling.toggles.useCapture")}
         </label>
-        <label className="glass rounded-full px-4 py-2 flex items-center gap-2">
+        <label className="border border-white/15 rounded-lg px-4 py-2 flex items-center gap-2">
           {t("eventBubbling.toggles.stopPropagation")}
           <select
             value={stopAt ?? ""}
@@ -254,14 +254,14 @@ export function EventBubblingPage() {
           <button
             onClick={stepBack}
             disabled={status === "idle" || step === 0}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="border border-white/15 px-4 py-2 rounded-lg text-white/60 hover:text-white hover:border-white/30 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {t("eventBubbling.controls.prev")}
           </button>
           <button
             onClick={stepForward}
             disabled={status === "finished"}
-            className="glass px-4 py-2 rounded-full text-white/70 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="border border-white/15 px-4 py-2 rounded-lg text-white/60 hover:text-white hover:border-white/30 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {t("eventBubbling.controls.next")}
           </button>
@@ -369,14 +369,14 @@ function PrimaryControls({
       <div className="flex items-center gap-3">
         <button
           onClick={onPause}
-          className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-white hover:bg-white/10 transition-colors"
+          className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-white hover:border-white/30 transition-colors"
         >
           <PauseIcon />
           {t("eventBubbling.controls.pause")}
         </button>
         <button
           onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
+          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
         >
           {t("eventBubbling.controls.reset")}
         </button>
@@ -395,7 +395,7 @@ function PrimaryControls({
         </button>
         <button
           onClick={onReset}
-          className="rounded-full glass px-5 py-3 text-white/70 hover:text-white transition-colors"
+          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
         >
           {t("eventBubbling.controls.reset")}
         </button>
@@ -423,14 +423,14 @@ function SpeedControl({
   const { t } = useTranslation();
   const options: Speed[] = ["slow", "normal", "fast"];
   return (
-    <div className="glass rounded-full p-1 flex items-center text-xs ml-2">
+    <div className="border border-white/15 rounded-lg p-1 flex items-center text-xs ml-2">
       {options.map((s) => (
         <button
           key={s}
           onClick={() => onChange(s)}
-          className={`px-3 py-1.5 rounded-full transition-colors capitalize ${
+          className={`px-3 py-1.5 rounded-md transition-colors capitalize ${
             speed === s
-              ? "bg-white/15 text-white"
+              ? "bg-white/10 text-white"
               : "text-white/50 hover:text-white"
           }`}
         >

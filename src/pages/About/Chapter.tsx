@@ -26,11 +26,17 @@ export function Chapter({ chapterKey }: ChapterProps) {
     >
       {/* Sticky year rail */}
       <aside className="md:sticky md:top-32 self-start">
-        <div className="flex md:flex-col items-baseline md:items-start gap-4 md:gap-3">
-          <div className="text-5xl md:text-6xl font-semibold text-white/90 tracking-tight tabular-nums">
+        <div className="relative flex md:flex-col items-baseline md:items-start gap-4 md:gap-3 overflow-hidden">
+          <span
+            aria-hidden
+            className="absolute -top-3 -left-2 text-[4.5rem] md:text-[6rem] font-bold leading-none text-white/[0.04] select-none pointer-events-none tabular-nums"
+          >
+            {tAny(`${base}.year`).replace(" →", "")}
+          </span>
+          <div className="relative text-5xl md:text-6xl font-semibold text-white/90 tracking-tight tabular-nums">
             {tAny(`${base}.year`)}
           </div>
-          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-white/40">
+          <div className="relative flex items-center gap-2 text-xs uppercase tracking-widest text-white/40">
             <span className="inline-block h-px w-6 bg-white/20" />
             <span>{tAny(`${base}.place`)}</span>
           </div>

@@ -133,7 +133,6 @@ export function AboutPage() {
 
       {/* ────────── CLOSING CTA ────────── */}
       <section className="relative py-32 px-6 border-t border-white/10 overflow-hidden">
-        <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
         <div className="relative max-w-3xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 8 }}

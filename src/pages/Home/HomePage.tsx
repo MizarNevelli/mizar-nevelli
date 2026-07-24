@@ -149,18 +149,26 @@ export function HomePage() {
 
       {/* ────────── STATS ────────── */}
       <section className="relative z-10 bg-ink-950 py-28 px-6 border-t border-white/[0.07]">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-14 md:gap-y-0">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 border border-white/[0.06] rounded-xl overflow-hidden">
           <ScrollReveal delay={0}>
-            <StatCard value="27" label={t("home.stats.countries")} />
+            <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
+              <StatCard value="27" label={t("home.stats.countries")} />
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <StatCard value="8yrs" label={t("home.stats.writingJs")} />
+            <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
+              <StatCard value="8yrs" label={t("home.stats.writingJs")} />
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <StatCard value="∞" label={t("home.stats.coffees")} />
+            <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
+              <StatCard value="∞" label={t("home.stats.coffees")} />
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
-            <StatCard value="1000+" label={t("home.stats.cigarettes")} />
+            <div className="p-8 md:p-10">
+              <StatCard value="1k +" label={t("home.stats.cigarettes")} />
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -186,6 +194,7 @@ export function HomePage() {
                 title={t("home.features.eventLoop.title")}
                 body={t("home.features.eventLoop.body")}
                 cta={t("home.featureCardCta")}
+                index={0}
               />
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
@@ -195,6 +204,7 @@ export function HomePage() {
                 title={t("home.features.eventBubbling.title")}
                 body={t("home.features.eventBubbling.body")}
                 cta={t("home.featureCardCta")}
+                index={1}
               />
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
@@ -204,6 +214,7 @@ export function HomePage() {
                 title={t("home.features.closures.title")}
                 body={t("home.features.closures.body")}
                 cta={t("home.featureCardCta")}
+                index={2}
               />
             </ScrollReveal>
           </div>

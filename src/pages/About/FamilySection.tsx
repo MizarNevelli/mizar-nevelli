@@ -30,9 +30,10 @@ export function FamilySection() {
           <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">
             {t("about.family.eyebrow")}
           </p>
-          <h3 className="mt-5 text-2xl md:text-3xl font-semibold text-white tracking-tight">
-            {t("about.family.title")}
-          </h3>
+          <h3
+            className="mt-5 text-2xl md:text-3xl font-semibold text-white tracking-tight"
+            dangerouslySetInnerHTML={{ __html: t("about.family.title") }}
+          ></h3>
           <p className="mt-3 text-white/45 text-sm leading-relaxed max-w-xl">
             {t("about.family.body")}
           </p>

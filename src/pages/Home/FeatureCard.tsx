@@ -6,14 +6,23 @@ type FeatureCardProps = {
   title: string;
   body: string;
   cta: string;
+  index?: number;
 };
 
-export function FeatureCard({ to, eyebrow, title, body, cta }: FeatureCardProps) {
+export function FeatureCard({ to, eyebrow, title, body, cta, index }: FeatureCardProps) {
   return (
     <Link
       to={to}
-      className="group block border-t border-white/10 pt-8 pb-4 hover:border-white/20 transition-colors duration-500"
+      className="group relative block overflow-hidden border-t border-white/10 pt-8 pb-4 hover:border-white/20 transition-colors duration-500"
     >
+      {index !== undefined && (
+        <span
+          aria-hidden
+          className="absolute top-4 right-0 text-[7rem] leading-none font-bold text-white/[0.035] select-none pointer-events-none tabular-nums"
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      )}
       <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/30">
         {eyebrow}
       </p>

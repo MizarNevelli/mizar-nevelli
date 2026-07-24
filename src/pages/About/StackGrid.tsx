@@ -2,10 +2,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-/**
- * Grouped technology tags. Each group animates in as a staggered cluster.
- * Keeps skills scannable rather than the "endless badges" pattern.
- */
 export function StackGrid() {
   const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
@@ -68,39 +64,25 @@ export function StackGrid() {
           {t("about.stack.body")}
         </motion.p>
 
-        <div className="mt-12 grid md:grid-cols-2 gap-x-10 gap-y-10">
+        <div className="mt-12 max-w-2xl">
           {groups.map((g, gi) => (
             <motion.div
               key={g.key}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.8,
-                delay: 0.3 + gi * 0.1,
+                duration: 0.7,
+                delay: 0.3 + gi * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
+              className="py-5 border-t border-white/[0.06] first:border-t-0"
             >
-              <h4 className="text-xs uppercase tracking-widest text-white/40 mb-4 flex items-center gap-3">
-                <span className="inline-block h-px w-6 bg-white/25" />
+              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/25 mb-2">
                 {t(`about.stack.groups.${g.key}` as never)}
-              </h4>
-              <ul className="flex flex-wrap gap-2">
-                {g.items.map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.4 + gi * 0.1 + i * 0.03,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="rounded-full border border-white/[0.12] px-3.5 py-1.5 text-sm text-white/55 hover:text-white/80 hover:border-white/25 transition-colors"
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
+              </p>
+              <p className="text-white/55 text-sm leading-relaxed">
+                {g.items.join(", ")}
+              </p>
             </motion.div>
           ))}
         </div>

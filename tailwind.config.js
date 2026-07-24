@@ -43,10 +43,15 @@ export default {
           '0%,100%': { boxShadow: '0 0 0 0 rgba(124,92,255,0.5)' },
           '50%': { boxShadow: '0 0 40px 8px rgba(124,92,255,0.5)' },
         },
+        blink: {
+          '0%,100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
       },
       animation: {
         float: 'float 4s ease-in-out infinite',
         'pulse-glow': 'pulseGlow 2.4s ease-in-out infinite',
+        blink: 'blink 1.1s step-start infinite',
       },
     },
   },

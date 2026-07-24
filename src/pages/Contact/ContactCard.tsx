@@ -43,7 +43,7 @@ export function ContactCard({
   };
 
   return (
-    <div className="group relative rounded-xl border border-white/[0.09] bg-white/[0.03] p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden hover:border-white/[0.15] transition-colors duration-500">
+    <div className="group relative rounded-xl border border-white/[0.09] border-l-[3px] border-l-transparent bg-white/[0.03] p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden hover:border-white/[0.15] hover:border-l-accent/50 transition-colors duration-500">
 
       <div className="shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl border border-white/[0.12] flex items-center justify-center text-white/50">
         {icon}
