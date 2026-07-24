@@ -80,7 +80,83 @@ export function Nav() {
             className="flex items-center gap-2 group"
             onClick={() => setMobileOpen(false)}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
+            {/* Star container — holds both the halo and the SVG */}
+            <span
+              className="relative inline-flex items-center justify-center shrink-0"
+              style={{ width: 14, height: 14 }}
+            >
+              {/* Soft ambient halo — pulses in sync with twinkling */}
+              <motion.span
+                aria-hidden
+                className="absolute rounded-full pointer-events-none"
+                style={{
+                  inset: -10,
+                  background:
+                    "radial-gradient(circle, rgba(166,140,255,0.22) 0%, rgba(166,140,255,0.05) 55%, transparent 72%)",
+                }}
+                animate={{ scale: [0.85, 1.2, 0.85], opacity: [0.4, 1, 0.4] }}
+                transition={{
+                  duration: 2.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Hover wrapper — fast independent scale on hover */}
+              <motion.span
+                className="inline-flex"
+                whileHover={{ scale: 1.35 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <motion.svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 16 16"
+                  aria-hidden
+                  style={{ overflow: "visible" }}
+                  animate={{
+                    scale: [1, 1.07, 0.96, 1.05, 0.99, 1],
+                    filter: [
+                      "drop-shadow(0 0 1.5px rgba(166,140,255,0.45))",
+                      "drop-shadow(0 0 5px rgba(166,140,255,1)) drop-shadow(0 0 10px rgba(166,140,255,0.4))",
+                      "drop-shadow(0 0 2px rgba(166,140,255,0.55))",
+                      "drop-shadow(0 0 5px rgba(166,140,255,0.9)) drop-shadow(0 0 8px rgba(166,140,255,0.3))",
+                      "drop-shadow(0 0 2px rgba(166,140,255,0.45))",
+                      "drop-shadow(0 0 1.5px rgba(166,140,255,0.45))",
+                    ],
+                  }}
+                  transition={{
+                    scale: {
+                      duration: 2.8,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      times: [0, 0.15, 0.4, 0.62, 0.82, 1],
+                    },
+                    filter: {
+                      duration: 2.8,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      times: [0, 0.15, 0.4, 0.62, 0.82, 1],
+                    },
+                  }}
+                >
+                  {/* Diffraction spikes — H + V cross, extending beyond the star */}
+                  <path
+                    d="M-8 8L8 7.25L24 8L8 8.75Z"
+                    fill="rgba(166,140,255,0.32)"
+                  />
+                  <path
+                    d="M8-8L8.75 8L8 24L7.25 8Z"
+                    fill="rgba(166,140,255,0.32)"
+                  />
+                  {/* 5-pointed star — white so it reads as a real star */}
+                  <path
+                    d="M8 1L9.8 5.6L14.7 5.8L10.9 8.9L12.1 13.7L8 11L3.9 13.7L5.1 8.9L1.3 5.8L6.2 5.6Z"
+                    fill="white"
+                  />
+                </motion.svg>
+              </motion.span>
+            </span>
             <span className="text-white font-medium tracking-tight">
               Mizar<span className="text-accent-soft">.js</span>
             </span>
