@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { ScrollRestoration, Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Outlet } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { HomePage } from './pages/Home/HomePage'
 import { AboutPage } from './pages/About/AboutPage'
@@ -7,18 +7,29 @@ import { EventBubblingPage } from './pages/EventBubbling/EventBubblingPage'
 import { ClosuresPage } from './pages/Closures/ClosuresPage'
 import { ContactPage } from './pages/Contact/ContactPage'
 
-export default function App() {
+function Layout() {
   return (
     <div className="relative min-h-screen">
+      <ScrollRestoration />
       <Nav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/event-loop" element={<EventLoopPage />} />
-        <Route path="/event-bubbling" element={<EventBubblingPage />} />
-        <Route path="/closures" element={<ClosuresPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
+      <Outlet />
     </div>
   )
+}
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<Layout />}>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/event-loop" element={<EventLoopPage />} />
+      <Route path="/event-bubbling" element={<EventBubblingPage />} />
+      <Route path="/closures" element={<ClosuresPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+    </Route>
+  )
+)
+
+export default function App() {
+  return <RouterProvider router={router} />
 }
