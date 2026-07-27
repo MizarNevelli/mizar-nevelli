@@ -16,7 +16,7 @@
     overflow-x: hidden;
   }
   ::selection {
-    background: #7c5cff;
+    background: #d4a017;
     color: white;
   }
   html {
@@ -32,7 +32,7 @@
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
   .gradient-text {
-    background: linear-gradient(180deg, #ffffff 0%, #a68cff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f5cf5c 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

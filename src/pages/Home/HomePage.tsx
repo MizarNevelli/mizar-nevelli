@@ -92,7 +92,13 @@ export function HomePage() {
           <div className="mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl px-6 w-full">
             {/* Globe — capped on mobile so it never overflows 100vh alongside the text */}
             <div className="relative order-2 md:order-1 mx-auto w-full max-w-[min(52dvh,100%)] md:max-w-none">
-              <div className="absolute -inset-20 bg-radial-fade blur-2xl pointer-events-none" />
+              <div
+                className="absolute -inset-20 blur-2xl pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(212,160,23,0.18), transparent 60%)",
+                }}
+              />
               <div className="relative">
                 <Globe progress={globeProgress} />
               </div>
@@ -222,7 +228,7 @@ export function HomePage() {
       </section>
 
       <footer
-        className="relative z-10 bg-ink-950 py-16 text-center text-white/40 text-sm"
+        className="relative z-10 bg-ink-950 py-16 text-center text-sm text-accent-soft/70"
         dangerouslySetInnerHTML={{ __html: t("home.footer") }}
       ></footer>
     </main>

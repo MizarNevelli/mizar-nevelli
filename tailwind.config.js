@@ -23,16 +23,16 @@ export default {
           600: '#2a2e3d',
         },
         accent: {
-          DEFAULT: '#7c5cff',
-          soft: '#a68cff',
-          glow: 'rgba(124, 92, 255, 0.35)',
+          DEFAULT: '#d4a017',
+          soft: '#f5cf5c',
+          glow: 'rgba(212, 160, 23, 0.35)',
         },
       },
       backgroundImage: {
         'radial-fade':
-          'radial-gradient(ellipse at top, rgba(124,92,255,0.25), transparent 60%)',
+          'radial-gradient(ellipse at top, rgba(212,160,23,0.25), transparent 60%)',
         'grid-fade':
-          'linear-gradient(to bottom, transparent, #05060a 80%), radial-gradient(circle at center, rgba(124,92,255,0.15), transparent 60%)',
+          'linear-gradient(to bottom, transparent, #05060a 80%), radial-gradient(circle at center, rgba(212,160,23,0.15), transparent 60%)',
       },
       keyframes: {
         float: {
@@ -40,8 +40,8 @@ export default {
           '50%': { transform: 'translateY(-6px)' },
         },
         pulseGlow: {
-          '0%,100%': { boxShadow: '0 0 0 0 rgba(124,92,255,0.5)' },
-          '50%': { boxShadow: '0 0 40px 8px rgba(124,92,255,0.5)' },
+          '0%,100%': { boxShadow: '0 0 0 0 rgba(212,160,23,0.5)' },
+          '50%': { boxShadow: '0 0 40px 8px rgba(212,160,23,0.5)' },
         },
         blink: {
           '0%,100%': { opacity: '1' },

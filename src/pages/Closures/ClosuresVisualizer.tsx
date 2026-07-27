@@ -91,7 +91,7 @@ function ScopeCard({ scope, highlightName }: ScopeCardProps) {
   const cardClasses = [
     "relative rounded-xl p-3 md:p-4 transition-colors backdrop-blur-sm",
     isActive
-      ? "border border-accent/60 bg-accent/[0.06] shadow-[0_0_28px_-8px_rgba(124,92,255,0.45)]"
+      ? "border border-accent/60 bg-accent/[0.06] shadow-[0_0_28px_-8px_rgba(212,160,23,0.45)]"
       : "",
     isCaptured
       ? "border border-dashed border-white/25 bg-white/[0.02] opacity-90"

@@ -51,9 +51,9 @@ export function Globe({
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.25, 0.22, 0.4],
-      markerColor: [0.55, 0.38, 1],
-      glowColor: [0.55, 0.4, 1],
+      baseColor: [0.18, 0.13, 0.04],
+      markerColor: [0.95, 0.72, 0.18],
+      glowColor: [0.85, 0.58, 0.12],
       markers: markers.map((m) => ({
         location: m.location,
         size: m.size ?? 0.05,

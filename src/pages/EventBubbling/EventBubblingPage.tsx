@@ -481,7 +481,7 @@ function NestedBoxes({
     if (!p) return "transparent";
     if (p === "capture") return "rgba(56,189,248,0.55)";
     if (p === "bubble") return "rgba(52,211,153,0.55)";
-    return "rgba(124,92,255,0.65)";
+    return "rgba(212,160,23,0.65)";
   };
   const glow = phaseColor(phase);
 
@@ -522,7 +522,7 @@ function NestedBoxes({
                   activeLayer === "#inner"
                     ? `0 0 0 3px ${glow}, 0 0 50px ${glow}`
                     : idle
-                      ? "0 0 0 1px rgba(124,92,255,0.5), 0 0 30px rgba(124,92,255,0.25)"
+                      ? "0 0 0 1px rgba(212,160,23,0.5), 0 0 30px rgba(212,160,23,0.25)"
                       : "0 0 0 1px rgba(255,255,255,0.15)",
               }}
               transition={{ duration: 0.35 }}

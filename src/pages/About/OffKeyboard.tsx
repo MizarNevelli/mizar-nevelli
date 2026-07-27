@@ -133,7 +133,7 @@ function WaveSvg({ inView }: { inView: boolean }) {
       <motion.path
         d="M0,100 C60,84 100,116 160,100 C220,84 260,116 320,100 C360,90 380,108 400,100"
         fill="none"
-        stroke="rgba(170,140,255,0.35)"
+        stroke="rgba(240,190,60,0.35)"
         strokeWidth="1.2"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
@@ -142,9 +142,9 @@ function WaveSvg({ inView }: { inView: boolean }) {
       />
       <defs>
         <linearGradient id="waveG" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="rgba(170,140,255,0.2)" />
+          <stop offset="0" stopColor="rgba(240,190,60,0.2)" />
           <stop offset="0.5" stopColor="rgba(255,255,255,0.7)" />
-          <stop offset="1" stopColor="rgba(170,140,255,0.2)" />
+          <stop offset="1" stopColor="rgba(240,190,60,0.2)" />
         </linearGradient>
       </defs>
     </svg>

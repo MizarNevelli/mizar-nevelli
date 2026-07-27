@@ -15,8 +15,6 @@ export function ContactPage() {
   const { t } = useTranslation();
   return (
     <main className="min-h-screen pt-32 pb-24 px-6 relative overflow-hidden">
-      {/* Soft radial glow for atmosphere */}
-      <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
 
       <div className="relative max-w-3xl mx-auto">
         <motion.header

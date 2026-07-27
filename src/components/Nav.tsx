@@ -92,7 +92,7 @@ export function Nav() {
                 style={{
                   inset: -10,
                   background:
-                    "radial-gradient(circle, rgba(166,140,255,0.22) 0%, rgba(166,140,255,0.05) 55%, transparent 72%)",
+                    "radial-gradient(circle, rgba(240,190,60,0.22) 0%, rgba(240,190,60,0.05) 55%, transparent 72%)",
                 }}
                 animate={{ scale: [0.85, 1.2, 0.85], opacity: [0.4, 1, 0.4] }}
                 transition={{
@@ -117,12 +117,12 @@ export function Nav() {
                   animate={{
                     scale: [1, 1.07, 0.96, 1.05, 0.99, 1],
                     filter: [
-                      "drop-shadow(0 0 1.5px rgba(166,140,255,0.45))",
-                      "drop-shadow(0 0 5px rgba(166,140,255,1)) drop-shadow(0 0 10px rgba(166,140,255,0.4))",
-                      "drop-shadow(0 0 2px rgba(166,140,255,0.55))",
-                      "drop-shadow(0 0 5px rgba(166,140,255,0.9)) drop-shadow(0 0 8px rgba(166,140,255,0.3))",
-                      "drop-shadow(0 0 2px rgba(166,140,255,0.45))",
-                      "drop-shadow(0 0 1.5px rgba(166,140,255,0.45))",
+                      "drop-shadow(0 0 1.5px rgba(240,190,60,0.45))",
+                      "drop-shadow(0 0 5px rgba(240,190,60,1)) drop-shadow(0 0 10px rgba(240,190,60,0.4))",
+                      "drop-shadow(0 0 2px rgba(240,190,60,0.55))",
+                      "drop-shadow(0 0 5px rgba(240,190,60,0.9)) drop-shadow(0 0 8px rgba(240,190,60,0.3))",
+                      "drop-shadow(0 0 2px rgba(240,190,60,0.45))",
+                      "drop-shadow(0 0 1.5px rgba(240,190,60,0.45))",
                     ],
                   }}
                   transition={{
@@ -143,11 +143,11 @@ export function Nav() {
                   {/* Diffraction spikes — H + V cross, extending beyond the star */}
                   <path
                     d="M-8 8L8 7.25L24 8L8 8.75Z"
-                    fill="rgba(166,140,255,0.32)"
+                    fill="rgba(240,190,60,0.32)"
                   />
                   <path
                     d="M8-8L8.75 8L8 24L7.25 8Z"
-                    fill="rgba(166,140,255,0.32)"
+                    fill="rgba(240,190,60,0.32)"
                   />
                   {/* 5-pointed star — white so it reads as a real star */}
                   <path
