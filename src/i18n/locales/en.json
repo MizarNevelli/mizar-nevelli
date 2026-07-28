@@ -27,7 +27,7 @@
     "titleLine2": "in motion.",
     "descriptionPrefix": "I'm ",
     "descriptionName": "Mizar",
-    "descriptionSuffix": " a JavaScript engineer building from wherever the wifi holds. This is a small playground for the language I love, told through pixels and some paragraphs.",
+    "descriptionSuffix": ", a JavaScript engineer. Remote by habit, on the move by choice. This is a corner of the internet where I pull apart the language I love.",
     "scrollHint": "Scroll to explore",
     "panels": {
       "one": {
@@ -51,7 +51,7 @@
       "writingJs": "Writing JS",
       "coffees": "Coffees",
       "eventLoop": "Event loop",
-      "cigarettes": "Hours & Cigarrettes"
+      "cigarettes": "Hours & Cigarettes"
     },
     "explainers": {
       "eyebrow": "Explainers",
@@ -213,8 +213,8 @@
   "contact": {
     "eyebrow": "Say hi",
     "titleLine1": "Let's build something,",
-    "titleLine2": "or just chat.",
-    "description": "Wherever the wifi holds, I'll answer. Drop a note or a message — whichever fits the moment.",
+    "titleLine2": "or just talk.",
+    "description": "Wherever the wifi holds, I'll answer. Drop a note or a message — whichever fits.",
     "footer": "Usually reply within a day — timezone permitting.",
     "cards": {
       "email": {
@@ -239,8 +239,8 @@
   "about": {
     "hero": {
       "eyebrow": "About",
-      "titleLine1": "Here I am!",
-      "titleLine2": "",
+      "titleLine1": "There's a star",
+      "titleLine2": "called Mizar.",
       "subtitle": "Software engineer, named after ζ Ursae Majoris — the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
       "scrollHint": "Read the story"
     },
@@ -324,7 +324,7 @@
     "closing": {
       "eyebrow": "Currently",
       "title": "location: undefined",
-      "body": "If any of this feels like something you'd want to work on together, I'd like to hear from you.",
+      "body": "If any of this lands near what you're building, I'm around.",
       "cta": "Write to me"
     }
   },
