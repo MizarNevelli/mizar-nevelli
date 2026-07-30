@@ -16,8 +16,8 @@ export function FamilySection() {
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <section ref={ref} className="relative py-24 md:py-32">
-      <div className="max-w-5xl mx-auto">
+    <section ref={ref} className="relative py-24 md:py-32 px-6">
+      <div className="max-w-5xl mx-auto text-lg">
         <motion.a
           href={CHEF_AKELA_URL}
           target="_blank"
@@ -34,7 +34,7 @@ export function FamilySection() {
             className="mt-5 text-2xl md:text-3xl font-semibold text-white tracking-tight"
             dangerouslySetInnerHTML={{ __html: t("about.family.title") }}
           ></h3>
-          <p className="mt-3 text-white/45 text-sm leading-relaxed max-w-xl">
+          <p className="text-lg text-white/45 leading-relaxed mt-5 ">
             {t("about.family.body")}
           </p>
 

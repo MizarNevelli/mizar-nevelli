@@ -257,7 +257,7 @@
         "place": "Australia",
         "eyebrow": "Chapter II · The leap",
         "title": "Then I left.",
-        "body": "Twenty years old. Working-holiday visa. One backpack, and one country that seemed impossibly far away. I stayed in Australia for a year. Four more countries followed. Somewhere between a night bus and a farm on the other side of the world, I learned that curiosity teaches faster than a lecture hall."
+        "body": "At twenty, I left on a working-holiday visa. Australia for a year, then four more countries. The fastest I have ever learned anything was not in a classroom."
       },
       "pivot": {
         "year": "2016",
@@ -278,27 +278,27 @@
         "place": "Jakala",
         "eyebrow": "Chapter V · Real engineering",
         "title": "Where 'stakeholder alignment' stopped sounding like a joke.",
-        "body": "GIS + JavaScript + Python. I built several geolocation dashboards for italian and international customers, and cusotom a location analytics tool for a global F&B client that landed in the internal top 3% projects. Two years of learning to translate messy human problems into lean solutions."
+        "body": "GIS, JavaScript, and Python. I built geolocation dashboards for European automotive brands and a location-analytics tool for a global food & beverage client, ranked in the internal top 3% of projects at Jakala. Two years translating ambiguous briefs into working software."
       },
       "matures": {
         "year": "2020",
         "place": "Palmabit",
         "eyebrow": "Chapter VI · The stack matures",
         "title": "The hardest problems in engineering are rarely the code.",
-        "body": "Two years shipping React and Node across cross-disciplinary teams — an automotive management platform, then the main tool to manage subscriptions for a telco supplier. Cross-team communication became a skill I could point to. Tests, real tests, became a habit."
+        "body": "Two years shipping React and Node at Palmabit across cross-functional teams — an automotive management platform, then a subscription management system for an Italian telco supplier. By the end, test-driven development was a standard, not a suggestion."
       },
       "now": {
         "year": "2022 →",
         "place": "Spartan Tech",
         "eyebrow": "Chapter VII · Now",
         "title": "React, Next, and notarized on-chain.",
-        "body": "Completed a full restyling of a luxury watch marketplace notarized and ceritifed on Algorand. A custom platform for a medical society: 95% of requested features shipped in an MVP measured in months, not quarters."
+        "body": "At Spartan Tech, among various projects, I led the rebuild of Watchype, a luxury watch marketplace where every piece is certified and notarized on Algorand. I also designed and delivered a custom platform for a medical society; 95% of the requested scope shipped in an MVP measured in months. In 2023, I also completed a blockchain engineering program at Masterz."
       }
     },
     "offKeyboard": {
       "eyebrow": "Off the keyboard",
       "title": "I collect two kinds of horizons.",
-      "body": "The ones covered in snow, and the ones that stretch across water. Skiing since I could stand. Swimming since I could hold my breath. Both remind me that fluency is the same everywhere — deep practice, made to look effortless.",
+      "body": "The ones covered in snow, and the ones that stretch across water. I have been skiing and swimming for as long as I can remember. Both are about the same thing: the kind of repetition that eventually stops feeling like effort.",
       "snow": "Snow",
       "snowSub": "since I could stand",
       "water": "Water",
@@ -313,7 +313,7 @@
     "stack": {
       "eyebrow": "The stack",
       "title": "What I build with, today.",
-      "body": "Preferences, not dogma. I reach for what makes the next teammate's Tuesday morning easier.",
+      "body": "Preferences, not dogma. I use what solves the problem and leaves the next engineer able to maintain it.",
       "groups": {
         "frontend": "Frontend",
         "runtime": "Runtime & data",
@@ -324,8 +324,8 @@
     "closing": {
       "eyebrow": "Currently",
       "title": "location: undefined",
-      "body": "If any of this lands near what you're building, I'm around.",
-      "cta": "Write to me"
+      "body": "I am currently available for new projects, freelance engagements, and long-term collaborations.",
+      "cta": "Get in touch"
     }
   },
   "closures": {
