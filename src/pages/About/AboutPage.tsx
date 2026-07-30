@@ -122,14 +122,14 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* ────────── OFF THE KEYBOARD ────────── */}
-      <OffKeyboard />
-
       {/* ────────── FAMILY ────────── */}
       <FamilySection />
 
       {/* ────────── STACK ────────── */}
       <StackGrid />
+
+      {/* ────────── OFF THE KEYBOARD ────────── */}
+      <OffKeyboard />
 
       {/* ────────── CLOSING CTA ────────── */}
       <section className="relative py-32 px-6 border-t border-white/10 overflow-hidden">

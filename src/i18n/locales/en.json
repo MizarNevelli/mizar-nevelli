@@ -27,7 +27,7 @@
     "titleLine2": "in motion.",
     "descriptionPrefix": "I'm ",
     "descriptionName": "Mizar",
-    "descriptionSuffix": ", a JavaScript engineer. Remote by habit, on the move by choice. This is a corner of the internet where I pull apart the language I love.",
+    "descriptionSuffix": ", a JavaScript engineer. Remote by habit, on the move by choice. This is a corner of the internet where I pull apart something about myself and the language I love.",
     "scrollHint": "Scroll to explore",
     "panels": {
       "one": {
@@ -263,36 +263,36 @@
         "year": "2016",
         "place": "Brescia · Machina Lonati",
         "eyebrow": "Chapter III · The pivot",
-        "title": "A European Technical Degree, and a Trojan horse.",
-        "body": "Back in Italy. Machina Lonati, a two-year technical program in Digital Marketing. I signed up for the marketing. I stayed for what came after — the more I learned about how websites <em>converted</em>, the more I wanted to know how they were <em>built</em>."
+        "title": "A European Technical Degree.",
+        "body": "Back in Italy. Machina Lonati, a two-year technical program in Digital Marketing. I signed up for the marketing. The more I learned about how websites <em>converted</em>, the more I wanted to know how they were <em>built</em>."
       },
       "firstCommit": {
         "year": "2018",
         "place": "Magma Studio",
         "eyebrow": "Chapter IV · The first commit",
         "title": "The small thrill of shipping something real.",
-        "body": "First internship. WordPress themes, custom landing pages, occasional jQuery — the workhorse stack of small studios. I also brokered a deal with a doctor who wanted a platform: turnover went up 20% that quarter. That was the moment I understood the leverage of code."
+        "body": "First internship. WordPress themes, custom landing pages, jQuery, first SQL queries. That was the moment I understood the leverage of code."
       },
       "engineering": {
         "year": "2019",
         "place": "Jakala",
         "eyebrow": "Chapter V · Real engineering",
         "title": "Where 'stakeholder alignment' stopped sounding like a joke.",
-        "body": "GIS + JavaScript + Python. I built a geolocation dashboard for a European automotive brand, and a location-analytics tool for a global F&B client that landed in the internal top 5%. Two years of learning to translate messy human problems into structured queries."
+        "body": "GIS + JavaScript + Python. I built several geolocation dashboards for italian and international customers, and cusotom a location analytics tool for a global F&B client that landed in the internal top 3% projects. Two years of learning to translate messy human problems into lean solutions."
       },
       "matures": {
         "year": "2020",
         "place": "Palmabit",
         "eyebrow": "Chapter VI · The stack matures",
         "title": "The hardest problems in engineering are rarely the code.",
-        "body": "Two years shipping React and Node across cross-disciplinary teams — an automotive management platform, then something for an Italian telco supplier. Cross-team communication became a skill I could point to. Tests, real tests, became a habit."
+        "body": "Two years shipping React and Node across cross-disciplinary teams — an automotive management platform, then the main tool to manage subscriptions for a telco supplier. Cross-team communication became a skill I could point to. Tests, real tests, became a habit."
       },
       "now": {
         "year": "2022 →",
         "place": "Spartan Tech",
         "eyebrow": "Chapter VII · Now",
         "title": "React, Next, and notarized on-chain.",
-        "body": "A full restyling of a luxury watch marketplace notarized on Algorand — Core Web Vitals up 10%. A custom platform for a medical society — 95% of requested features shipped in an MVP measured in months, not quarters. In 2023–24 I studied blockchain properly at Masterz, so the on-chain work has real ground under it."
+        "body": "Completed a full restyling of a luxury watch marketplace notarized and ceritifed on Algorand. A custom platform for a medical society: 95% of requested features shipped in an MVP measured in months, not quarters."
       }
     },
     "offKeyboard": {

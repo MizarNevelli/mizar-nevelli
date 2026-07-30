@@ -16,8 +16,8 @@ export function FamilySection() {
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <section ref={ref} className="relative py-24 md:py-32 px-6">
-      <div className="max-w-3xl mx-auto">
+    <section ref={ref} className="relative py-24 md:py-32">
+      <div className="max-w-5xl mx-auto">
         <motion.a
           href={CHEF_AKELA_URL}
           target="_blank"
