@@ -21,7 +21,6 @@ const posts: Post[] = Object.entries(modules)
       new Date(b.frontmatter.date).getTime()
   );
 
-
 export function BlogListPage() {
   const { t } = useTranslation();
   return (
@@ -79,7 +78,7 @@ export function BlogListPage() {
                     <img
                       src={post.frontmatter.cover}
                       alt="post-preview-img"
-                      className="w-full h-full object-cover opacity-25 group-hover:opacity-100 transition-opacity duration-500"
+                      className="w-full h-full object-cover opacity-[0.04] group-hover:opacity-100 transition-opacity duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/60 to-transparent" />
                   </div>
