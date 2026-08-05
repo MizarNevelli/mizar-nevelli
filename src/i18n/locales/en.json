@@ -243,7 +243,9 @@
       "titleLine1": "There's a star",
       "titleLine2": "called Mizar.",
       "subtitle": "Software engineer, named after ζ Ursae Majoris, the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
-      "scrollHint": "Read the story"
+      "scrollHint": "Read the story",
+      "starLabel": "Mizar, the star",
+      "starSub": "in the Big Dipper's handle"
     },
     "chapters": {
       "origin": {
@@ -420,5 +422,13 @@
         ]
       }
     }
+  },
+  "blog": {
+    "eyebrow": "Field Notes",
+    "titleLine1": "Dispatches",
+    "titleLine2": "from the road.",
+    "empty": "Nothing here yet.",
+    "postNotFound": "Post not found.",
+    "backToList": "Go back to list"
   }
 }

@@ -243,7 +243,9 @@
       "titleLine1": "C'è una stella",
       "titleLine2": "che si chiama Mizar.",
       "subtitle": "Software engineer, prendo il nome da ζ Ursae Majoris — la seconda stella dalla punta del manico del Grande Carro. Visibile a occhio nudo, parte di un sistema sestuplo. A me è toccato il nome; al cielo, i diritti di battesimo.",
-      "scrollHint": "Leggi la storia"
+      "scrollHint": "Leggi la storia",
+      "starLabel": "Mizar, la stella",
+      "starSub": "nel manico del Grande Carro"
     },
     "chapters": {
       "origin": {
@@ -420,5 +422,13 @@
         ]
       }
     }
+  },
+  "blog": {
+    "eyebrow": "Note di campo",
+    "titleLine1": "Dispacci",
+    "titleLine2": "dalla strada.",
+    "empty": "Ancora niente qui.",
+    "postNotFound": "Post non trovato.",
+    "backToList": "Torna alla lista"
   }
 }

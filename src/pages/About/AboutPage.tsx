@@ -53,12 +53,12 @@ export function AboutPage() {
         <div className="absolute top-[22%] right-[18%] hidden md:flex flex-col items-end gap-1 pointer-events-none z-10">
           <div className="flex items-baseline gap-2">
             <span className="text-xs text-white/60 [text-shadow:_0_1px_10px_rgba(5,6,10,0.9)]">
-              Mizar, the star
+              {t("about.hero.starLabel")}
             </span>
             <span className="inline-block h-2 w-2 rounded-full bg-white shadow-[0_0_20px_6px_rgba(240,190,60,0.7)]" />
           </div>
           <span className="text-[11px] text-white/40 [text-shadow:_0_1px_10px_rgba(5,6,10,0.9)]">
-            in the Big Dipper's handle
+            {t("about.hero.starSub")}
           </span>
         </div>
 

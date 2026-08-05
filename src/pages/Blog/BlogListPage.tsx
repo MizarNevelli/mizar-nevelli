@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { PageMeta } from "../../components/PageMeta";
 import { formatDate, formatOrdinal } from "../../utils/format";
 import type { Post, PostFrontmatter } from "./types";
@@ -22,6 +23,7 @@ const posts: Post[] = Object.entries(modules)
 
 
 export function BlogListPage() {
+  const { t } = useTranslation();
   return (
     <main className="relative min-h-screen bg-ink-950 pt-32 pb-24 px-6">
       <PageMeta
@@ -32,12 +34,12 @@ export function BlogListPage() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
-          Field Notes
+          {t("blog.eyebrow")}
         </p>
         <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-white text-balance">
-          Dispatches
+          {t("blog.titleLine1")}
           <br />
-          <span className="text-white/35">from the road.</span>
+          <span className="text-white/35">{t("blog.titleLine2")}</span>
         </h1>
 
         {/* Post list */}
@@ -88,7 +90,7 @@ export function BlogListPage() {
         </ul>
 
         {posts.length === 0 && (
-          <p className="mt-20 text-white/30 text-sm">Nothing here yet.</p>
+          <p className="mt-20 text-white/30 text-sm">{t("blog.empty")}</p>
         )}
       </div>
     </main>

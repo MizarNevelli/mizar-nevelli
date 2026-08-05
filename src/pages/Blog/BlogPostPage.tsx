@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { MDXProvider } from "@mdx-js/react";
 import type { Post, PostFrontmatter } from "./types";
 import { PageMeta } from "../../components/PageMeta";
@@ -87,6 +88,7 @@ const components = {
 
 
 export function BlogPostPage() {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const post = posts.find((p) => p.slug === slug);
 
@@ -94,12 +96,12 @@ export function BlogPostPage() {
     return (
       <main className="min-h-screen bg-ink-950 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-white/30 text-sm mb-6">Post not found.</p>
+          <p className="text-white/30 text-sm mb-6">{t("blog.postNotFound")}</p>
           <Link
             to="/blog"
             className="text-white/50 hover:text-white text-sm transition-colors"
           >
-            Go Back to list
+            {t("blog.backToList")}
           </Link>
         </div>
       </main>
@@ -161,7 +163,7 @@ export function BlogPostPage() {
             to="/blog"
             className="text-white/35 hover:text-white text-sm transition-colors"
           >
-            Go back to list
+            {t("blog.backToList")}
           </Link>
           <time
             dateTime={frontmatter.date}
