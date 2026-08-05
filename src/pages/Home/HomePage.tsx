@@ -38,7 +38,11 @@ export function HomePage() {
 
   return (
     <main className="relative">
-      <PageMeta title="Mizar" description="Interactive JavaScript explainers built by a developer who codes on the road." path="/" />
+      <PageMeta
+        title="Mizar"
+        description="Interactive JavaScript explainers built by a developer who codes on the road."
+        path="/"
+      />
       {/* Fixed starfield — one Three.js canvas locked to the viewport.
          Hero and globe sections are z-10 with no background, so stars show
          through both. Stats / explainers / footer have bg-ink-950 to cover
@@ -165,7 +169,7 @@ export function HomePage() {
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
-              <StatCard value="8yrs" label={t("home.stats.writingJs")} />
+              <StatCard value="8y" label={t("home.stats.writingJs")} />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>

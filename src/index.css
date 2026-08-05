@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @property --nav-angle {
-  syntax: '<angle>';
+  syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
@@ -15,8 +15,12 @@
     @apply bg-ink-950 text-white/80 antialiased;
   }
   body {
-    font-family: 'SF Pro Display', Inter, system-ui, -apple-system,
-      BlinkMacSystemFont, sans-serif;
+    font-family:
+      "Geist",
+      system-ui,
+      -apple-system,
+      sans-serif;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -66,10 +70,12 @@
     mask-composite: exclude;
   }
   @keyframes nav-border-spin {
-    to { --nav-angle: 360deg; }
+    to {
+      --nav-angle: 360deg;
+    }
   }
   .noise::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;

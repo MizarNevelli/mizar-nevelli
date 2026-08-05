@@ -5,7 +5,8 @@ import type { Post, PostFrontmatter } from "./types";
 import { PageMeta } from "../../components/PageMeta";
 import { formatDate } from "../../utils/format";
 
-const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
+const SITE_URL =
+  import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
 
 const modules = import.meta.glob<{
   default: React.ComponentType;
@@ -86,7 +87,6 @@ const components = {
   hr: () => <hr className="border-white/[0.08] my-10" />,
 };
 
-
 export function BlogPostPage() {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
@@ -115,7 +115,9 @@ export function BlogPostPage() {
       <PageMeta
         title={frontmatter.title}
         description={frontmatter.excerpt}
-        image={frontmatter.cover ? `${SITE_URL}${frontmatter.cover}` : undefined}
+        image={
+          frontmatter.cover ? `${SITE_URL}${frontmatter.cover}` : undefined
+        }
         path={`/blog/${post.slug}`}
       />
       {/* Cover image — absolutely positioned, bleeds behind title and into prose */}
