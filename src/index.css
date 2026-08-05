@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --nav-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @layer base {
   html,
   body,
@@ -36,6 +42,31 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+  .nav-border-glow {
+    background: conic-gradient(
+      from var(--nav-angle) at 50% 50%,
+      transparent 0deg,
+      transparent 80deg,
+      rgba(245, 207, 92, 0.4) 90deg,
+      rgba(245, 207, 92, 0.9) 95deg,
+      rgba(245, 207, 92, 0.4) 100deg,
+      transparent 110deg,
+      transparent 360deg
+    );
+    animation: nav-border-spin 5s linear infinite;
+    padding: 1.5px;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  @keyframes nav-border-spin {
+    to { --nav-angle: 360deg; }
   }
   .noise::after {
     content: '';

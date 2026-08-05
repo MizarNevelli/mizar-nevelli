@@ -75,7 +75,9 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto mt-4 max-w-4xl px-4">
-        <nav className="glass rounded-full px-5 py-2.5 flex items-center justify-between">
+        <div className="relative">
+          <div aria-hidden className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none" />
+          <nav className="glass rounded-full px-5 py-2.5 flex items-center justify-between">
           <NavLink
             to="/"
             className="flex items-center gap-2 group"
@@ -316,6 +318,7 @@ export function Nav() {
             <BurgerIcon open={mobileOpen} />
           </button>
         </nav>
+        </div>
       </div>
 
       {/* ────────── MOBILE FULL-SCREEN OVERLAY ────────── */}
