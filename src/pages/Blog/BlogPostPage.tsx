@@ -8,10 +8,10 @@ const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.a
 const modules = import.meta.glob<{
   default: React.ComponentType;
   frontmatter: PostFrontmatter;
-}>("/src/content/blog/*.mdx", { eager: true });
+}>("/content/blog/*.mdx", { eager: true });
 
 const posts: Post[] = Object.entries(modules).map(([path, mod]) => ({
-  slug: path.replace("/src/content/blog/", "").replace(".mdx", ""),
+  slug: path.replace("/content/blog/", "").replace(".mdx", ""),
   frontmatter: mod.frontmatter,
   Component: mod.default,
 }));

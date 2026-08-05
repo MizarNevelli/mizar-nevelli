@@ -43,7 +43,7 @@ function collectRoutes(root: string): RouteMeta[] {
   ]
 
   // Auto-discover blog posts from MDX frontmatter
-  const blogDir = join(root, 'src/content/blog')
+  const blogDir = join(root, 'content/blog')
   if (existsSync(blogDir)) {
     for (const file of readdirSync(blogDir).filter(f => f.endsWith('.mdx'))) {
       const fm = parseFrontmatter(readFileSync(join(blogDir, file), 'utf-8'))
