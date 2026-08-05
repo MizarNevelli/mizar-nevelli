@@ -4,8 +4,9 @@ import mdx from '@mdx-js/rollup'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import sitemap from 'vite-plugin-sitemap'
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
-import { join } from 'path'
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'fs'
+import { join, extname } from 'path'
+import sharp from 'sharp'
 
 const SITE_URL = process.env.VITE_SITE_URL ?? 'https://mizarnevelli.vercel.app'
 const DEFAULT_OG = `${SITE_URL}/og.png`
@@ -83,6 +84,46 @@ function buildMetaBlock(route: RouteMeta): string {
   ].join('\n')
 }
 
+function collectImages(dir: string, found: string[] = []): string[] {
+  if (!existsSync(dir)) return found
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) collectImages(full, found)
+    else if (/\.(jpe?g|png|webp)$/i.test(entry.name)) found.push(full)
+  }
+  return found
+}
+
+function compressBlogImages(): Plugin {
+  return {
+    name: 'compress-blog-images',
+    apply: 'build',
+    async closeBundle() {
+      const blogDir = join(process.cwd(), 'dist/blog')
+      const images = collectImages(blogDir)
+      if (!images.length) return
+
+      let saved = 0
+      for (const file of images) {
+        const before = statSync(file).size
+        const ext = extname(file).toLowerCase()
+        const img = sharp(file).resize({ width: 1920, withoutEnlargement: true })
+
+        let buf: Buffer
+        if (ext === '.png') buf = await img.png({ compressionLevel: 9 }).toBuffer()
+        else if (ext === '.webp') buf = await img.webp({ quality: 78 }).toBuffer()
+        else buf = await img.jpeg({ quality: 78, progressive: true, mozjpeg: true }).toBuffer()
+
+        writeFileSync(file, buf)
+        saved += before - buf.length
+      }
+
+      const kb = (saved / 1024).toFixed(0)
+      console.log(`[compress-blog-images] ${images.length} image(s), saved ${kb} KB`)
+    },
+  }
+}
+
 function staticMeta(): Plugin {
   return {
     name: 'static-meta',
@@ -134,6 +175,7 @@ export default defineConfig({
       ],
       generateRobotsTxt: false,
     }),
+    compressBlogImages(),
     staticMeta(),
     react(),
   ],
