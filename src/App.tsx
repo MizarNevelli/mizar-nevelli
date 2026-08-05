@@ -6,6 +6,8 @@ import { EventLoopPage } from './pages/EventLoop/EventLoopPage'
 import { EventBubblingPage } from './pages/EventBubbling/EventBubblingPage'
 import { ClosuresPage } from './pages/Closures/ClosuresPage'
 import { ContactPage } from './pages/Contact/ContactPage'
+import { BlogListPage } from './pages/Blog/BlogListPage'
+import { BlogPostPage } from './pages/Blog/BlogPostPage'
 
 function Layout() {
   return (
@@ -26,6 +28,8 @@ const router = createBrowserRouter(
       <Route path="/event-bubbling" element={<EventBubblingPage />} />
       <Route path="/closures" element={<ClosuresPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/blog" element={<BlogListPage />} />
+      <Route path="/blog/:slug" element={<BlogPostPage />} />
     </Route>
   )
 )

@@ -4,6 +4,7 @@
     "about": "About",
     "js": "JS",
     "jsFeatures": "JS features",
+    "blog": "Blog",
     "contact": "Contact",
     "features": {
       "eventLoop": {

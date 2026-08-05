@@ -12,10 +12,11 @@ const JS_FEATURE_KEYS = [
   { to: "/closures", key: "closures" },
 ] as const;
 
-type TopLinkKey = "home" | "about" | "contact";
+type TopLinkKey = "home" | "about" | "blog" | "contact";
 const TOP_LINKS: Array<{ to: string; key: TopLinkKey; end?: boolean }> = [
   { to: "/", key: "home", end: true },
   { to: "/about", key: "about" },
+  { to: "/blog", key: "blog" },
   { to: "/contact", key: "contact" },
 ];
 
@@ -193,6 +194,20 @@ export function Nav() {
                 {t("nav.about")}
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  `px-3 py-1.5 rounded-full transition-colors ${
+                    isActive
+                      ? "text-white bg-white/10"
+                      : "text-white/60 hover:text-white"
+                  }`
+                }
+              >
+                {t("nav.blog")}
+              </NavLink>
+            </li>
             <li ref={dropdownRef} className="relative">
               <button
                 type="button"
@@ -270,6 +285,7 @@ export function Nav() {
                 )}
               </AnimatePresence>
             </li>
+
             <li>
               <NavLink
                 to="/contact"
