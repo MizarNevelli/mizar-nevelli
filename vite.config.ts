@@ -107,12 +107,12 @@ function compressBlogImages(): Plugin {
       for (const file of images) {
         const before = statSync(file).size
         const ext = extname(file).toLowerCase()
-        const img = sharp(file).rotate().resize({ width: 1920, withoutEnlargement: true })
+        const img = sharp(file).rotate().resize({ width: 1200, withoutEnlargement: true })
 
         let buf: Buffer
         if (ext === '.png') buf = await img.png({ compressionLevel: 9 }).toBuffer()
-        else if (ext === '.webp') buf = await img.webp({ quality: 78 }).toBuffer()
-        else buf = await img.jpeg({ quality: 78, progressive: true, mozjpeg: true }).toBuffer()
+        else if (ext === '.webp') buf = await img.webp({ quality: 60 }).toBuffer()
+        else buf = await img.jpeg({ quality: 60, progressive: true, mozjpeg: true }).toBuffer()
 
         writeFileSync(file, buf)
         saved += before - buf.length
