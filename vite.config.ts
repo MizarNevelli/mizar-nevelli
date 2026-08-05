@@ -107,7 +107,7 @@ function compressBlogImages(): Plugin {
       for (const file of images) {
         const before = statSync(file).size
         const ext = extname(file).toLowerCase()
-        const img = sharp(file).resize({ width: 1920, withoutEnlargement: true })
+        const img = sharp(file).rotate().resize({ width: 1920, withoutEnlargement: true })
 
         let buf: Buffer
         if (ext === '.png') buf = await img.png({ compressionLevel: 9 }).toBuffer()
