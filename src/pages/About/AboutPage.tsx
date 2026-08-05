@@ -6,6 +6,7 @@ import { Chapter } from "./Chapter";
 import { OffKeyboard } from "./OffKeyboard";
 import { FamilySection } from "./FamilySection";
 import { StackGrid } from "./StackGrid";
+import { PageMeta } from "../../components/PageMeta";
 
 const CHAPTER_KEYS = [
   "origin",
@@ -32,6 +33,7 @@ export function AboutPage() {
 
   return (
     <main className="relative">
+      <PageMeta title="About" description="The story behind the name — a developer, seven countries, eight years of JavaScript." path="/about" />
       {/* ────────── HERO ────────── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <SpaceScene />

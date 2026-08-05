@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { PageMeta } from "../../components/PageMeta";
 import type { Post, PostFrontmatter } from "./types";
 
 const modules = import.meta.glob<{
@@ -29,6 +30,7 @@ function formatDate(iso: string) {
 export function BlogListPage() {
   return (
     <main className="relative min-h-screen bg-ink-950 pt-32 pb-24 px-6">
+      <PageMeta title="Blog" description="Field notes from the road. Travel dispatches from a remote JavaScript engineer." path="/blog" />
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">

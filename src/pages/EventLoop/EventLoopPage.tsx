@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { EventLoopVisualizer } from "./EventLoopVisualizer";
 import { CodeBlock } from "../../components/CodeBlock";
+import { PageMeta } from "../../components/PageMeta";
 import {
   SCENARIOS,
   SCENARIO_IDS,
@@ -91,7 +92,7 @@ export function EventLoopPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto"><PageMeta title="Event Loop" description="A visual walkthrough of the JavaScript event loop — call stack, microtasks, and task queue." path="/event-loop" />
       <header className="text-center max-w-3xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventLoop.eyebrow")}

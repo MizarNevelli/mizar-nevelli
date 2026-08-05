@@ -12,6 +12,7 @@ import { SpaceScene } from "../../components/SpaceScene";
 import { HeroChip } from "./HeroChip";
 import { StatCard } from "./StatCard";
 import { FeatureCard } from "./FeatureCard";
+import { PageMeta } from "../../components/PageMeta";
 
 /**
  * Apple-style long-scroll homepage:
@@ -37,6 +38,7 @@ export function HomePage() {
 
   return (
     <main className="relative">
+      <PageMeta title="Mizar" description="Interactive JavaScript explainers built by a developer who codes on the road." path="/" />
       {/* Fixed starfield — one Three.js canvas locked to the viewport.
          Hero and globe sections are z-10 with no background, so stars show
          through both. Stats / explainers / footer have bg-ink-950 to cover

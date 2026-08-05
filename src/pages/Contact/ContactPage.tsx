@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ContactCard } from "./ContactCard";
+import { PageMeta } from "../../components/PageMeta";
 
 const EMAIL = "mizarnevelli@gmail.com";
 // International format for wa.me links: country code + number, no + or spaces.
@@ -15,6 +16,7 @@ export function ContactPage() {
   const { t } = useTranslation();
   return (
     <main className="min-h-screen pt-32 pb-24 px-6 relative overflow-hidden">
+      <PageMeta title="Contact" description="Get in touch about projects, freelance work, or collaborations." path="/contact" />
 
       <div className="relative max-w-3xl mx-auto">
         <motion.header

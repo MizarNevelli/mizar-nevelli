@@ -1,6 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { MDXProvider } from "@mdx-js/react";
 import type { Post, PostFrontmatter } from "./types";
+import { PageMeta } from "../../components/PageMeta";
+
+const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
 
 const modules = import.meta.glob<{
   default: React.ComponentType;
@@ -113,6 +116,12 @@ export function BlogPostPage() {
 
   return (
     <main className="relative min-h-screen bg-ink-950">
+      <PageMeta
+        title={frontmatter.title}
+        description={frontmatter.excerpt}
+        image={frontmatter.cover ? `${SITE_URL}${frontmatter.cover}` : undefined}
+        path={`/blog/${post.slug}`}
+      />
       {/* Cover image — absolutely positioned, bleeds behind title and into prose */}
       {frontmatter.cover && (
         <div className="absolute inset-x-0 top-0 h-[92vh] overflow-hidden pointer-events-none">

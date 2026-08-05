@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { PageMeta } from "../../components/PageMeta";
 
 type Phase = "capture" | "target" | "bubble";
 type TraceEntry = {
@@ -105,7 +106,7 @@ export function EventBubblingPage() {
         : "";
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto"><PageMeta title="Event Bubbling" description="See how DOM events propagate through the tree, step by step." path="/event-bubbling" />
       <header className="text-center max-w-3xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventBubbling.eyebrow")}

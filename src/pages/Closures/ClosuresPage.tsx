@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CodeBlock } from "../../components/CodeBlock";
 import { ClosuresVisualizer } from "./ClosuresVisualizer";
+import { PageMeta } from "../../components/PageMeta";
 import { Console } from "./Console";
 import {
   SCENARIOS,
@@ -88,7 +89,7 @@ export function ClosuresPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto"><PageMeta title="Closures" description="Functions that carry their scope — an interactive guide to JavaScript closures." path="/closures" />
       <header className="text-center max-w-3xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("closures.eyebrow")}
