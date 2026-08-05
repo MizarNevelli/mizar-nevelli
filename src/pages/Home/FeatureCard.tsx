@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatOrdinal } from "../../utils/format";
 
 type FeatureCardProps = {
   to: string;
@@ -20,7 +21,7 @@ export function FeatureCard({ to, eyebrow, title, body, cta, index }: FeatureCar
           aria-hidden
           className="absolute top-4 right-0 text-[7rem] leading-none font-bold text-white/[0.035] select-none pointer-events-none tabular-nums"
         >
-          {String(index + 1).padStart(2, "0")}
+          {formatOrdinal(index)}
         </span>
       )}
       <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/30">

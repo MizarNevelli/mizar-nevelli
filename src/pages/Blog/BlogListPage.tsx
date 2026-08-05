@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageMeta } from "../../components/PageMeta";
+import { formatDate, formatOrdinal } from "../../utils/format";
 import type { Post, PostFrontmatter } from "./types";
 
 const modules = import.meta.glob<{
@@ -15,22 +16,19 @@ const posts: Post[] = Object.entries(modules)
   }))
   .sort(
     (a, b) =>
-      new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
+      new Date(a.frontmatter.date).getTime() -
+      new Date(b.frontmatter.date).getTime()
   );
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
 
 export function BlogListPage() {
   return (
     <main className="relative min-h-screen bg-ink-950 pt-32 pb-24 px-6">
-      <PageMeta title="Blog" description="Field notes from the road. Travel dispatches from a remote JavaScript engineer." path="/blog" />
+      <PageMeta
+        title="Blog"
+        description="Field notes from the road. Travel dispatches from a remote JavaScript engineer."
+        path="/blog"
+      />
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
@@ -50,13 +48,13 @@ export function BlogListPage() {
                 to={`/blog/${post.slug}`}
                 className="group flex items-start justify-between gap-6 py-10 hover:text-white transition-colors"
               >
-                <div className="flex-1 min-w-0 relative">
+                <div className="flex-1 min-w-0 relative pr-4">
                   {/* Ghost ordinal */}
                   <span
                     aria-hidden
                     className="absolute -top-2 -left-1 text-[5rem] leading-none font-bold text-white/[0.04] select-none pointer-events-none tabular-nums"
                   >
-                    {String(i + 1).padStart(2, "0")}
+                    {formatOrdinal(i)}
                   </span>
 
                   <p className="font-mono text-[10px] uppercase tracking-widest text-accent-soft mb-2">
@@ -73,14 +71,15 @@ export function BlogListPage() {
                   </p>
                 </div>
 
-                {/* Thumbnail */}
+                {/* Cover — fades in from the right */}
                 {post.frontmatter.cover && (
-                  <div className="shrink-0 hidden sm:block">
+                  <div className="absolute inset-y-0 -right-6 w-[45vw] hidden sm:block overflow-hidden pointer-events-none">
                     <img
                       src={post.frontmatter.cover}
-                      alt=""
-                      className="w-20 h-20 object-cover rounded-lg opacity-70 group-hover:opacity-100 transition-opacity"
+                      alt="post-preview-img"
+                      className="w-full h-full object-cover opacity-25 group-hover:opacity-100 transition-opacity duration-500"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/60 to-transparent" />
                   </div>
                 )}
               </Link>

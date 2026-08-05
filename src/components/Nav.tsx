@@ -158,7 +158,7 @@ export function Nav() {
                 </motion.svg>
               </motion.span>
             </span>
-            <span className="font-medium tracking-tight bg-gradient-to-r to-white from-accent-soft bg-clip-text text-transparent">
+            <span className="font-medium tracking-tight bg-gradient-to-r  from-accent-soft via-white to-white bg-clip-text text-transparent">
               Mizar
             </span>
           </NavLink>

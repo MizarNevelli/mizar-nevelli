@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { MDXProvider } from "@mdx-js/react";
 import type { Post, PostFrontmatter } from "./types";
 import { PageMeta } from "../../components/PageMeta";
+import { formatDate } from "../../utils/format";
 
 const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
 
@@ -84,13 +85,6 @@ const components = {
   hr: () => <hr className="border-white/[0.08] my-10" />,
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
