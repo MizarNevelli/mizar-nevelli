@@ -214,8 +214,8 @@
     "eyebrow": "Say hi",
     "titleLine1": "Let's build something,",
     "titleLine2": "or just talk.",
-    "description": "Wherever the wifi holds, I'll answer. Drop a note or a message — whichever fits.",
-    "footer": "Usually reply within a day — timezone permitting.",
+    "description": "Wherever the wifi holds, I'll answer. Drop a note or a message, whichever works.",
+    "footer": "Usually reply within a day, timezone permitting.",
     "cards": {
       "email": {
         "label": "Email",
@@ -241,7 +241,7 @@
       "eyebrow": "About",
       "titleLine1": "There's a star",
       "titleLine2": "called Mizar.",
-      "subtitle": "Software engineer, named after ζ Ursae Majoris — the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
+      "subtitle": "Software engineer, named after ζ Ursae Majoris, the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
       "scrollHint": "Read the story"
     },
     "chapters": {
@@ -250,7 +250,7 @@
         "place": "Padua",
         "eyebrow": "Chapter I · The origin",
         "title": "First, I tried to make sense of the world in numbers.",
-        "body": "Nineteen, enrolled in Statistics & Finance at the University of Padua. I was learning to see the world as distributions and confidence intervals. It made sense on paper. It didn't move me."
+        "body": "Nineteen, enrolled in Statistics & Finance at the University of Padua. I was learning to read the world as distributions and confidence intervals. It worked on paper. I was bored."
       },
       "leap": {
         "year": "2013",
@@ -271,7 +271,7 @@
         "place": "Magma Studio",
         "eyebrow": "Chapter IV · The first commit",
         "title": "The small thrill of shipping something real.",
-        "body": "First internship. WordPress themes, custom landing pages, jQuery, first SQL queries. That was the moment I understood the leverage of code."
+        "body": "First internship. WordPress themes, custom landing pages, jQuery, some SQL. That's when I understood what code could actually do."
       },
       "engineering": {
         "year": "2019",
@@ -285,7 +285,7 @@
         "place": "Palmabit",
         "eyebrow": "Chapter VI · The stack matures",
         "title": "The hardest problems in engineering are rarely the code.",
-        "body": "Two years shipping React and Node at Palmabit across cross-functional teams — an automotive management platform, then a subscription management system for an Italian telco supplier. By the end, test-driven development was a standard, not a suggestion."
+        "body": "Two years at Palmabit shipping React and Node. An automotive management platform, then a subscription system for an Italian telco supplier. By the end I was writing tests first, not last."
       },
       "now": {
         "year": "2022 →",
@@ -307,13 +307,13 @@
     "family": {
       "eyebrow": "In the family",
       "title": "My brother, Akela &hearts;",
-      "body": "He runs a kitchen the way I try to run a codebase — with an obsession for the small things. Last year I spent six months with him in Melbourne, mostly in his kitchen, occasionally on the floor at his private events. Turns out mise en place teaches the same lesson as a good deploy: everything in its place, and then the calm.",
+      "body": "He runs a kitchen the way I try to run a codebase, with an obsession for the details. Last year I spent six months with him in Melbourne, mostly in his kitchen, occasionally helping out at his private events. Mise en place and a good deploy have more in common than people think.",
       "cta": "chefakela.com"
     },
     "stack": {
       "eyebrow": "The stack",
       "title": "What I build with, today.",
-      "body": "Preferences, not dogma. I use what solves the problem and leaves the next engineer able to maintain it.",
+      "body": "Preferences, not dogma. I use what works, and what the next person can actually read.",
       "groups": {
         "frontend": "Frontend",
         "runtime": "Runtime & data",
@@ -324,14 +324,14 @@
     "closing": {
       "eyebrow": "Currently",
       "title": "location: undefined",
-      "body": "I am currently available for new projects, freelance engagements, and long-term collaborations.",
+      "body": "I am currently available for new projects, freelance engagements, and long term collaborations.",
       "cta": "Get in touch"
     }
   },
   "closures": {
     "eyebrow": "Scope & memory",
     "title": "Closures, unpacked.",
-    "description": "A closure is a function bundled with the scope it was born in. That's what lets callbacks 'remember' their surroundings — and it's why the loop-with-var has that famous bug.",
+    "description": "A closure is a function bundled with the scope it was born in. That's how callbacks remember their context, and why the for-var loop has that bug everyone hits eventually.",
     "stepLabel": "Step",
     "status": {
       "idle": "Ready",

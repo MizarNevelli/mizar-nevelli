@@ -157,8 +157,8 @@ export function Nav() {
                 </motion.svg>
               </motion.span>
             </span>
-            <span className="text-white font-medium tracking-tight">
-              Mizar<span className="text-accent-soft">.js</span>
+            <span className="font-medium tracking-tight bg-gradient-to-r to-white from-accent-soft bg-clip-text text-transparent">
+              Mizar
             </span>
           </NavLink>
 
@@ -257,9 +257,6 @@ export function Nav() {
                             <div className="flex items-center justify-between">
                               <span className="font-medium">
                                 {t(`nav.features.${feat.key}.label`)}
-                              </span>
-                              <span className="text-white/30 group-hover:text-accent-soft transition-colors">
-                                →
                               </span>
                             </div>
                             <p className="text-xs text-white/50 mt-0.5">
