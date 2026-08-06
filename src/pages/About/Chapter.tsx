@@ -26,7 +26,7 @@ export function Chapter({ chapterKey }: ChapterProps) {
             aria-hidden
             className="absolute -top-3 -left-2 text-[4.5rem] md:text-[6rem] font-bold leading-none text-white/[0.04] select-none pointer-events-none tabular-nums"
           >
-            {tx(`${base}.year`).replace(" →", "")}
+            {tx(`${base}.year`)}
           </span>
           <div className="relative text-5xl md:text-6xl font-semibold text-white/90 tracking-tight tabular-nums">
             {tx(`${base}.year`)}
