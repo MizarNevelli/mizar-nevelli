@@ -31,7 +31,8 @@ export function ClosuresPage() {
 
   const scenario = SCENARIOS[scenarioId];
   const lastStep = scenario.timeline.length - 1;
-  const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[step];
+  const safeStep = Math.min(step, lastStep);
+  const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[safeStep];
 
   const tAny = t as (key: string) => string;
   const narration: string =
@@ -90,7 +91,12 @@ export function ClosuresPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto"><PageMeta title="Closures" description="Functions that carry their scope — an interactive guide to JavaScript closures." path="/closures" />
+    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+      <PageMeta
+        title="Closures"
+        description="Functions that carry their scope — an interactive guide to JavaScript closures."
+        path="/closures"
+      />
       <header className="text-center max-w-3xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("closures.eyebrow")}
@@ -152,7 +158,7 @@ export function ClosuresPage() {
         <CodeBlock
           code={scenario.code}
           highlightLine={
-            status === "idle" || frame.line === 0 ? undefined : frame.line
+            status === "idle" || frame?.line === 0 ? undefined : frame?.line
           }
         />
         <ClosuresVisualizer frame={frame} />
@@ -326,4 +332,3 @@ function SpeedControl({
     </div>
   );
 }
-

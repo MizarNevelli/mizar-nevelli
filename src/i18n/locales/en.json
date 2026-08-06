@@ -82,7 +82,7 @@
   "eventLoop": {
     "eyebrow": "Concurrency",
     "title": "The event loop, visualized.",
-    "description": "JavaScript runs on a single thread. The event loop is how it juggles synchronous code, promises, and timers without ever blocking.",
+    "description": "JavaScript runs on a single thread. The event loop is how it make works synchronous code, promises, and timers without ever blocking.",
     "stepLabel": "Step",
     "status": {
       "idle": "Ready",
