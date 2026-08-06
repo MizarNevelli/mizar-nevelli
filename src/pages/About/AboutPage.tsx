@@ -33,7 +33,11 @@ export function AboutPage() {
 
   return (
     <main className="relative">
-      <PageMeta title="About" description="The story behind the name — a developer, seven countries, eight years of JavaScript." path="/about" />
+      <PageMeta
+        title="About"
+        description="The story behind the name — a developer, seven countries, eight years of JavaScript."
+        path="/about"
+      />
       {/* ────────── HERO ────────── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <SpaceScene />
@@ -135,7 +139,7 @@ export function AboutPage() {
 
       {/* ────────── CLOSING CTA ────────── */}
       <section className="relative py-32 px-6 border-t border-white/10 overflow-hidden">
-        <div className="relative max-w-3xl mx-auto text-center">
+        <div className="relative max-w-5xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}

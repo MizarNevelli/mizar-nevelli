@@ -43,7 +43,7 @@ export function EventBubblingPage() {
 
   const trace = useMemo(
     () => buildTrace({ useCapture, stopAt }),
-    [useCapture, stopAt],
+    [useCapture, stopAt]
   );
 
   const [status, setStatus] = useState<Status>("idle");
@@ -104,8 +104,13 @@ export function EventBubblingPage() {
         : "";
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto"><PageMeta title="Event Bubbling" description="See how DOM events propagate through the tree, step by step." path="/event-bubbling" />
-      <header className="text-center max-w-3xl mx-auto">
+    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+      <PageMeta
+        title="Event Bubbling"
+        description="See how DOM events propagate through the tree, step by step."
+        path="/event-bubbling"
+      />
+      <header className="text-center max-w-5xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventBubbling.eyebrow")}
         </p>
@@ -146,7 +151,7 @@ export function EventBubblingPage() {
       </div>
 
       {/* Progress + status */}
-      <div className="mt-8 max-w-3xl mx-auto">
+      <div className="mt-8 max-w-5xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="eventBubbling" />
           <span>
@@ -285,7 +290,7 @@ function buildTrace({
     layer: string,
     phase: Phase,
     narrationKey: string,
-    narrationParams?: Record<string, string>,
+    narrationParams?: Record<string, string>
   ) => {
     entries.push({ id: id++, layer, phase, narrationKey, narrationParams });
   };
@@ -405,14 +410,14 @@ function NestedBoxes({
                 ? t("eventBubbling.innerButton.idle")
                 : t("eventBubbling.innerButton.default")}
             </motion.button>,
-            "mt-6 bg-white/[0.02]",
+            "mt-6 bg-white/[0.02]"
           ),
-          "mt-6 bg-white/[0.02]",
+          "mt-6 bg-white/[0.02]"
         ),
-        "mt-6 bg-white/[0.02]",
+        "mt-6 bg-white/[0.02]"
       ),
-      "mt-6 bg-white/[0.02]",
+      "mt-6 bg-white/[0.02]"
     ),
-    "bg-white/[0.02]",
+    "bg-white/[0.02]"
   );
 }

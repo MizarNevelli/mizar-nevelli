@@ -24,13 +24,13 @@ const posts: Post[] = Object.entries(modules)
 export function BlogListPage() {
   const { t, i18n } = useTranslation();
   return (
-    <main className="relative min-h-screen bg-ink-950 pt-32 pb-24 px-6">
+    <main className="relative h-screen bg-ink-950 flex flex-col overflow-hidden pt-32 px-6">
       <PageMeta
         title="Blog"
         description="Field notes from the road. Travel dispatches from a remote JavaScript engineer."
         path="/blog"
       />
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto w-full flex flex-col flex-1 min-h-0">
         {/* Header */}
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
           {t("blog.eyebrow")}
@@ -42,7 +42,7 @@ export function BlogListPage() {
         </h1>
 
         {/* Post list */}
-        <ul className="mt-20">
+        <ul className="mt-20 flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {posts.map((post, i) => (
             <li key={post.slug} className="border-t border-white/[0.06]">
               <Link

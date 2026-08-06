@@ -29,7 +29,7 @@ export function OffKeyboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-balance leading-[1.05] max-w-3xl"
+          className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-balance leading-[1.05] max-w-5xl"
         >
           {t("about.offKeyboard.title")}
         </motion.h2>
@@ -86,7 +86,11 @@ function HorizonTile({ variant, title, sub, delay, inView }: HorizonTileProps) {
         <p className="mt-2 text-white/60 text-sm">— {sub}</p>
       </div>
       <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none">
-        {variant === "snow" ? <PeakSvg inView={inView} /> : <WaveSvg inView={inView} />}
+        {variant === "snow" ? (
+          <PeakSvg inView={inView} />
+        ) : (
+          <WaveSvg inView={inView} />
+        )}
       </div>
     </motion.div>
   );
@@ -94,7 +98,11 @@ function HorizonTile({ variant, title, sub, delay, inView }: HorizonTileProps) {
 
 function PeakSvg({ inView }: { inView: boolean }) {
   return (
-    <svg viewBox="0 0 400 128" className="w-full h-full" preserveAspectRatio="none">
+    <svg
+      viewBox="0 0 400 128"
+      className="w-full h-full"
+      preserveAspectRatio="none"
+    >
       <motion.polyline
         points="0,120 80,72 130,90 210,20 290,80 350,52 400,90"
         fill="none"
@@ -119,7 +127,11 @@ function PeakSvg({ inView }: { inView: boolean }) {
 
 function WaveSvg({ inView }: { inView: boolean }) {
   return (
-    <svg viewBox="0 0 400 128" className="w-full h-full" preserveAspectRatio="none">
+    <svg
+      viewBox="0 0 400 128"
+      className="w-full h-full"
+      preserveAspectRatio="none"
+    >
       <motion.path
         d="M0,80 C60,60 100,100 160,80 C220,60 260,100 320,80 C360,66 380,90 400,80"
         fill="none"

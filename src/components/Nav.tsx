@@ -74,7 +74,7 @@ export function Nav() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="mx-auto mt-4 max-w-4xl px-4">
+      <div className="mx-auto mt-4 max-w-6xl px-4">
         <div className="relative">
           <div
             aria-hidden

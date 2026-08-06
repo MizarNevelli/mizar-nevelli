@@ -102,7 +102,7 @@ export function EventLoopPage() {
         description="A visual walkthrough of the JavaScript event loop — call stack, microtasks, and task queue."
         path="/event-loop"
       />
-      <header className="text-center max-w-3xl mx-auto">
+      <header className="text-center max-w-5xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventLoop.eyebrow")}
         </p>
@@ -132,7 +132,7 @@ export function EventLoopPage() {
       </div>
 
       {/* Progress + status pill */}
-      <div className="mt-8 max-w-3xl mx-auto">
+      <div className="mt-8 max-w-5xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="eventLoop" />
           <span>

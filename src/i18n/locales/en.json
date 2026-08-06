@@ -42,7 +42,7 @@
         "line2": "trains, and rooftop balconies."
       },
       "three": {
-        "eyebrow": "03 · One language, one loop",
+        "eyebrow": "03 · One language, one love",
         "line1": "JavaScript runs in the browser",
         "line2": "and it powers the journey."
       }
@@ -77,7 +77,7 @@
       }
     },
     "featureCardCta": "Explore",
-    "footer": "Built with &hearts;"
+    "footer": "Built with"
   },
   "eventLoop": {
     "eyebrow": "Concurrency",
@@ -251,51 +251,51 @@
       "origin": {
         "year": "2012",
         "place": "Padua",
-        "eyebrow": "Chapter I · The origin",
+        "eyebrow": "Chapter I, The origin",
         "title": "First, I tried to make sense of the world in numbers.",
         "body": "Nineteen, enrolled in Statistics & Finance at the University of Padua. I was learning to read the world as distributions and confidence intervals. It worked on paper. I was bored."
       },
       "leap": {
         "year": "2013",
         "place": "Australia",
-        "eyebrow": "Chapter II · The leap",
+        "eyebrow": "Chapter II, The leap",
         "title": "Then I left.",
-        "body": "At twenty, I left on a working-holiday visa. Australia for a year, then four more countries. The fastest I have ever learned anything was not in a classroom."
+        "body": "At twenty, I left on a working holiday visa. Australia for a year, then four more countries. The fastest I have ever learned anything was not in a classroom."
       },
       "pivot": {
         "year": "2016",
         "place": "Brescia · Machina Lonati",
-        "eyebrow": "Chapter III · The pivot",
+        "eyebrow": "Chapter III, The pivot",
         "title": "A European Technical Degree.",
-        "body": "Back in Italy. Machina Lonati, a two-year technical program in Digital Marketing. I signed up for the marketing. The more I learned about how websites <em>converted</em>, the more I wanted to know how they were <em>built</em>."
+        "body": "Back in Italy. Machina Lonati, a two year technical program in Digital Marketing. The more I learned about how websites <em>converted</em>, the more I wanted to know how they were <em>built</em>."
       },
       "firstCommit": {
         "year": "2018",
         "place": "Magma Studio",
-        "eyebrow": "Chapter IV · The first commit",
+        "eyebrow": "Chapter IV, The first commit",
         "title": "The small thrill of shipping something real.",
         "body": "First internship. WordPress themes, custom landing pages, jQuery, some SQL. That's when I understood what code could actually do."
       },
       "engineering": {
         "year": "2019",
         "place": "Jakala",
-        "eyebrow": "Chapter V · Real engineering",
+        "eyebrow": "Chapter V, Real engineering",
         "title": "Where 'stakeholder alignment' stopped sounding like a joke.",
-        "body": "GIS, JavaScript, and Python. I built geolocation dashboards for European automotive brands and a location-analytics tool for a global food & beverage client, ranked in the internal top 3% of projects at Jakala. Two years translating ambiguous briefs into working software."
+        "body": "GIS, JavaScript, and Python. I built geolocation dashboard for International automotive brands and a location analytics custom tool for a global food & beverage client, ranked in the internal top 3% of projects at Jakala. Two years translating ambiguous briefs into working software."
       },
       "matures": {
         "year": "2020",
-        "place": "Palmabit",
-        "eyebrow": "Chapter VI · The stack matures",
+        "place": "Palmabit (Now Webidoo Engineering)",
+        "eyebrow": "Chapter VI, The stack matures",
         "title": "The hardest problems in engineering are rarely the code.",
         "body": "Two years at Palmabit shipping React and Node. An automotive management platform, then a subscription system for an Italian telco supplier. By the end I was writing tests first, not last."
       },
       "now": {
         "year": "2022",
         "place": "Spartan Tech",
-        "eyebrow": "Chapter VII · Now",
-        "title": "React, Next, and notarized on-chain.",
-        "body": "At Spartan Tech, among various projects, I led the rebuild of Watchype, a luxury watch marketplace where every piece is certified and notarized on Algorand. I also designed and delivered a custom platform for a medical society; 95% of the requested scope shipped in an MVP measured in months. In 2023, I also completed a blockchain engineering program at Masterz."
+        "eyebrow": "Chapter VII, Now",
+        "title": "React, Next and notarizations.",
+        "body": "At Spartan Tech, among various projects, we mainly develop MVPs. I led the rebuild of Watchype, a luxury watch marketplace where every piece is certified and notarized on Algorand. I also designed and delivered a custom platform for a medical society; 95% of the requested scope shipped in an MVP measured in months."
       }
     },
     "offKeyboard": {
@@ -310,7 +310,7 @@
     "family": {
       "eyebrow": "In the family",
       "title": "My brother, Akela &hearts;",
-      "body": "He runs a kitchen the way I try to run a codebase, with an obsession for the details. Last year I spent six months with him in Melbourne, mostly in his kitchen, occasionally helping out at his private events. We also started a real estate investment project together in Bali.",
+      "body": "He runs a kitchen the way I try to run a codebase, with an obsession for the details. Last year I spent six months with him in Melbourne, mostly in his kitchen, occasionally helping out at his private events. In 2024, we also started on a real estate project in Bali as partners. We leased a plot of land and built a fantastic villa to rent out. Now, in 2026, it is finished, and I have come here to carry out various inspections and wrap up the paperwork.",
       "cta": "chefakela.com"
     },
     "stack": {

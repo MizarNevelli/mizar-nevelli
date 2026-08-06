@@ -103,6 +103,37 @@ Your content here. Standard markdown plus any React component you want to embed.
 3. Add `/blog/your-slug` to the `dynamicRoutes` array in `vite.config.ts` (for sitemap only)
 4. Push — Vercel builds and deploys
 
+## Testing
+
+**Unit tests** — Vitest, run against pure logic with no browser.
+
+```bash
+npm test           # run once
+npm run test:watch # watch mode
+npm run test:ui    # visual dashboard
+```
+
+**E2E tests** — Playwright, spins up the Vite dev server and tests critical flows in Chromium.
+
+```bash
+npm run test:e2e        # headless
+npm run test:e2e:ui     # interactive UI
+```
+
+**What's covered:**
+
+| Suite | File | What it guards |
+|-------|------|----------------|
+| Unit | `tests/unit/format.test.ts` | `formatDate` / `formatOrdinal` edge cases |
+| Unit | `tests/unit/closures-scenarios.test.ts` | Scenario data integrity, `forVar` → all `3`, `forLet` → `0,1,2` |
+| Unit | `tests/unit/eventloop-scenarios.test.ts` | Microtask drains before macrotask, narration count ≡ timeline length |
+| Unit | `tests/unit/closures-safestep.test.ts` | Regression: step overflow on scenario switch (the `frame.line` crash) |
+| E2E | `tests/e2e/closures.spec.ts` | Run / Pause / Reset flow, scenario-switch crash regression |
+| E2E | `tests/e2e/navigation.spec.ts` | All routes load without JS errors |
+| E2E | `tests/e2e/language.spec.ts` | EN/IT switch, localStorage persistence |
+
+**What's deliberately not tested:** Framer Motion animations (timing = flaky), Three.js / WebGL canvas (not testable in jsdom), scroll-driven effects.
+
 ## License
 
 MIT

@@ -28,6 +28,7 @@ export function HomePage() {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const heroY = useTransform(scrollY, [0, 400], [0, -80]);
+  const currYear = new Date().getFullYear();
 
   return (
     <main className="relative">
@@ -226,10 +227,9 @@ export function HomePage() {
         </div>
       </section>
 
-      <footer
-        className="relative z-10 bg-ink-950 py-16 text-center text-sm text-accent-soft/70"
-        dangerouslySetInnerHTML={{ __html: t("home.footer") }}
-      ></footer>
+      <footer className="relative z-10 bg-ink-950 py-16 text-center text-sm text-accent-soft/70">
+        ©{currYear}, {t("home.footer")}&hearts;
+      </footer>
     </main>
   );
 }
@@ -252,8 +252,8 @@ type StoryPanelProps = {
 function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
   const [enter, exit] = range;
   const span = exit - enter;
-  const fadeIn = enter + span * 0.10;
-  const fadeOut = exit - span * 0.10;
+  const fadeIn = enter + span * 0.1;
+  const fadeOut = exit - span * 0.1;
 
   const opacity = useTransform(
     progress,
