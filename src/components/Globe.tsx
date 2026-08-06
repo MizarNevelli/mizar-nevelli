@@ -64,20 +64,14 @@ export function Globe({
     const globe = createGlobe(canvas, baseOptions)
 
     let phi = 0
-    // Smooth the scroll input with a lightweight lerp instead of a spring —
-    // no wobble on scroll-stop, and it tracks the finger/wheel more tightly.
     let smoothProgress = source.get()
     let rafId = 0
-    // Baseline scale < 1 so the zoom-in on scroll never clips the canvas edges.
-    // Cobe fills the canvas at scale=1, so we stay inside [0.82 .. 1.0].
-    const MIN_SCALE = 0.82
-    const MAX_SCALE = 1.0
     const tick = () => {
-      phi += 0.0025 // slow auto-drift
+      phi += 0.0025
       smoothProgress += (source.get() - smoothProgress) * 0.12
       globe.update({
         phi: phi + smoothProgress * Math.PI * 2,
-        scale: MIN_SCALE + smoothProgress * (MAX_SCALE - MIN_SCALE),
+        scale: 0.92,
       })
       rafId = requestAnimationFrame(tick)
     }

@@ -92,7 +92,7 @@ export function HomePage() {
       <section
         ref={globeSectionRef}
         className="relative z-10"
-        style={{ height: "400dvh" }}
+        style={{ height: "350dvh" }}
       >
         <div className="sticky top-0 h-[100dvh] flex items-center overflow-hidden">
           <div className="mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl px-6 w-full">
@@ -102,7 +102,7 @@ export function HomePage() {
                 className="absolute -inset-20 blur-2xl pointer-events-none"
                 style={{
                   background:
-                    "radial-gradient(ellipse at center, rgba(212,160,23,0.18), transparent 60%)",
+                    "radial-gradient(ellipse at center, rgba(212,160,23,0.09), transparent 60%)",
                 }}
               />
               <div className="relative">
@@ -114,7 +114,7 @@ export function HomePage() {
             <div className="relative order-1 md:order-2 h-56 md:h-96">
               <StoryPanel
                 progress={globeProgress}
-                range={[0.0, 0.28]}
+                range={[0.0, 0.38]}
                 eyebrow={t("home.panels.one.eyebrow")}
                 heading={
                   <>
@@ -126,7 +126,7 @@ export function HomePage() {
               />
               <StoryPanel
                 progress={globeProgress}
-                range={[0.36, 0.62]}
+                range={[0.32, 0.68]}
                 eyebrow={t("home.panels.two.eyebrow")}
                 heading={
                   <>
@@ -138,7 +138,7 @@ export function HomePage() {
               />
               <StoryPanel
                 progress={globeProgress}
-                range={[0.72, 1.0]}
+                range={[0.62, 1.0]}
                 eyebrow={t("home.panels.three.eyebrow")}
                 heading={
                   <>
@@ -259,31 +259,24 @@ type StoryPanelProps = {
 function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
   const [enter, exit] = range;
   const span = exit - enter;
-  const fadeIn = enter + span * 0.15;
-  const fadeOut = exit - span * 0.15;
+  const fadeIn = enter + span * 0.10;
+  const fadeOut = exit - span * 0.10;
 
   const opacity = useTransform(
     progress,
     [enter, fadeIn, fadeOut, exit],
     [0, 1, 1, 0]
   );
-  // Panels slide up 24px as they leave and start 24px below as they enter —
-  // Apple's classic "vertical replace" motion.
-  const y = useTransform(
-    progress,
-    [enter, fadeIn, fadeOut, exit],
-    [24, 0, 0, -24]
-  );
 
   return (
     <motion.div
-      style={{ opacity, y, willChange: "transform, opacity" }}
+      style={{ opacity, willChange: "opacity" }}
       className="absolute inset-0 flex flex-col justify-center"
     >
-      <p className="text-accent-soft uppercase tracking-widest text-xs mb-3">
+      <p className="text-white/35 font-mono text-[11px] tracking-[0.18em] uppercase mb-4">
         {eyebrow}
       </p>
-      <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white [text-shadow:_0_2px_20px_rgba(5,6,10,0.6)]">
+      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
         {heading}
       </h2>
     </motion.div>
