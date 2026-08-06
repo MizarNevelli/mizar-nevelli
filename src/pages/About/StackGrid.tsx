@@ -14,7 +14,8 @@ const GROUPS: Array<{ key: string; items: string[] }> = [
       "SWR",
       "Framer Motion",
       "Tailwind",
-      "HTML · CSS",
+      "HTML",
+      "CSS",
     ],
   },
   {

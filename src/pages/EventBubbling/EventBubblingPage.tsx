@@ -95,8 +95,7 @@ export function EventBubblingPage() {
     setStep(Math.max(0, step - 1));
   };
 
-  const ti = (key: string, params?: Record<string, string>) =>
-    t(key as never, params as never);
+  const ti = t as (key: string, params?: Record<string, string>) => string;
   const narration =
     status === "idle"
       ? t("eventBubbling.idleNarration")
