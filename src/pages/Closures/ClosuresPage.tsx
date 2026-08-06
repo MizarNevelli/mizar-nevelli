@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { PlayIcon, PauseIcon, ReplayIcon } from "../../components/Icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CodeBlock } from "../../components/CodeBlock";
@@ -12,9 +11,13 @@ import {
   IDLE_FRAME,
   type ScenarioId,
 } from "./scenarios";
-
-type Status = "idle" | "running" | "paused" | "finished";
-type Speed = "slow" | "normal" | "fast";
+import {
+  StatusPill,
+  PrimaryControls,
+  SpeedControl,
+  type Status,
+  type Speed,
+} from "../VisualizerControls";
 
 const SPEED_MS: Record<Speed, number> = {
   slow: 2400,
@@ -34,11 +37,11 @@ export function ClosuresPage() {
   const safeStep = Math.min(step, lastStep);
   const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[safeStep];
 
-  const tAny = t as (key: string) => string;
+  const tx = (key: string) => t(key as never);
   const narration: string =
     status === "idle"
       ? t("closures.idleNarration")
-      : tAny(`closures.scenarios.${scenarioId}.narrations.${step}`);
+      : tx(`closures.scenarios.${scenarioId}.narrations.${step}`);
 
   // Accumulated console entries up to (and including) the current step.
   const consoleEntries = useMemo(() => {
@@ -121,7 +124,7 @@ export function ClosuresPage() {
                 : "border border-white/15 text-white/60 hover:text-white hover:border-white/25"
             }`}
           >
-            {tAny(`closures.scenarios.${id}.label`)}
+            {tx(`closures.scenarios.${id}.label`)}
           </button>
         ))}
       </div>
@@ -129,7 +132,7 @@ export function ClosuresPage() {
       {/* Progress + status */}
       <div className="mt-8 max-w-3xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
-          <StatusPill status={status} />
+          <StatusPill status={status} ns="closures" />
           <span>
             {t("closures.stepLabel")}{" "}
             <span className="text-white/80">
@@ -189,6 +192,7 @@ export function ClosuresPage() {
       <div className="mt-8 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}
+          ns="closures"
           onStart={start}
           onResume={resume}
           onPause={pause}
@@ -209,126 +213,9 @@ export function ClosuresPage() {
           >
             {t("closures.controls.next")}
           </button>
-          <SpeedControl speed={speed} onChange={setSpeed} />
+          <SpeedControl speed={speed} ns="closures" onChange={setSpeed} />
         </div>
       </div>
     </main>
-  );
-}
-
-function StatusPill({ status }: { status: Status }) {
-  const { t } = useTranslation();
-  const color: Record<Status, string> = {
-    idle: "text-white/50",
-    running: "text-emerald-400",
-    paused: "text-amber-400",
-    finished: "text-accent-soft",
-  };
-  return (
-    <span className={color[status]}>● {t(`closures.status.${status}`)}</span>
-  );
-}
-
-type PrimaryControlsProps = {
-  status: Status;
-  onStart: () => void;
-  onResume: () => void;
-  onPause: () => void;
-  onReset: () => void;
-};
-
-function PrimaryControls({
-  status,
-  onStart,
-  onResume,
-  onPause,
-  onReset,
-}: PrimaryControlsProps) {
-  const { t } = useTranslation();
-  if (status === "idle") {
-    return (
-      <button
-        onClick={onStart}
-        className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-      >
-        <PlayIcon />
-        {t("closures.controls.run")}
-      </button>
-    );
-  }
-  if (status === "running") {
-    return (
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onPause}
-          className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-white hover:border-white/30 transition-colors"
-        >
-          <PauseIcon />
-          {t("closures.controls.pause")}
-        </button>
-        <button
-          onClick={onReset}
-          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
-        >
-          {t("closures.controls.reset")}
-        </button>
-      </div>
-    );
-  }
-  if (status === "paused") {
-    return (
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onResume}
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-        >
-          <PlayIcon />
-          {t("closures.controls.resume")}
-        </button>
-        <button
-          onClick={onReset}
-          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
-        >
-          {t("closures.controls.reset")}
-        </button>
-      </div>
-    );
-  }
-  return (
-    <button
-      onClick={onStart}
-      className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-    >
-      <ReplayIcon />
-      {t("closures.controls.replay")}
-    </button>
-  );
-}
-
-function SpeedControl({
-  speed,
-  onChange,
-}: {
-  speed: Speed;
-  onChange: (s: Speed) => void;
-}) {
-  const { t } = useTranslation();
-  const options: Speed[] = ["slow", "normal", "fast"];
-  return (
-    <div className="border border-white/15 rounded-lg p-1 flex items-center text-xs ml-2">
-      {options.map((s) => (
-        <button
-          key={s}
-          onClick={() => onChange(s)}
-          className={`px-3 py-1.5 rounded-md transition-colors capitalize ${
-            speed === s
-              ? "bg-white/10 text-white"
-              : "text-white/50 hover:text-white"
-          }`}
-        >
-          {t(`closures.speed.${s}`)}
-        </button>
-      ))}
-    </div>
   );
 }

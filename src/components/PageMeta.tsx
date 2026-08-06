@@ -23,9 +23,11 @@ export function PageMeta({ title, description, image, path }: Props) {
       <meta property="og:image" content={ogImage} />
       {canonical && <meta property="og:url" content={canonical} />}
 
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta property="og:type" content="website" />
     </>
   );
 }

@@ -34,7 +34,7 @@ export function MobileMenu({
   jsFeatureKeys,
 }: MobileMenuProps) {
   const { t } = useTranslation();
-  const tAny = t as (key: string) => string;
+  const tx = t as (key: string) => string;
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `block text-4xl font-semibold tracking-tight transition-colors ${
@@ -80,7 +80,7 @@ export function MobileMenu({
           {topLinks.map((link, i) => (
             <MobileLink key={link.to} delay={0.05 + i * 0.06}>
               <NavLink to={link.to} end={link.end} className={linkClass}>
-                {tAny(`nav.${link.key}`)}
+                {tx(`nav.${link.key}`)}
               </NavLink>
             </MobileLink>
           ))}
@@ -106,10 +106,10 @@ export function MobileMenu({
                     >
                       <div>
                         <div className="text-2xl font-semibold tracking-tight">
-                          {tAny(`nav.features.${feat.key}.label`)}
+                          {tx(`nav.features.${feat.key}.label`)}
                         </div>
                         <p className="text-xs text-white/40 mt-0.5">
-                          {tAny(`nav.features.${feat.key}.description`)}
+                          {tx(`nav.features.${feat.key}.description`)}
                         </p>
                       </div>
                       <span className="text-white/30 group-hover:text-accent-soft transition-colors">

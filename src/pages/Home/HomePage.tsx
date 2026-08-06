@@ -14,13 +14,6 @@ import { StatCard } from "./StatCard";
 import { FeatureCard } from "./FeatureCard";
 import { PageMeta } from "../../components/PageMeta";
 
-/**
- * Apple-style long-scroll homepage:
- *  1. Hero: name + tagline over a soft radial glow
- *  2. Sticky globe section: globe pins while text panels swap on scroll
- *  3. Stats strip: travel + remote work in numbers
- *  4. Feature grid: pointers to the JS explainers
- */
 export function HomePage() {
   const { t } = useTranslation();
   const globeSectionRef = useRef<HTMLElement>(null);

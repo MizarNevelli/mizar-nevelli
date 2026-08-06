@@ -39,7 +39,7 @@ export function LanguageSwitcher({ variant = "dropdown" }: LanguageSwitcherProps
               key={lang.code}
               type="button"
               disabled={disabled}
-              onClick={() => !disabled && pick(lang.code)}
+              onClick={() => pick(lang.code)}
               className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center gap-1.5 ${
                 disabled
                   ? "text-white/25 cursor-not-allowed"
@@ -73,11 +73,6 @@ type DropdownProps = {
   label: string;
 };
 
-/**
- * Desktop-style compact dropdown. Extracted so we can keep the state (open,
- * outside-click listener) close to the UI that actually needs it, without
- * paying that cost in the inline variant.
- */
 function DropdownSwitcher({ current, onPick, label }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -155,7 +150,7 @@ function DropdownSwitcher({ current, onPick, label }: DropdownProps) {
                     type="button"
                     role="menuitem"
                     disabled={disabled}
-                    onClick={() => !disabled && handlePick(lang.code)}
+                    onClick={() => handlePick(lang.code)}
                     className={`w-full flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors ${
                       disabled
                         ? "text-white/30 cursor-not-allowed"

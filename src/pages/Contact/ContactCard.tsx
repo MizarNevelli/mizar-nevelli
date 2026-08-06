@@ -6,19 +6,12 @@ type ContactCardProps = {
   icon: ReactNode;
   label: string;
   value: string;
-  /** Where the primary action button leads (mailto:, https://…). */
   href: string;
-  /** Optional override for what gets copied (e.g. raw phone number). */
   copyValue?: string;
   external?: boolean;
   actionLabel: string;
 };
 
-/**
- * Reusable contact card. Shows the channel, the value, a copy-to-clipboard
- * button, and a primary CTA that opens the correct app (mail client, WhatsApp,
- * GitHub, LinkedIn, etc).
- */
 export function ContactCard({
   icon,
   label,
@@ -36,15 +29,13 @@ export function ContactCard({
       await navigator.clipboard.writeText(copyValue ?? value);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1400);
-    } catch {
-      // Clipboard API not available (older browser, insecure context) —
-      // silently no-op; the CTA still works.
+    } catch (err) {
+      console.warn("Error copying", err);
     }
   };
 
   return (
-    <div className="group relative rounded-xl border border-white/[0.09] border-l-[3px] border-l-transparent bg-white/[0.03] p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden hover:border-white/[0.15] hover:border-l-accent/50 transition-colors duration-500">
-
+    <div className="group relative rounded-xl border border-white/[0.09] bg-white/[0.03] p-4 sm:p-5 md:p-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 overflow-hidden hover:border-white/[0.18] hover:bg-white/[0.05] transition-colors duration-300">
       <div className="shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl border border-white/[0.12] flex items-center justify-center text-white/50">
         {icon}
       </div>
@@ -58,8 +49,6 @@ export function ContactCard({
         </p>
       </div>
 
-      {/* On xs, actions wrap to a new row (w-full) and right-align, so the
-         value above gets the full width. On sm+ they sit inline on the right. */}
       <div className="flex items-center gap-2 shrink-0 w-full justify-end sm:w-auto sm:justify-start">
         <button
           type="button"

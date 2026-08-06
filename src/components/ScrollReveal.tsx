@@ -5,8 +5,6 @@ type ScrollRevealProps = {
   children: ReactNode
   delay?: number
   className?: string
-  /** Distance in pixels to translate up from. */
-  y?: number
 }
 
 const variants: Variants = {
@@ -18,12 +16,7 @@ const variants: Variants = {
   },
 }
 
-export function ScrollReveal({
-  children,
-  delay = 0,
-  className,
-  y = 24,
-}: ScrollRevealProps) {
+export function ScrollReveal({ children, delay = 0, className }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.35 })
 
@@ -34,7 +27,6 @@ export function ScrollReveal({
       variants={variants}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
-      custom={y}
       transition={{ delay }}
     >
       {children}

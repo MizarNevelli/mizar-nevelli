@@ -2,39 +2,39 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
+const GROUPS: Array<{ key: string; items: string[] }> = [
+  {
+    key: "frontend",
+    items: [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Zustand",
+      "SWR",
+      "Framer Motion",
+      "Tailwind",
+      "HTML · CSS",
+    ],
+  },
+  {
+    key: "runtime",
+    items: ["Node.js", "REST APIs", "MongoDB", "Strapi", "Vitest"],
+  },
+  {
+    key: "cloud",
+    items: ["AWS", "Vercel", "Git · GitHub", "GitLab", "Postman"],
+  },
+  {
+    key: "adjacent",
+    items: ["GIS · Esri", "Algorand", "WordPress"],
+  },
+];
+
 export function StackGrid() {
   const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.25 });
-
-  const groups: Array<{ key: string; items: string[] }> = [
-    {
-      key: "frontend",
-      items: [
-        "JavaScript",
-        "TypeScript",
-        "React",
-        "Next.js",
-        "Zustand",
-        "SWR",
-        "Framer Motion",
-        "Tailwind",
-        "HTML · CSS",
-      ],
-    },
-    {
-      key: "runtime",
-      items: ["Node.js", "REST APIs", "MongoDB", "Strapi", "Jest"],
-    },
-    {
-      key: "cloud",
-      items: ["AWS", "Vercel", "Git · GitHub", "GitLab", "Postman"],
-    },
-    {
-      key: "adjacent",
-      items: ["Python", "GIS · Esri", "Algorand", "WordPress"],
-    },
-  ];
 
   return (
     <section ref={ref} className="py-24 md:py-32 px-6">
@@ -65,7 +65,7 @@ export function StackGrid() {
         </motion.p>
 
         <div className="mt-12 max-w-2xl">
-          {groups.map((g, gi) => (
+          {GROUPS.map((g, gi) => (
             <motion.div
               key={g.key}
               initial={{ opacity: 0, y: 12 }}

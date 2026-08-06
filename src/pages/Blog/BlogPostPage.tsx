@@ -88,7 +88,7 @@ const components = {
 };
 
 export function BlogPostPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const post = posts.find((p) => p.slug === slug);
 
@@ -171,7 +171,7 @@ export function BlogPostPage() {
             dateTime={frontmatter.date}
             className="font-mono text-[11px] text-white/30 uppercase tracking-widest"
           >
-            {formatDate(frontmatter.date)}
+            {formatDate(frontmatter.date, i18n.resolvedLanguage)}
           </time>
         </div>
 

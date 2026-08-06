@@ -14,7 +14,7 @@ export function CodeBlock({ code, highlightLine }: Props) {
   return (
     <pre className="glass rounded-3xl p-6 overflow-x-auto text-sm font-mono leading-relaxed">
       <code>
-        {lines?.map((line, i) => {
+        {lines.map((line, i) => {
           const active = highlightLine === i + 1;
           return (
             <div

@@ -4,7 +4,6 @@ import { ContactCard } from "./ContactCard";
 import { PageMeta } from "../../components/PageMeta";
 
 const EMAIL = "mizarnevelli@gmail.com";
-// International format for wa.me links: country code + number, no + or spaces.
 const WHATSAPP_NUMBER = "393425021651";
 const WHATSAPP_DISPLAY = "+39 342 502 1651";
 const GITHUB_URL = "https://github.com/MizarNevelli";

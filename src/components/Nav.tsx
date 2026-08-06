@@ -81,11 +81,7 @@ export function Nav() {
             className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
           />
           <nav className="glass rounded-full px-5 py-2.5 flex items-center justify-between">
-            <NavLink
-              to="/"
-              className="flex items-center gap-2 group"
-              onClick={() => setMobileOpen(false)}
-            >
+            <NavLink to="/" className="flex items-center gap-2 group">
               {/* Star container — holds both the halo and the SVG */}
               <span
                 className="relative inline-flex items-center justify-center shrink-0"
@@ -168,66 +164,24 @@ export function Nav() {
               </span>
             </NavLink>
 
-            {/* ────────── DESKTOP LINKS ────────── */}
             <ul className="hidden md:flex items-center gap-1 text-sm">
-              <li>
-                <NavLink
-                  to="/"
-                  end
-                  className={({ isActive }) =>
-                    `px-3 py-1.5 rounded-full transition-colors ${
-                      isActive
-                        ? "text-white bg-white/10"
-                        : "text-white/60 hover:text-white"
-                    }`
-                  }
-                >
-                  {t("nav.home")}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    `px-3 py-1.5 rounded-full transition-colors ${
-                      isActive
-                        ? "text-white bg-white/10"
-                        : "text-white/60 hover:text-white"
-                    }`
-                  }
-                >
-                  {t("nav.about")}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/blog"
-                  className={({ isActive }) =>
-                    `px-3 py-1.5 rounded-full transition-colors ${
-                      isActive
-                        ? "text-white bg-white/10"
-                        : "text-white/60 hover:text-white"
-                    }`
-                  }
-                >
-                  {t("nav.blog")}
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    `px-3 py-1.5 rounded-full transition-colors ${
-                      isActive
-                        ? "text-white bg-white/10"
-                        : "text-white/60 hover:text-white"
-                    }`
-                  }
-                >
-                  {t("nav.contact")}
-                </NavLink>
-              </li>
+              {TOP_LINKS.map((link) => (
+                <li key={link.to}>
+                  <NavLink
+                    to={link.to}
+                    end={link.end}
+                    className={({ isActive }) =>
+                      `px-3 py-1.5 rounded-full transition-colors ${
+                        isActive
+                          ? "text-white bg-white/10"
+                          : "text-white/60 hover:text-white"
+                      }`
+                    }
+                  >
+                    {t(`nav.${link.key}`)}
+                  </NavLink>
+                </li>
+              ))}
               <li ref={dropdownRef} className="relative">
                 <button
                   type="button"

@@ -1,20 +1,23 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { PlayIcon, PauseIcon, ReplayIcon } from "../../components/Icons";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { PageMeta } from "../../components/PageMeta";
+import {
+  type Status,
+  type Speed,
+  StatusPill,
+  PrimaryControls,
+  SpeedControl,
+} from "../VisualizerControls";
 
 type Phase = "capture" | "target" | "bubble";
 type TraceEntry = {
   id: number;
   layer: string;
   phase: Phase;
-  /** i18n key for the narration, plus optional interpolation params. */
   narrationKey: string;
   narrationParams?: Record<string, string>;
 };
-type Status = "idle" | "running" | "paused" | "finished";
-type Speed = "slow" | "normal" | "fast";
 
 const LAYERS = [
   "window",
@@ -32,11 +35,6 @@ const SPEED_MS: Record<Speed, number> = {
   fast: 550,
 };
 
-/**
- * Event bubbling explainer. Trace is pre-computed based on the toggles and
- * stepped through by a state machine (idle | running | paused | finished).
- * Narration text is looked up from i18n by key + interpolated params.
- */
 export function EventBubblingPage() {
   const { t } = useTranslation();
   const [stopAt, setStopAt] = useState<string | null>(null);
@@ -72,10 +70,10 @@ export function EventBubblingPage() {
   const activeLayer = activeEntry?.layer ?? null;
   const phase = activeEntry?.phase ?? null;
 
-  const start = useCallback(() => {
+  const start = () => {
     setStep(0);
     setStatus("running");
-  }, []);
+  };
   const resume = () => setStatus("running");
   const pause = () => setStatus("paused");
   const reset = () => {
@@ -88,8 +86,8 @@ export function EventBubblingPage() {
       setStatus("finished");
       return;
     }
-    if (status === "running") setStatus("paused");
     setStep(step + 1);
+    if (status === "running") setStatus("paused");
   };
   const stepBack = () => {
     if (status === "idle") return;
@@ -97,13 +95,13 @@ export function EventBubblingPage() {
     setStep(Math.max(0, step - 1));
   };
 
-  // Cast around strict i18n typing for dynamic key lookups.
-  const tAny = t as (key: string, params?: Record<string, string>) => string;
+  const ti = (key: string, params?: Record<string, string>) =>
+    t(key as never, params as never);
   const narration =
     status === "idle"
       ? t("eventBubbling.idleNarration")
       : activeEntry
-        ? tAny(activeEntry.narrationKey, activeEntry.narrationParams)
+        ? ti(activeEntry.narrationKey, activeEntry.narrationParams)
         : "";
 
   return (
@@ -151,7 +149,7 @@ export function EventBubblingPage() {
       {/* Progress + status */}
       <div className="mt-8 max-w-3xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
-          <StatusPill status={status} />
+          <StatusPill status={status} ns="eventBubbling" />
           <span>
             {t("eventBubbling.hopLabel")}{" "}
             <span className="text-white/80">
@@ -247,6 +245,7 @@ export function EventBubblingPage() {
       <div className="mt-8 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}
+          ns="eventBubbling"
           onStart={start}
           onResume={resume}
           onPause={pause}
@@ -267,18 +266,13 @@ export function EventBubblingPage() {
           >
             {t("eventBubbling.controls.next")}
           </button>
-          <SpeedControl speed={speed} onChange={setSpeed} />
+          <SpeedControl speed={speed} ns="eventBubbling" onChange={setSpeed} />
         </div>
       </div>
     </main>
   );
 }
 
-/**
- * Turn the current toggle state into a full ordered list of hops. Each hop
- * carries an i18n key + params instead of rendered text, so re-rendering in a
- * different language just re-looks-up the key.
- */
 function buildTrace({
   useCapture,
   stopAt,
@@ -297,7 +291,6 @@ function buildTrace({
     entries.push({ id: id++, layer, phase, narrationKey, narrationParams });
   };
 
-  // Capture phase — top-down, up to (but not including) the target.
   for (const layer of LAYERS) {
     if (layer === TARGET) break;
     const key =
@@ -311,7 +304,6 @@ function buildTrace({
   push(TARGET, "target", "eventBubbling.narrations.target", { layer: TARGET });
   if (stopAt === TARGET) return entries;
 
-  // Bubble phase — bottom-up, skipping the target itself.
   for (const layer of [...LAYERS].reverse()) {
     if (layer === TARGET) continue;
     const key =
@@ -322,125 +314,6 @@ function buildTrace({
     if (!useCapture && layer === stopAt) break;
   }
   return entries;
-}
-
-function StatusPill({ status }: { status: Status }) {
-  const { t } = useTranslation();
-  const color: Record<Status, string> = {
-    idle: "text-white/50",
-    running: "text-emerald-400",
-    paused: "text-amber-400",
-    finished: "text-accent-soft",
-  };
-  return (
-    <span className={color[status]}>
-      ● {t(`eventBubbling.status.${status}`)}
-    </span>
-  );
-}
-
-type PrimaryControlsProps = {
-  status: Status;
-  onStart: () => void;
-  onResume: () => void;
-  onPause: () => void;
-  onReset: () => void;
-};
-
-function PrimaryControls({
-  status,
-  onStart,
-  onResume,
-  onPause,
-  onReset,
-}: PrimaryControlsProps) {
-  const { t } = useTranslation();
-  if (status === "idle") {
-    return (
-      <button
-        onClick={onStart}
-        className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-      >
-        <PlayIcon />
-        {t("eventBubbling.controls.run")}
-      </button>
-    );
-  }
-  if (status === "running") {
-    return (
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onPause}
-          className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-white hover:border-white/30 transition-colors"
-        >
-          <PauseIcon />
-          {t("eventBubbling.controls.pause")}
-        </button>
-        <button
-          onClick={onReset}
-          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
-        >
-          {t("eventBubbling.controls.reset")}
-        </button>
-      </div>
-    );
-  }
-  if (status === "paused") {
-    return (
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onResume}
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-        >
-          <PlayIcon />
-          {t("eventBubbling.controls.resume")}
-        </button>
-        <button
-          onClick={onReset}
-          className="rounded-lg border border-white/15 px-5 py-3 text-white/60 hover:text-white hover:border-white/30 transition-colors"
-        >
-          {t("eventBubbling.controls.reset")}
-        </button>
-      </div>
-    );
-  }
-  return (
-    <button
-      onClick={onStart}
-      className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-white font-medium shadow-lg shadow-accent-glow hover:bg-accent-soft transition-colors"
-    >
-      <ReplayIcon />
-      {t("eventBubbling.controls.replay")}
-    </button>
-  );
-}
-
-function SpeedControl({
-  speed,
-  onChange,
-}: {
-  speed: Speed;
-  onChange: (s: Speed) => void;
-}) {
-  const { t } = useTranslation();
-  const options: Speed[] = ["slow", "normal", "fast"];
-  return (
-    <div className="border border-white/15 rounded-lg p-1 flex items-center text-xs ml-2">
-      {options.map((s) => (
-        <button
-          key={s}
-          onClick={() => onChange(s)}
-          className={`px-3 py-1.5 rounded-md transition-colors capitalize ${
-            speed === s
-              ? "bg-white/10 text-white"
-              : "text-white/50 hover:text-white"
-          }`}
-        >
-          {t(`eventBubbling.speed.${s}`)}
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function PhaseBadge({ phase }: { phase: Phase }) {
@@ -468,10 +341,6 @@ type NestedBoxesProps = {
   idle: boolean;
 };
 
-/**
- * Concentric boxes representing window ⤳ #inner. The active layer glows in the
- * color of the current phase so the user can trace the propagation visually.
- */
 function NestedBoxes({
   activeLayer,
   phase,
@@ -548,4 +417,3 @@ function NestedBoxes({
     "bg-white/[0.02]",
   );
 }
-

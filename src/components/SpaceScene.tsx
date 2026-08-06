@@ -2,16 +2,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
-/**
- * Full-viewport 3D star field for the About hero.
- *
- * Deliberately quiet: no constellation, no labels, no in-scene UI — just
- * ~2500 points on a spherical shell that slowly rotate with a subtle mouse
- * parallax. Acts as an animated background layer behind the DOM hero copy.
- *
- * Canvas is pointer-events-none so it sits behind the hero without
- * intercepting clicks. Mouse position is tracked at the window level.
- */
 export function SpaceScene() {
   return (
     <div className="absolute inset-0 pointer-events-none">
@@ -22,14 +12,12 @@ export function SpaceScene() {
       >
         <color attach="background" args={["#050510"]} />
         <fog attach="fog" args={["#050510", 12, 22]} />
-
         <SceneGroup />
       </Canvas>
     </div>
   );
 }
 
-/** Auto-rotate + mouse-parallax the whole star field as one group. */
 function SceneGroup() {
   const group = useRef<THREE.Group>(null);
   const target = useRef({ x: 0, y: 0 });
@@ -45,9 +33,7 @@ function SceneGroup() {
 
   useFrame((_, delta) => {
     if (!group.current) return;
-    // Continuous slow spin so it's alive even without mouse input.
     group.current.rotation.y += delta * 0.03;
-    // Gentle easing toward mouse tilt — small angles, never disorienting.
     const wantX = target.current.y * 0.15;
     const wantZ = target.current.x * 0.1;
     group.current.rotation.x += (wantX - group.current.rotation.x) * 0.05;
@@ -61,11 +47,6 @@ function SceneGroup() {
   );
 }
 
-/**
- * Buffer-geometry star field on a spherical shell. Additive-blended points
- * with a light color variation (cool white bias, a few warm and blue). Runs
- * as a single draw call.
- */
 function StarField({ count }: { count: number }) {
   const points = useRef<THREE.Points>(null);
 
@@ -101,7 +82,6 @@ function StarField({ count }: { count: number }) {
     return geo;
   }, [count]);
 
-  // Overall "breathing" opacity — feels alive without per-point twinkle cost.
   useFrame((state) => {
     if (!points.current) return;
     const mat = points.current.material as THREE.PointsMaterial;

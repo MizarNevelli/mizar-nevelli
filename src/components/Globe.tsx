@@ -3,10 +3,8 @@ import { useEffect, useRef } from 'react'
 import { useMotionValue, type MotionValue } from 'framer-motion'
 
 type GlobeProps = {
-  /** External progress driver (0 → 1) used for scroll-linked rotation & zoom. */
   progress?: MotionValue<number>
   className?: string
-  /** Highlight markers: [latitude, longitude] pairs. */
   markers?: Array<{ location: [number, number]; size?: number }>
 }
 
@@ -21,10 +19,6 @@ const DEFAULT_MARKERS: NonNullable<GlobeProps['markers']> = [
   { location: [37.7749, -122.4194] }, // San Francisco
 ]
 
-/**
- * Interactive WebGL globe (cobe). Rotation phi and zoom are driven either by
- * a scroll-linked progress value or by an internal auto-rotation.
- */
 export function Globe({
   progress,
   className,

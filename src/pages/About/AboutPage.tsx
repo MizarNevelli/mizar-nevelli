@@ -9,13 +9,13 @@ import { StackGrid } from "./StackGrid";
 import { PageMeta } from "../../components/PageMeta";
 
 const CHAPTER_KEYS = [
-  "origin",
-  "leap",
-  "pivot",
-  "firstCommit",
-  "engineering",
-  "matures",
   "now",
+  "matures",
+  "engineering",
+  "firstCommit",
+  "pivot",
+  "leap",
+  "origin",
 ] as const;
 
 /**

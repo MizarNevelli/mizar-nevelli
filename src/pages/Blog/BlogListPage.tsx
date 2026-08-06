@@ -22,7 +22,7 @@ const posts: Post[] = Object.entries(modules)
   );
 
 export function BlogListPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <main className="relative min-h-screen bg-ink-950 pt-32 pb-24 px-6">
       <PageMeta
@@ -65,7 +65,7 @@ export function BlogListPage() {
                     {post.frontmatter.title}
                   </p>
                   <p className="mt-2 text-sm text-white/40">
-                    {formatDate(post.frontmatter.date)}
+                    {formatDate(post.frontmatter.date, i18n.resolvedLanguage)}
                   </p>
                   <p className="mt-3 text-sm text-white/50 leading-relaxed max-w-lg">
                     {post.frontmatter.excerpt}
@@ -74,10 +74,10 @@ export function BlogListPage() {
 
                 {/* Cover — fades in from the right */}
                 {post.frontmatter.cover && (
-                  <div className="absolute inset-y-0 -right-6 w-[45vw] hidden sm:block overflow-hidden pointer-events-none">
+                  <div className="absolute inset-y-0 right-0 w-[45vw] hidden sm:block overflow-hidden pointer-events-none">
                     <img
                       src={post.frontmatter.cover}
-                      alt="post-preview-img"
+                      alt={post.frontmatter.title}
                       className="w-full h-full object-cover opacity-[0.04] group-hover:opacity-100 transition-opacity duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/60 to-transparent" />

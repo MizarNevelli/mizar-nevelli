@@ -11,10 +11,6 @@ export function HeroChip() {
       className="font-mono text-[11px] tracking-[0.22em] text-white/35 uppercase"
     >
       {t("home.chip")}
-      {/* <span
-        aria-hidden
-        className="inline-block w-[1.5px] h-[0.85em] bg-accent-soft align-middle ml-1 animate-blink"
-      /> */}
     </motion.p>
   );
 }
