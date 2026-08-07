@@ -20,14 +20,6 @@ type MobileMenuProps = {
   jsFeatureKeys: ReadonlyArray<JsFeature>;
 };
 
-/**
- * Full-screen glass overlay used on mobile. Links stagger in top-to-bottom;
- * the JS feature list is flattened inline (no nested dropdown on touch).
- * Language switcher lives at the bottom.
- *
- * Kept dumb — link config is passed in from `Nav`, so this component doesn't
- * need to know which routes exist.
- */
 export function MobileMenu({
   onClose,
   topLinks,
@@ -37,8 +29,8 @@ export function MobileMenu({
   const tx = t as (key: string) => string;
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `block text-4xl font-semibold tracking-tight transition-colors ${
-      isActive ? "text-white" : "text-white/50 hover:text-white"
+    `block text-4xl font-semibold tracking-tight ${
+      isActive ? "text-white" : "text-white/50"
     }`;
 
   return (
@@ -50,12 +42,9 @@ export function MobileMenu({
       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       className="md:hidden fixed inset-0 top-0 z-40 bg-ink-950/90 backdrop-blur-2xl"
       onClick={(e) => {
-        // Close on backdrop click (but not when clicking the panel itself).
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      {/* Dedicated close button — the animated burger in the nav is easy to
-         miss against the dark overlay, so give the menu its own affordance. */}
       <motion.button
         type="button"
         onClick={onClose}
@@ -74,12 +63,17 @@ export function MobileMenu({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="min-h-[100dvh] flex flex-col px-6 py-10"
+        className="h-full overflow-y-auto overscroll-contain flex flex-col px-6 py-10"
       >
-        <ul className="flex-1 flex flex-col justify-center gap-6">
+        <ul className="flex-1 flex flex-col justify-center gap-6 select-none">
           {topLinks.map((link, i) => (
             <MobileLink key={link.to} delay={0.05 + i * 0.06}>
-              <NavLink to={link.to} end={link.end} className={linkClass}>
+              <NavLink
+                style={{ WebkitTapHighlightColor: "transparent" }}
+                to={link.to}
+                end={link.end}
+                className={linkClass}
+              >
                 {tx(`nav.${link.key}`)}
               </NavLink>
             </MobileLink>
@@ -98,9 +92,7 @@ export function MobileMenu({
                       to={feat.to}
                       className={({ isActive }) =>
                         `flex items-baseline justify-between group ${
-                          isActive
-                            ? "text-white"
-                            : "text-white/60 hover:text-white"
+                          isActive ? "text-white" : "text-white/60"
                         }`
                       }
                     >
@@ -112,9 +104,7 @@ export function MobileMenu({
                           {tx(`nav.features.${feat.key}.description`)}
                         </p>
                       </div>
-                      <span className="text-white/30 group-hover:text-accent-soft transition-colors">
-                        →
-                      </span>
+                      <span className="text-white/30">→</span>
                     </NavLink>
                   </li>
                 ))}
@@ -123,7 +113,6 @@ export function MobileMenu({
           </MobileLink>
         </ul>
 
-        {/* Language switcher pinned to the bottom */}
         <MobileLink delay={0.05 + (topLinks.length + 1) * 0.06}>
           <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-xs uppercase tracking-widest text-white/40">
             <span>{t("nav.language")}</span>
