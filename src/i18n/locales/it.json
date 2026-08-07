@@ -57,7 +57,8 @@
     "explainers": {
       "eyebrow": "Approfondimenti",
       "line1": "Le parti di JavaScript",
-      "line2": "che meritano un'immagine."
+      "line2": "che meritano un'immagine.",
+      "line3": "Durante i vari colloqui affrontati fino ad oggi ho ricevuto spesso delle domande relative a concetti simili o collegati tra loro. Ho deciso di sviluppare una visualizzazione di questi concetti per apprendere al meglio il loro funzionamento e mostrare ai futuri interlocutori il mio interesse  e impegno a riguardo."
     },
     "features": {
       "eventLoop": {

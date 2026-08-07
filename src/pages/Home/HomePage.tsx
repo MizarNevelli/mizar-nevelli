@@ -37,18 +37,13 @@ export function HomePage() {
         description="Interactive JavaScript explainers built by a developer who codes on the road."
         path="/"
       />
-      {/* Fixed starfield — one Three.js canvas locked to the viewport.
-         Hero and globe sections are z-10 with no background, so stars show
-         through both. Stats / explainers / footer have bg-ink-950 to cover
-         the fixed layer once the starfield portion of the page is done. */}
+
       <div className="fixed inset-0 pointer-events-none z-0">
         <SpaceScene />
       </div>
 
       {/* ────────── HERO ────────── */}
       <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Radial vignette — darkest behind the centered copy, transparent at
-           the corners so the starfield stays visible around the edges. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -190,6 +185,9 @@ export function HomePage() {
                 {t("home.explainers.line2")}
               </span>
             </h2>
+            <div className="text-regular mt-3 sm:w-2/3 text-white/50">
+              {t("home.explainers.line3")}
+            </div>
           </ScrollReveal>
 
           <div className="mt-14 grid md:grid-cols-3 md:gap-x-12">
