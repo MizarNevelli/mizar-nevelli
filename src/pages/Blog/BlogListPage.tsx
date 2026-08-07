@@ -17,8 +17,8 @@ const posts: Post[] = Object.entries(modules)
   }))
   .sort(
     (a, b) =>
-      new Date(a.frontmatter.date).getTime() -
-      new Date(b.frontmatter.date).getTime()
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
   );
 
 export function BlogListPage() {

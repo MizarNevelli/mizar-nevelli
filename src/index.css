@@ -8,11 +8,22 @@
   inherits: false;
 }
 
+/* ── Design tokens ──────────────────────────────────────────────────────── */
+:root {
+  --bg-base-rgb:     5 6 10;
+  --bg-surface-rgb:  10 11 18;
+  --bg-elevated-rgb: 18 20 28;
+  --primary:         255 255 255;
+  --accent:          212 160 23;
+  --accent-soft:     245 207 92;
+}
+
 @layer base {
   html,
   body,
   #root {
-    @apply bg-ink-950 text-white/80 antialiased;
+    @apply bg-base antialiased;
+    color: rgb(var(--primary) / 0.8);
   }
   body {
     font-family:
@@ -20,13 +31,12 @@
       system-ui,
       -apple-system,
       sans-serif;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
   ::selection {
-    background: #d4a017;
+    background: rgb(var(--accent));
     color: white;
   }
   html {

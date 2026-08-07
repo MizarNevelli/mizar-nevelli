@@ -1,7 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { SpaceScene } from "../../components/SpaceScene";
+
+const SpaceScene = lazy(() =>
+  import("../../components/SpaceScene").then((m) => ({ default: m.SpaceScene }))
+);
 import { Chapter } from "./Chapter";
 import { OffKeyboard } from "./OffKeyboard";
 import { FamilySection } from "./FamilySection";
@@ -40,7 +44,9 @@ export function AboutPage() {
       />
       {/* ────────── HERO ────────── */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-        <SpaceScene />
+        <Suspense fallback={null}>
+          <SpaceScene />
+        </Suspense>
         {/* Radial vignette — darkest exactly behind the centered text, fully
            transparent at the corners so the starfield stays visible there. */}
         <div

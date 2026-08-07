@@ -17,11 +17,9 @@
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
     "@mdx-js/rollup": "^3.1.1",
-    "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "cobe": "^2.0.1",
     "framer-motion": "^12.42.2",
-    "gsap": "^3.15.0",
     "i18next": "^26.3.6",
     "i18next-browser-languagedetector": "^8.2.1",
     "react": "^19.2.7",

@@ -211,6 +211,11 @@ function staticMeta(): Plugin {
 }
 
 export default defineConfig({
+  build: {
+    target: "esnext",
+    minify: true,
+    chunkSizeWarningLimit: 950,
+  },
   plugins: [
     mdx({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],

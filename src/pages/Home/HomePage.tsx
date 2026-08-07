@@ -4,15 +4,20 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Globe } from "../../components/Globe";
 import { ScrollReveal } from "../../components/ScrollReveal";
-import { SpaceScene } from "../../components/SpaceScene";
 import { HeroChip } from "./HeroChip";
 import { StatCard } from "./StatCard";
 import { FeatureCard } from "./FeatureCard";
 import { PageMeta } from "../../components/PageMeta";
+
+const SpaceScene = lazy(() =>
+  import("../../components/SpaceScene").then((m) => ({ default: m.SpaceScene }))
+);
+const Globe = lazy(() =>
+  import("../../components/Globe").then((m) => ({ default: m.Globe }))
+);
 
 export function HomePage() {
   const { t } = useTranslation();
@@ -39,7 +44,9 @@ export function HomePage() {
       />
 
       <div className="fixed inset-0 pointer-events-none z-0">
-        <SpaceScene />
+        <Suspense fallback={null}>
+          <SpaceScene />
+        </Suspense>
       </div>
 
       {/* ────────── HERO ────────── */}
@@ -95,7 +102,9 @@ export function HomePage() {
                 }}
               />
               <div className="relative">
-                <Globe progress={globeProgress} />
+                <Suspense fallback={null}>
+                  <Globe progress={globeProgress} />
+                </Suspense>
               </div>
             </div>
 

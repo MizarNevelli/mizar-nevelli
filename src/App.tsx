@@ -6,22 +6,38 @@ import {
   RouterProvider,
   Outlet,
 } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { Nav } from "./components/Nav";
 import { HomePage } from "./pages/Home/HomePage";
 import { AboutPage } from "./pages/About/AboutPage";
-import { EventLoopPage } from "./pages/EventLoop/EventLoopPage";
-import { EventBubblingPage } from "./pages/EventBubbling/EventBubblingPage";
-import { ClosuresPage } from "./pages/Closures/ClosuresPage";
 import { ContactPage } from "./pages/Contact/ContactPage";
 import { BlogListPage } from "./pages/Blog/BlogListPage";
 import { BlogPostPage } from "./pages/Blog/BlogPostPage";
+// Lazy — visualizer pages are heavy and rarely the landing page.
+const EventLoopPage = lazy(() =>
+  import("./pages/EventLoop/EventLoopPage").then((m) => ({
+    default: m.EventLoopPage,
+  }))
+);
+const EventBubblingPage = lazy(() =>
+  import("./pages/EventBubbling/EventBubblingPage").then((m) => ({
+    default: m.EventBubblingPage,
+  }))
+);
+const ClosuresPage = lazy(() =>
+  import("./pages/Closures/ClosuresPage").then((m) => ({
+    default: m.ClosuresPage,
+  }))
+);
 
 function Layout() {
   return (
     <div className="relative min-h-[100dvh]">
       <ScrollRestoration />
       <Nav />
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }

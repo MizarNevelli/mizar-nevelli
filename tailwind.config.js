@@ -3,6 +3,26 @@ export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        /* Semantic tokens — reference CSS vars so light/dark themes work */
+        base:     "rgb(var(--bg-base-rgb) / <alpha-value>)",
+        surface:  "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+        elevated: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
+        primary:  "rgb(var(--primary) / <alpha-value>)",
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          soft:    "rgb(var(--accent-soft) / <alpha-value>)",
+          glow:    "rgba(212, 160, 23, 0.35)",
+        },
+        /* Legacy static tokens — kept for any remaining ink-* usage */
+        ink: {
+          950: "#05060a",
+          900: "#0a0b12",
+          800: "#12141c",
+          700: "#1c1f2a",
+          600: "#2a2e3d",
+        },
+      },
       fontFamily: {
         display: [
           '"SF Pro Display"',
@@ -18,20 +38,6 @@ export default {
           "SFMono-Regular",
           "monospace",
         ],
-      },
-      colors: {
-        ink: {
-          950: "#05060a",
-          900: "#0a0b12",
-          800: "#12141c",
-          700: "#1c1f2a",
-          600: "#2a2e3d",
-        },
-        accent: {
-          DEFAULT: "#d4a017",
-          soft: "#f5cf5c",
-          glow: "rgba(212, 160, 23, 0.35)",
-        },
       },
       backgroundImage: {
         "radial-fade":
