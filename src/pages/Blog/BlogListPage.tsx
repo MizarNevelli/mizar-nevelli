@@ -49,7 +49,7 @@ export function BlogListPage() {
                 to={`/blog/${post.slug}`}
                 className="group flex items-start justify-between gap-6 py-10 hover:text-white transition-colors"
               >
-                <div className="flex-1 min-w-0 relative pr-4">
+                <div className="flex-1 min-w-0 w-full relative pr-4">
                   {/* Ghost ordinal */}
                   <span
                     aria-hidden
