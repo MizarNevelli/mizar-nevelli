@@ -103,7 +103,7 @@ export function HomePage() {
             <div className="relative order-1 md:order-2 h-56 md:h-96">
               <StoryPanel
                 progress={globeProgress}
-                range={[0.0, 0.38]}
+                range={[0.0, 0.35]}
                 eyebrow={t("home.panels.one.eyebrow")}
                 heading={
                   <>
@@ -115,7 +115,7 @@ export function HomePage() {
               />
               <StoryPanel
                 progress={globeProgress}
-                range={[0.32, 0.68]}
+                range={[0.33, 0.67]}
                 eyebrow={t("home.panels.two.eyebrow")}
                 heading={
                   <>
@@ -127,7 +127,7 @@ export function HomePage() {
               />
               <StoryPanel
                 progress={globeProgress}
-                range={[0.62, 1.0]}
+                range={[0.65, 1.0]}
                 eyebrow={t("home.panels.three.eyebrow")}
                 heading={
                   <>
@@ -226,7 +226,7 @@ export function HomePage() {
       </section>
 
       <footer className="relative z-10 bg-ink-950 py-16 text-center text-sm text-accent-soft/70">
-        ©{currYear}, {t("home.footer")}&hearts;
+        ©{currYear}, {t("home.footer")} &hearts;
       </footer>
     </main>
   );
@@ -250,8 +250,8 @@ type StoryPanelProps = {
 function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
   const [enter, exit] = range;
   const span = exit - enter;
-  const fadeIn = enter + span * 0.1;
-  const fadeOut = exit - span * 0.1;
+  const fadeIn = enter + span * 0.2;
+  const fadeOut = exit - span * 0.2;
 
   const opacity = useTransform(
     progress,
@@ -259,9 +259,17 @@ function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
     [0, 1, 1, 0]
   );
 
+  // Slide up from below on enter, continue upward on exit — keeps panels
+  // spatially separated during the crossfade so text never stacks.
+  const y = useTransform(
+    progress,
+    [enter, fadeIn, fadeOut, exit],
+    [28, 0, 0, -20]
+  );
+
   return (
     <motion.div
-      style={{ opacity, willChange: "opacity" }}
+      style={{ opacity, y, willChange: "transform, opacity" }}
       className="absolute inset-0 flex flex-col justify-center"
     >
       <p className="text-white/35 font-mono text-[11px] tracking-[0.18em] uppercase mb-4">

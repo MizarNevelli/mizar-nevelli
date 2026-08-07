@@ -42,7 +42,7 @@ export function BlogListPage() {
         </h1>
 
         {/* Post list */}
-        <ul className="mt-20 flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <ul className="mt-10 flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {posts.map((post, i) => (
             <li key={post.slug} className="border-t border-white/[0.06]">
               <Link
