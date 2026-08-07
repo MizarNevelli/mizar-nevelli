@@ -54,7 +54,7 @@ export function AboutPage() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
 
         {/* Labeled Mizar star — a single glowing dot in the corner. */}
-        <div className="absolute top-[22%] right-[18%] hidden md:flex flex-col items-end gap-1 pointer-events-none z-10">
+        <div className="absolute top-[13%] sm:top-[22%] right-[5%] sm:right-[18%] md:flex flex-col items-end gap-1 pointer-events-none z-10">
           <div className="flex items-baseline gap-2">
             <span className="text-xs text-white/60 [text-shadow:_0_1px_10px_rgba(5,6,10,0.9)]">
               {t("about.hero.starLabel")}
