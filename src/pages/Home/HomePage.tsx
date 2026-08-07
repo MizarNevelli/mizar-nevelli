@@ -43,7 +43,7 @@ export function HomePage() {
       </div>
 
       {/* ────────── HERO ────────── */}
-      <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative z-10 min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{

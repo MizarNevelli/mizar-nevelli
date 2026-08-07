@@ -94,7 +94,7 @@ export function BlogPostPage() {
 
   if (!post) {
     return (
-      <main className="min-h-screen bg-ink-950 flex items-center justify-center">
+      <main className="min-h-[100dvh] bg-ink-950 flex items-center justify-center">
         <div className="text-center">
           <p className="text-white/30 text-sm mb-6">{t("blog.postNotFound")}</p>
           <Link
@@ -111,7 +111,7 @@ export function BlogPostPage() {
   const { frontmatter, Component } = post;
 
   return (
-    <main className="relative min-h-screen bg-ink-950">
+    <main className="relative min-h-[100dvh] bg-ink-950">
       <PageMeta
         title={frontmatter.title}
         description={frontmatter.excerpt}

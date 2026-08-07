@@ -14,7 +14,7 @@ const LINKEDIN_HANDLE = "Mizar Nevelli";
 export function ContactPage() {
   const { t } = useTranslation();
   return (
-    <main className="min-h-screen pt-32 pb-24 px-6 relative overflow-hidden">
+    <main className="min-h-[100dvh] pt-32 pb-24 px-6 relative overflow-hidden">
       <PageMeta
         title="Contact"
         description="Get in touch about projects, freelance work, or collaborations."

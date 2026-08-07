@@ -39,7 +39,7 @@ export function AboutPage() {
         path="/about"
       />
       {/* ────────── HERO ────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <SpaceScene />
         {/* Radial vignette — darkest exactly behind the centered text, fully
            transparent at the corners so the starfield stays visible there. */}

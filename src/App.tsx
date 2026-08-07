@@ -1,22 +1,29 @@
-import { ScrollRestoration, Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Outlet } from 'react-router-dom'
-import { Nav } from './components/Nav'
-import { HomePage } from './pages/Home/HomePage'
-import { AboutPage } from './pages/About/AboutPage'
-import { EventLoopPage } from './pages/EventLoop/EventLoopPage'
-import { EventBubblingPage } from './pages/EventBubbling/EventBubblingPage'
-import { ClosuresPage } from './pages/Closures/ClosuresPage'
-import { ContactPage } from './pages/Contact/ContactPage'
-import { BlogListPage } from './pages/Blog/BlogListPage'
-import { BlogPostPage } from './pages/Blog/BlogPostPage'
+import {
+  ScrollRestoration,
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Outlet,
+} from "react-router-dom";
+import { Nav } from "./components/Nav";
+import { HomePage } from "./pages/Home/HomePage";
+import { AboutPage } from "./pages/About/AboutPage";
+import { EventLoopPage } from "./pages/EventLoop/EventLoopPage";
+import { EventBubblingPage } from "./pages/EventBubbling/EventBubblingPage";
+import { ClosuresPage } from "./pages/Closures/ClosuresPage";
+import { ContactPage } from "./pages/Contact/ContactPage";
+import { BlogListPage } from "./pages/Blog/BlogListPage";
+import { BlogPostPage } from "./pages/Blog/BlogPostPage";
 
 function Layout() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-[100dvh]">
       <ScrollRestoration />
       <Nav />
       <Outlet />
     </div>
-  )
+  );
 }
 
 const router = createBrowserRouter(
@@ -32,8 +39,8 @@ const router = createBrowserRouter(
       <Route path="/blog/:slug" element={<BlogPostPage />} />
     </Route>
   )
-)
+);
 
 export default function App() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }

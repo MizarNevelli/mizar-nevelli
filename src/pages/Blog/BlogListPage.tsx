@@ -24,7 +24,7 @@ const posts: Post[] = Object.entries(modules)
 export function BlogListPage() {
   const { t, i18n } = useTranslation();
   return (
-    <main className="relative h-screen bg-ink-950 flex flex-col overflow-hidden pt-32 px-6">
+    <main className="relative h-[100dvh] bg-ink-950 flex flex-col overflow-hidden pt-32 px-6">
       <PageMeta
         title="Blog"
         description="Field notes from the road. Travel dispatches from a remote JavaScript engineer."
@@ -78,9 +78,9 @@ export function BlogListPage() {
                     <img
                       src={post.frontmatter.cover}
                       alt={post.frontmatter.title}
-                      className="w-full h-full object-cover opacity-[0.04] group-hover:opacity-100 transition-opacity duration-500"
+                      className="w-full h-full object-cover opacity-[0.04] group-hover:opacity-95 transition-opacity duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-transparent to-transparent" />
                   </div>
                 )}
               </Link>
