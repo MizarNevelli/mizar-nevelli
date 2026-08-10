@@ -24,16 +24,20 @@ export default {
         },
       },
       fontFamily: {
-        display: [
-          '"SF Pro Display"',
-          "Inter",
+        sans: [
+          '"IBM Plex Sans"',
           "system-ui",
           "-apple-system",
-          "BlinkMacSystemFont",
+          "sans-serif",
+        ],
+        display: [
+          '"IBM Plex Sans"',
+          "system-ui",
+          "-apple-system",
           "sans-serif",
         ],
         mono: [
-          '"JetBrains Mono"',
+          '"IBM Plex Mono"',
           "ui-monospace",
           "SFMono-Regular",
           "monospace",

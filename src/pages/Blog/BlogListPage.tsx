@@ -40,9 +40,10 @@ export function BlogListPage() {
           <br />
           <span className="text-white/35">{t("blog.titleLine2")}</span>
         </h1>
+        <div className="md:max-w-[40vw] mt-2">{t("blog.subtitle")}</div>
 
         {/* Post list */}
-        <ul className="mt-10 flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <ul className="mt-5 flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {posts.map((post, i) => (
             <li key={post.slug} className="border-t border-white/[0.06]">
               <Link

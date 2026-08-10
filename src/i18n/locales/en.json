@@ -32,19 +32,19 @@
     "scrollHint": "Scroll to explore",
     "panels": {
       "one": {
-        "eyebrow": "01 · Remote by design",
+        "eyebrow": "01 · One language, one love",
+        "line1": "JavaScript runs in the browser",
+        "line2": "and it powers the journey."
+      },
+      "two": {
+        "eyebrow": "02 · Remote by design",
         "line1": "A laptop, a signal,",
         "line2": "and the world becomes an office."
       },
-      "two": {
-        "eyebrow": "02 · Fifteen time zones",
+      "three": {
+        "eyebrow": "03 · Fifteen time zones",
         "line1": "Shipping features from cafés,",
         "line2": "trains, and rooftop balconies."
-      },
-      "three": {
-        "eyebrow": "03 · One language, one love",
-        "line1": "JavaScript runs in the browser",
-        "line2": "and it powers the journey."
       }
     },
     "stats": {
@@ -64,7 +64,7 @@
       "eventLoop": {
         "eyebrow": "Concurrency",
         "title": "The event loop",
-        "body": "Call stack, task queue, microtasks — watch them collaborate frame by frame."
+        "body": "Call stack, task queue, microtasks, watch them collaborate frame by frame."
       },
       "eventBubbling": {
         "eyebrow": "DOM events",
@@ -243,7 +243,7 @@
       "eyebrow": "About",
       "titleLine1": "There's a star",
       "titleLine2": "called Mizar.",
-      "subtitle": "Software engineer, named after ζ Ursae Majoris, the second star from the tip of the Big Dipper's handle. Naked-eye visible, part of a sextuple system. I got the name; the sky got the naming rights.",
+      "subtitle": "Software engineer, named after ζ Ursae Majoris, the second star from the tip of the Big Dipper's handle. Naked eye visible, part of a sextuple system. I got the name, the sky got the naming rights.",
       "scrollHint": "Read the story",
       "starLabel": "Mizar, the star",
       "starSub": "in the Big Dipper's handle"
@@ -282,21 +282,21 @@
         "place": "Jakala",
         "eyebrow": "Chapter V, Real engineering",
         "title": "Where 'stakeholder alignment' stopped sounding like a joke.",
-        "body": "GIS, JavaScript, and Python. I built geolocation dashboard for International automotive brands and a location analytics custom tool for a global food & beverage client, ranked in the internal top 3% of projects at Jakala. Two years translating ambiguous briefs into working software."
+        "body": "GIS, JavaScript, SQL and Python. I built a geolocation dashboard for an International automotive brand and a location analytics custom tool for a global food & beverage client, ranked in the internal top 3% of projects at Jakala. More than one year translating ambiguous briefs into working software."
       },
       "matures": {
         "year": "2020",
-        "place": "Palmabit (Now Webidoo Engineering)",
+        "place": "Palmabit ",
         "eyebrow": "Chapter VI, The stack matures",
         "title": "The hardest problems in engineering are rarely the code.",
-        "body": "Two years at Palmabit shipping React and Node. An automotive management platform, then a subscription system for an Italian telco supplier. By the end I was writing tests first, not last."
+        "body": "Two years at Palmabit (Now Webidoo Engineering) shipping React, Next.js and Node applications. An automotive management platform, a subscription system for an Italian telco supplier, and several more projects."
       },
       "now": {
         "year": "2022",
         "place": "Spartan Tech",
         "eyebrow": "Chapter VII, Now",
         "title": "React, Next and notarizations.",
-        "body": "At Spartan Tech, among various projects, we mainly develop MVPs. I led the rebuild of Watchype, a luxury watch marketplace where every piece is certified and notarized on Algorand. I also designed and delivered a custom platform for a medical society; 95% of the requested scope shipped in an MVP measured in months."
+        "body": "At Spartan Tech, among various projects, we mainly develop MVPs. I led the rebuild of Watchype, a luxury watch marketplace where every piece is certified and notarized on Algorand. I also designed and delivered a custom platform for a medical society, 95% of the requested scope shipped in an MVP measured in months."
       }
     },
     "offKeyboard": {
@@ -410,10 +410,10 @@
       "forLet": {
         "label": "for + let (the fix)",
         "narrations": [
-          "Same loop, but with let. let is block-scoped — each iteration gets its own fresh scope.",
+          "Same loop, but with let. let is block-scoped, each iteration gets its own fresh scope.",
           "Iteration 0: a new block scope is created with its own i = 0. setTimeout captures it.",
-          "The iteration ends. Normally the block scope would vanish — but the queued callback holds it. It stays as 'captured'.",
-          "Iteration 1: a brand-new block scope with i = 1. Second setTimeout captures this one.",
+          "The iteration ends. Normally the block scope would vanish, but the queued callback holds it. It stays as 'captured'.",
+          "Iteration 1: a brand new block scope with i = 1. Second setTimeout captures this one.",
           "That scope is captured too. Now two independent scopes are being kept alive.",
           "Iteration 2: fresh scope, i = 2. Third setTimeout captures it.",
           "The loop exits. Three captured scopes are still around, each with its own i.",
@@ -430,6 +430,7 @@
     "titleLine2": "from the road.",
     "empty": "Nothing here yet.",
     "postNotFound": "Post not found.",
-    "backToList": "Go back to list"
+    "backToList": "Go back to list",
+    "subtitle": "I regularly update these posts with the places I visit that leave the biggest impression on me. All articles are written by hand, and I use LLMs only to help with formatting the .mdx files."
   }
 }

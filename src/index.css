@@ -10,12 +10,12 @@
 
 /* ── Design tokens ──────────────────────────────────────────────────────── */
 :root {
-  --bg-base-rgb:     5 6 10;
-  --bg-surface-rgb:  10 11 18;
+  --bg-base-rgb: 5 6 10;
+  --bg-surface-rgb: 10 11 18;
   --bg-elevated-rgb: 18 20 28;
-  --primary:         255 255 255;
-  --accent:          212 160 23;
-  --accent-soft:     245 207 92;
+  --primary: 255 255 255;
+  --accent: 212 160 23;
+  --accent-soft: 245 207 92;
 }
 
 @layer base {
@@ -27,7 +27,7 @@
   }
   body {
     font-family:
-      "Geist",
+      "IBM Plex Sans",
       system-ui,
       -apple-system,
       sans-serif;
