@@ -35,7 +35,7 @@ const SpaceScene = lazy(() =>
   import("./components/SpaceScene").then((m) => ({ default: m.SpaceScene }))
 );
 
-const SPACE_ROUTES = new Set(["/", "/about"]);
+const SPACE_ROUTES = new Set(["/", "/about", "/contact"]);
 
 function Layout() {
   const { pathname } = useLocation();

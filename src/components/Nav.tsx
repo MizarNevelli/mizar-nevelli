@@ -74,20 +74,20 @@ export function Nav() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="mx-auto mt-4 max-w-6xl px-4">
-        <div className="relative">
+      <div className="mx-auto mt-4 max-w-6xl px-4 flex items-start justify-between gap-3">
+
+        {/* ── LEFT PILL — logo + mobile burger ── */}
+        <div className="relative flex-1 md:flex-none">
           <div
             aria-hidden
             className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
           />
-          <nav className="glass rounded-full px-5 py-2.5 flex items-center justify-between">
+          <nav className="glass rounded-full px-5 py-2.5 flex items-center justify-between md:justify-start gap-3">
             <NavLink to="/" className="flex items-center gap-2 group">
-              {/* Star container — holds both the halo and the SVG */}
               <span
                 className="relative inline-flex items-center justify-center shrink-0"
                 style={{ width: 14, height: 14 }}
               >
-                {/* Soft ambient halo — pulses in sync with twinkling */}
                 <motion.span
                   aria-hidden
                   className="absolute rounded-full pointer-events-none"
@@ -97,14 +97,8 @@ export function Nav() {
                       "radial-gradient(circle, rgba(240,190,60,0.22) 0%, rgba(240,190,60,0.05) 55%, transparent 72%)",
                   }}
                   animate={{ scale: [0.85, 1.2, 0.85], opacity: [0.4, 1, 0.4] }}
-                  transition={{
-                    duration: 2.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
                 />
-
-                {/* Hover wrapper — fast independent scale on hover */}
                 <motion.span
                   className="inline-flex"
                   whileHover={{ scale: 1.35 }}
@@ -142,16 +136,8 @@ export function Nav() {
                       },
                     }}
                   >
-                    {/* Diffraction spikes — H + V cross, extending beyond the star */}
-                    <path
-                      d="M-8 8L8 7.25L24 8L8 8.75Z"
-                      fill="rgba(240,190,60,0.32)"
-                    />
-                    <path
-                      d="M8-8L8.75 8L8 24L7.25 8Z"
-                      fill="rgba(240,190,60,0.32)"
-                    />
-                    {/* 5-pointed star — white so it reads as a real star */}
+                    <path d="M-8 8L8 7.25L24 8L8 8.75Z" fill="rgba(240,190,60,0.32)" />
+                    <path d="M8-8L8.75 8L8 24L7.25 8Z" fill="rgba(240,190,60,0.32)" />
                     <path
                       d="M8 1L9.8 5.6L14.7 5.8L10.9 8.9L12.1 13.7L8 11L3.9 13.7L5.1 8.9L1.3 5.8L6.2 5.6Z"
                       fill="white"
@@ -159,12 +145,32 @@ export function Nav() {
                   </motion.svg>
                 </motion.span>
               </span>
-              <span className="font-medium tracking-tight bg-gradient-to-r  from-accent-soft via-white to-white bg-clip-text text-transparent">
+              <span className="font-medium tracking-tight bg-gradient-to-r from-accent-soft via-white to-white bg-clip-text text-transparent">
                 Mizar
               </span>
             </NavLink>
 
-            <ul className="hidden md:flex items-center gap-1 text-sm">
+            {/* Mobile burger lives inside the logo pill */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              className="md:hidden relative w-9 h-9 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+            >
+              <BurgerIcon open={mobileOpen} />
+            </button>
+          </nav>
+        </div>
+
+        {/* ── RIGHT PILL — links + language switcher (desktop only) ── */}
+        <div className="relative hidden md:block">
+          <div
+            aria-hidden
+            className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
+          />
+          <nav className="glass rounded-full px-3 py-2.5">
+            <ul className="flex items-center gap-1 text-sm">
               {TOP_LINKS.map((link) => (
                 <li key={link.to}>
                   <NavLink
@@ -264,19 +270,9 @@ export function Nav() {
                 <LanguageSwitcher />
               </li>
             </ul>
-
-            {/* ────────── MOBILE BURGER ────────── */}
-            <button
-              type="button"
-              onClick={() => setMobileOpen((o) => !o)}
-              aria-expanded={mobileOpen}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              className="md:hidden relative w-9 h-9 flex items-center justify-center text-white/80 hover:text-white transition-colors"
-            >
-              <BurgerIcon open={mobileOpen} />
-            </button>
           </nav>
         </div>
+
       </div>
 
       {/* ────────── MOBILE FULL-SCREEN OVERLAY ────────── */}

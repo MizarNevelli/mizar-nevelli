@@ -45,19 +45,6 @@ export function MobileMenu({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <motion.button
-        type="button"
-        onClick={onClose}
-        aria-label="Close menu"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        transition={{ duration: 0.2, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-5 right-5 h-11 w-11 flex items-center justify-center rounded-full glass text-white hover:bg-white/10 transition-colors"
-      >
-        <CloseIcon />
-      </motion.button>
-
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -120,7 +107,40 @@ export function MobileMenu({
           </div>
         </MobileLink>
       </motion.div>
+
+      {/* After the scrollable div in DOM order so it sits on top of it */}
+      <AnimatedCloseButton onClick={onClose} />
     </motion.div>
+  );
+}
+
+function AnimatedCloseButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Close menu"
+      className="absolute top-[26px] right-9 w-9 h-9 flex flex-col items-center justify-center gap-[5px] text-white/80 hover:text-white transition-colors"
+    >
+      <motion.span
+        className="block w-6 h-px bg-current rounded-full origin-center"
+        initial={{ rotate: 0, y: 0 }}
+        animate={{ rotate: 45, y: 6 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      />
+      <motion.span
+        className="block w-6 h-px bg-current rounded-full"
+        initial={{ opacity: 1, scaleX: 1 }}
+        animate={{ opacity: 0, scaleX: 0 }}
+        transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+      />
+      <motion.span
+        className="block w-6 h-px bg-current rounded-full origin-center"
+        initial={{ rotate: 0, y: 0 }}
+        animate={{ rotate: -45, y: -6 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </button>
   );
 }
 
@@ -140,18 +160,5 @@ function MobileLink({
     >
       {children}
     </motion.li>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
-      <path
-        d="M3 3l10 10M13 3L3 13"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
   );
 }

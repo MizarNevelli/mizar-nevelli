@@ -13,11 +13,10 @@ console.warn = (...args: unknown[]) => {
 
 // Welcome console message
 console.warn(
-  "%c⭐  MIZAR\n%c👀  Were you looking for warnings or errors?\n%c   Detail-oriented dev here, there aren't any.\n\n%c   → JS, everywhere. Even in DevTools.",
-  "font-size:15px;font-weight:700;letter-spacing:0.12em;color:#f5cf5c;font-family:monospace",
-  "font-size:13px;font-weight:600;color:#fff;font-family:monospace;line-height:2",
-  "font-size:13px;color:rgba(255,255,255,0.45);font-family:monospace;line-height:2",
-  "font-size:11px;color:#d4a017;font-family:monospace"
+  "%c⭐  MIZAR\n%c👀  Were you looking for warnings or errors?\n%cDetail-oriented dev here, there aren't any.",
+  "font-size:14px;font-weight:700;letter-spacing:0.12em;color:#f5cf5c;font-family:monospace",
+  "font-size:12px;font-weight:600;color:#fff;font-family:monospace;line-height:2",
+  "font-size:10px;color:rgba(255,255,255,0.45);font-family:monospace;line-height:2"
 );
 
 createRoot(document.getElementById("root")!).render(
