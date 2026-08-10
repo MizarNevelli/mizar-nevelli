@@ -13,7 +13,9 @@ type LanguageSwitcherProps = {
   variant?: "dropdown" | "inline";
 };
 
-export function LanguageSwitcher({ variant = "dropdown" }: LanguageSwitcherProps) {
+export function LanguageSwitcher({
+  variant = "dropdown",
+}: LanguageSwitcherProps) {
   const { i18n, t } = useTranslation();
 
   const current =
@@ -48,7 +50,10 @@ export function LanguageSwitcher({ variant = "dropdown" }: LanguageSwitcherProps
                     : "text-white/60 hover:text-white hover:bg-white/5"
               }`}
             >
-              <span aria-hidden className={disabled ? "grayscale opacity-50" : ""}>
+              <span
+                aria-hidden
+                className={disabled ? "grayscale opacity-50" : ""}
+              >
                 {lang.flag}
               </span>
               {lang.code}
@@ -64,7 +69,13 @@ export function LanguageSwitcher({ variant = "dropdown" }: LanguageSwitcherProps
     );
   }
 
-  return <DropdownSwitcher current={current} onPick={pick} label={t("nav.language")} />;
+  return (
+    <DropdownSwitcher
+      current={current}
+      onPick={pick}
+      label={t("nav.language")}
+    />
+  );
 }
 
 type DropdownProps = {

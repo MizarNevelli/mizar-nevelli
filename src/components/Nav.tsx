@@ -75,7 +75,6 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto mt-4 max-w-6xl px-4 flex items-start justify-between gap-3">
-
         {/* ── LEFT PILL — logo + mobile burger ── */}
         <div className="relative flex-1 md:flex-none">
           <div
@@ -97,7 +96,11 @@ export function Nav() {
                       "radial-gradient(circle, rgba(240,190,60,0.22) 0%, rgba(240,190,60,0.05) 55%, transparent 72%)",
                   }}
                   animate={{ scale: [0.85, 1.2, 0.85], opacity: [0.4, 1, 0.4] }}
-                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 2.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
                 <motion.span
                   className="inline-flex"
@@ -136,8 +139,14 @@ export function Nav() {
                       },
                     }}
                   >
-                    <path d="M-8 8L8 7.25L24 8L8 8.75Z" fill="rgba(240,190,60,0.32)" />
-                    <path d="M8-8L8.75 8L8 24L7.25 8Z" fill="rgba(240,190,60,0.32)" />
+                    <path
+                      d="M-8 8L8 7.25L24 8L8 8.75Z"
+                      fill="rgba(240,190,60,0.32)"
+                    />
+                    <path
+                      d="M8-8L8.75 8L8 24L7.25 8Z"
+                      fill="rgba(240,190,60,0.32)"
+                    />
                     <path
                       d="M8 1L9.8 5.6L14.7 5.8L10.9 8.9L12.1 13.7L8 11L3.9 13.7L5.1 8.9L1.3 5.8L6.2 5.6Z"
                       fill="white"
@@ -272,7 +281,6 @@ export function Nav() {
             </ul>
           </nav>
         </div>
-
       </div>
 
       {/* ────────── MOBILE FULL-SCREEN OVERLAY ────────── */}
