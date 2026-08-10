@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Outlet,
+  useLocation,
 } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Nav } from "./components/Nav";
@@ -13,7 +14,8 @@ import { AboutPage } from "./pages/About/AboutPage";
 import { ContactPage } from "./pages/Contact/ContactPage";
 import { BlogListPage } from "./pages/Blog/BlogListPage";
 import { BlogPostPage } from "./pages/Blog/BlogPostPage";
-// Lazy — visualizer pages are heavy and rarely the landing page.
+
+// Lazy, visualizer pages are heavy and rarely the landing page.
 const EventLoopPage = lazy(() =>
   import("./pages/EventLoop/EventLoopPage").then((m) => ({
     default: m.EventLoopPage,
@@ -29,11 +31,27 @@ const ClosuresPage = lazy(() =>
     default: m.ClosuresPage,
   }))
 );
+const SpaceScene = lazy(() =>
+  import("./components/SpaceScene").then((m) => ({ default: m.SpaceScene }))
+);
+
+const SPACE_ROUTES = new Set(["/", "/about"]);
 
 function Layout() {
+  const { pathname } = useLocation();
   return (
     <div className="relative min-h-[100dvh]">
       <ScrollRestoration />
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          visibility: SPACE_ROUTES.has(pathname) ? "visible" : "hidden",
+        }}
+      >
+        <Suspense fallback={null}>
+          <SpaceScene />
+        </Suspense>
+      </div>
       <Nav />
       <Suspense fallback={null}>
         <Outlet />

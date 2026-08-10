@@ -12,9 +12,6 @@ import { StatCard } from "./StatCard";
 import { FeatureCard } from "./FeatureCard";
 import { PageMeta } from "../../components/PageMeta";
 
-const SpaceScene = lazy(() =>
-  import("../../components/SpaceScene").then((m) => ({ default: m.SpaceScene }))
-);
 const Globe = lazy(() =>
   import("../../components/Globe").then((m) => ({ default: m.Globe }))
 );
@@ -42,12 +39,6 @@ export function HomePage() {
         description="Interactive JavaScript explainers built by a developer who codes on the road."
         path="/"
       />
-
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <Suspense fallback={null}>
-          <SpaceScene />
-        </Suspense>
-      </div>
 
       {/* ────────── HERO ────────── */}
       <section className="relative z-10 min-h-[100dvh] flex items-center justify-center overflow-hidden">
@@ -162,12 +153,12 @@ export function HomePage() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 border border-white/[0.06] rounded-xl overflow-hidden">
           <ScrollReveal delay={0}>
             <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
-              <StatCard value="27" label={t("home.stats.countries")} />
+              <StatCard value="8y" label={t("home.stats.writingJs")} />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
-              <StatCard value="8y" label={t("home.stats.writingJs")} />
+              <StatCard value="50+" label={t("home.stats.projects")} />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
@@ -177,7 +168,7 @@ export function HomePage() {
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
             <div className="p-8 md:p-10">
-              <StatCard value="1k+" label={t("home.stats.cigarettes")} />
+              <StatCard value="27" label={t("home.stats.countries")} />
             </div>
           </ScrollReveal>
         </div>
@@ -251,11 +242,6 @@ type StoryPanelProps = {
   heading: React.ReactNode;
 };
 
-/**
- * A single story panel. Fades and slides in/out on a dedicated slice of scroll
- * progress. Non-overlapping ranges prevent the double-text unreadability that
- * naive opacity crossfades produce.
- */
 function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
   const [enter, exit] = range;
   const span = exit - enter;

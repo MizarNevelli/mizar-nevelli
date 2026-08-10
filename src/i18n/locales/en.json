@@ -52,13 +52,13 @@
       "writingJs": "Writing JS",
       "coffees": "Coffees",
       "eventLoop": "Event loop",
-      "cigarettes": "Hours & Cigarettes"
+      "projects": "Projects"
     },
     "explainers": {
       "eyebrow": "Explainers",
       "line1": "The parts of JavaScript",
       "line2": "that deserve a picture.",
-      "line3": "During the various interviews I have had so far, I have often been asked questions about similar or interconnected concepts. I decided to create a visualization of these concepts to better understand how they work and to demonstrate my interest and commitment to the subject to future interviewers."
+      "line3": "During the various interviews I have had so far, I have often been asked questions about these JavaScript concepts. I decided to create a visualization of these concepts to better understand how they work and to demonstrate my interest and commitment to the subject to future interviewers."
     },
     "features": {
       "eventLoop": {
