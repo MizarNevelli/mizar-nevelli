@@ -1,5 +1,5 @@
+import { THRESHOLD } from "../../../constants";
 import type { Trip, RiskWindow, CountryRiskResult } from "../types";
-import { THRESHOLD } from "../types";
 
 // ── Primitives ────────────────────────────────────────────────────────────────
 

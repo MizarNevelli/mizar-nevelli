@@ -2,14 +2,15 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ContactCard } from "./ContactCard";
 import { PageMeta } from "../../components/PageMeta";
-
-const EMAIL = "mizarnevelli@gmail.com";
-const WHATSAPP_NUMBER = "393425021651";
-const WHATSAPP_DISPLAY = "+39 342 502 1651";
-const GITHUB_URL = "https://github.com/MizarNevelli";
-const GITHUB_HANDLE = "@MizarNevelli";
-const LINKEDIN_URL = "https://www.linkedin.com/in/mizar-nevelli/";
-const LINKEDIN_HANDLE = "Mizar Nevelli";
+import {
+  EMAIL,
+  GITHUB_HANDLE,
+  GITHUB_URL,
+  LINKEDIN_HANDLE,
+  LINKEDIN_URL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_NUMBER,
+} from "../../constants";
 
 export function ContactPage() {
   const { t } = useTranslation();

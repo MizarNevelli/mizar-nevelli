@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mizarnevelli.vercel.app/sitemap.xml
+Sitemap: https://www.mizarnevelli.com/sitemap.xml

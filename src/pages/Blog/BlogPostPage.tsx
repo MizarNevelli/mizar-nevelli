@@ -5,8 +5,7 @@ import type { Post, PostFrontmatter } from "./types";
 import { PageMeta } from "../../components/PageMeta";
 import { formatDate } from "../../utils/format";
 
-const SITE_URL =
-  import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
+import { SITE_URL } from "../../constants";
 
 const modules = import.meta.glob<{
   default: React.ComponentType;

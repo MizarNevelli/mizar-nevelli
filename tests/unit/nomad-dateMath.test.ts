@@ -5,7 +5,7 @@ import {
   maxDaysInRollingWindow,
   computeResidencyRisk,
 } from "../../src/pages/NomadTaxCalculator/utils/dateMath";
-import { THRESHOLD } from "../../src/pages/NomadTaxCalculator/types";
+import { THRESHOLD } from "../../src/constants";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 

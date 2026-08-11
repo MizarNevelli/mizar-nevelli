@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type { CountryRiskResult } from "../types";
-import { THRESHOLD } from "../types";
 import { countryName } from "../utils/countryName";
+import { THRESHOLD } from "../../../constants";
 
 type Props = {
   result: CountryRiskResult;
@@ -17,8 +17,8 @@ export function CountryRiskCard({ result }: Props) {
   const barColor = atRisk
     ? "bg-red-500"
     : pct >= 70
-    ? "bg-yellow-500"
-    : "bg-accent";
+      ? "bg-yellow-500"
+      : "bg-accent";
 
   return (
     <div
