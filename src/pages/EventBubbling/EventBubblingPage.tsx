@@ -104,7 +104,7 @@ export function EventBubblingPage() {
         : "";
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
+    <main className="pt-24 md:pt-32 pb-24 px-4 md:px-6 max-w-6xl mx-auto overflow-x-hidden">
       <PageMeta
         title="Event Bubbling"
         description="See how DOM events propagate through the tree, step by step."
@@ -177,14 +177,14 @@ export function EventBubblingPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-8 items-start">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-8 items-start">
         <NestedBoxes
           activeLayer={activeLayer}
           phase={phase}
           onClickTarget={start}
           idle={status === "idle"}
         />
-        <div className="glass rounded-3xl p-6 min-h-[420px]">
+        <div className="glass rounded-3xl p-6 min-h-[200px] md:min-h-[420px]">
           <h3 className="text-white font-medium mb-4">
             {t("eventBubbling.log.title")}
           </h3>
@@ -215,7 +215,7 @@ export function EventBubblingPage() {
                         : "rgba(255,255,255,0)",
                   }}
                   transition={{ duration: 0.3 }}
-                  className="flex items-center gap-3 rounded-lg px-2 py-1"
+                  className="flex items-center gap-3 rounded-lg px-2 py-1 min-w-0 overflow-hidden"
                 >
                   <PhaseBadge phase={entry.phase} />
                   <span className="text-white/90">{entry.layer}</span>
@@ -255,7 +255,7 @@ export function EventBubblingPage() {
           onPause={pause}
           onReset={reset}
         />
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex flex-wrap justify-center items-center gap-2 text-sm">
           <button
             onClick={stepBack}
             disabled={status === "idle" || step === 0}
@@ -365,11 +365,11 @@ function NestedBoxes({
       animate={{
         boxShadow:
           activeLayer === name
-            ? `0 0 0 3px ${glow}, 0 0 50px ${glow}`
-            : "0 0 0 1px rgba(255,255,255,0.08)",
+            ? `inset 0 0 0 2px ${glow}`
+            : "inset 0 0 0 1px rgba(255,255,255,0.08)",
       }}
       transition={{ duration: 0.35 }}
-      className={`rounded-2xl p-6 relative ${extraClass}`}
+      className={`rounded-xl md:rounded-2xl p-3 md:p-6 relative ${extraClass}`}
     >
       <span className="absolute top-2 left-3 text-xs font-mono text-white/40">
         {name}
@@ -378,46 +378,49 @@ function NestedBoxes({
     </motion.div>
   );
 
-  return layer(
-    "window",
-    layer(
-      "document",
-      layer(
-        "body",
+  return (
+    <div className="overflow-hidden rounded-xl md:rounded-2xl mx-1 md:mx-0">
+      {layer(
+        "window",
         layer(
-          "#outer",
+          "document",
           layer(
-            "#middle",
-            <motion.button
-              onClick={onClickTarget}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              animate={{
-                boxShadow:
-                  activeLayer === "#inner"
-                    ? `0 0 0 3px ${glow}, 0 0 50px ${glow}`
-                    : idle
-                      ? "0 0 0 1px rgba(212,160,23,0.5), 0 0 30px rgba(212,160,23,0.25)"
-                      : "0 0 0 1px rgba(255,255,255,0.15)",
-              }}
-              transition={{ duration: 0.35 }}
-              className="w-full rounded-2xl bg-accent/20 text-white py-8 px-4 mt-6 font-medium relative"
-            >
-              <span className="absolute top-2 left-3 text-xs font-mono text-white/60">
-                #inner
-              </span>
-              {idle
-                ? t("eventBubbling.innerButton.idle")
-                : t("eventBubbling.innerButton.default")}
-            </motion.button>,
-            "mt-6 bg-white/[0.02]"
+            "body",
+            layer(
+              "#outer",
+              layer(
+                "#middle",
+                <motion.button
+                  onClick={onClickTarget}
+                  whileTap={{ scale: 0.97 }}
+                  animate={{
+                    boxShadow:
+                      activeLayer === "#inner"
+                        ? `inset 0 0 0 2px ${glow}`
+                        : idle
+                          ? "inset 0 0 0 1px rgba(212,160,23,0.5)"
+                          : "0 0 0 1px rgba(255,255,255,0.15)",
+                  }}
+                  transition={{ duration: 0.35 }}
+                  className="w-full rounded-xl md:rounded-2xl bg-accent/20 text-white py-7 md:py-8 px-4 mt-3 md:mt-6 font-medium relative"
+                >
+                  <span className="absolute top-2 left-3 text-xs font-mono text-white/60">
+                    #inner
+                  </span>
+                  {idle
+                    ? t("eventBubbling.innerButton.idle")
+                    : t("eventBubbling.innerButton.default")}
+                </motion.button>,
+                "mt-3 md:mt-6 bg-white/[0.02]"
+              ),
+              "mt-3 md:mt-6 bg-white/[0.02]"
+            ),
+            "mt-3 md:mt-6 bg-white/[0.02]"
           ),
-          "mt-6 bg-white/[0.02]"
+          "mt-3 md:mt-6 bg-white/[0.02]"
         ),
-        "mt-6 bg-white/[0.02]"
-      ),
-      "mt-6 bg-white/[0.02]"
-    ),
-    "bg-white/[0.02]"
+        "bg-white/[0.02]"
+      )}
+    </div>
   );
 }

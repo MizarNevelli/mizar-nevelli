@@ -198,7 +198,7 @@ export function ClosuresPage() {
           onPause={pause}
           onReset={reset}
         />
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex flex-wrap justify-center items-center gap-2 text-sm">
           <button
             onClick={stepBack}
             disabled={status === "idle" || step === 0}

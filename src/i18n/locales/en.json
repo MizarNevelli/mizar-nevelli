@@ -205,7 +205,7 @@
       "listener": "listener ({{phase}})"
     },
     "innerButton": {
-      "idle": "Click me to fire an event",
+      "idle": "Click to fire an event",
       "default": "Click me"
     },
     "idleNarration": "Ready. Click the inner box to fire an event and trace its journey.",

@@ -109,7 +109,7 @@ export function SpeedControl({
   const { t } = useTranslation();
   const options: Speed[] = ["slow", "normal", "fast"];
   return (
-    <div className="border border-white/15 rounded-lg p-1 flex items-center text-xs ml-2">
+    <div className="border border-white/15 rounded-lg p-1 flex items-center text-xs">
       {options.map((s) => (
         <button
           key={s}
