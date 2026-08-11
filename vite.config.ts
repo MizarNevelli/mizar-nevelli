@@ -15,7 +15,7 @@ import {
 import { join, extname } from "path";
 import sharp from "sharp";
 
-const SITE_URL = process.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
+const SITE_URL = process.env.VITE_SITE_URL ?? "https://www.mizarnevelli.com";
 const DEFAULT_OG = `${SITE_URL}/og.png`;
 
 type RouteMeta = {
