@@ -4,11 +4,12 @@ Personal portfolio and JavaScript explainer site. Built with React 19, Vite, Thr
 
 ## What it is
 
-Three things in one:
+Four things in one:
 
 1. A portfolio — who I am, where I've been, what I work with
 2. A set of interactive JavaScript explainers (event loop, event bubbling, closures) with step-by-step visualizers
 3. A travel blog, written in MDX, no CMS, published by pushing to git
+4. A Nomad Tax Calculator — tracks days per country against the 183-day rolling window rule, persisted in localStorage
 
 ## Stack
 
@@ -46,6 +47,7 @@ src/
     EventLoop/            # interactive visualizer
     EventBubbling/        # interactive visualizer
     Closures/             # interactive visualizer
+    NomadTaxCalculator/   # 183-day rolling window calculator; pure logic in utils/dateMath.ts
     Contact/
   i18n/
     locales/              # en.json, it.json
@@ -129,17 +131,18 @@ npm run test:e2e:ui     # interactive UI
 
 **What's covered:**
 
-| Suite | File                                     | What it guards                                                        |
-| ----- | ---------------------------------------- | --------------------------------------------------------------------- |
-| Unit  | `tests/unit/format.test.ts`              | `formatDate` / `formatOrdinal` edge cases                             |
-| Unit  | `tests/unit/closures-scenarios.test.ts`  | Scenario data integrity, `forVar` → all `3`, `forLet` → `0,1,2`       |
-| Unit  | `tests/unit/eventloop-scenarios.test.ts` | Microtask drains before macrotask, narration count ≡ timeline length  |
-| Unit  | `tests/unit/closures-safestep.test.ts`   | Regression: step overflow on scenario switch (the `frame.line` crash) |
-| E2E   | `tests/e2e/closures.spec.ts`             | Run / Pause / Reset flow, scenario-switch crash regression            |
-| E2E   | `tests/e2e/navigation.spec.ts`           | All routes load without JS errors                                     |
-| E2E   | `tests/e2e/language.spec.ts`             | EN/IT switch, localStorage persistence                                |
+| Suite | File                                       | What it guards                                                        |
+| ----- | ------------------------------------------ | --------------------------------------------------------------------- |
+| Unit  | `tests/unit/format.test.ts`                | `formatDate` / `formatOrdinal` edge cases                             |
+| Unit  | `tests/unit/closures-scenarios.test.ts`    | Scenario data integrity, `forVar` → all `3`, `forLet` → `0,1,2`       |
+| Unit  | `tests/unit/eventloop-scenarios.test.ts`   | Microtask drains before macrotask, narration count ≡ timeline length  |
+| Unit  | `tests/unit/closures-safestep.test.ts`     | Regression: step overflow on scenario switch (the `frame.line` crash) |
+| Unit  | `tests/unit/nomad-dateMath.test.ts`        | Sliding window algorithm — boundary conditions, cross-year stays, multi-cluster worst-case selection |
+| E2E   | `tests/e2e/closures.spec.ts`               | Run / Pause / Reset flow, scenario-switch crash regression            |
+| E2E   | `tests/e2e/navigation.spec.ts`             | All routes load without JS errors                                     |
+| E2E   | `tests/e2e/language.spec.ts`               | EN/IT switch, localStorage persistence                                |
 
-**What's deliberately not tested:** Framer Motion animations (timing = flaky), Three.js / WebGL canvas (not testable in jsdom), scroll-driven effects.
+**What's deliberately not tested:** Framer Motion animations (timing = flaky), Three.js / WebGL canvas (not testable in jsdom), scroll-driven effects, `Intl.DisplayNames` country names (browser API, not application logic).
 
 ## License
 

@@ -86,6 +86,12 @@ function collectRoutes(root: string): RouteMeta[] {
       description:
         "Functions that carry their scope — an interactive guide to JavaScript closures.",
     },
+    {
+      path: "/nomad-tax",
+      title: "Nomad Tax Calculator",
+      description:
+        "Track how many days you've spent in each country and find out if you're at risk of triggering tax residency.",
+    },
   ];
 
   // Auto-discover blog posts from MDX frontmatter
@@ -231,6 +237,7 @@ export default defineConfig({
         "/event-loop",
         "/event-bubbling",
         "/closures",
+        "/nomad-tax",
         // blog slugs are added automatically by staticMeta — sitemap still needs manual additions
         "/blog/portugal-2022",
       ],
