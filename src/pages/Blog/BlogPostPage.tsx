@@ -123,11 +123,19 @@ export function BlogPostPage() {
       {/* Cover image — absolutely positioned, bleeds behind title and into prose */}
       {frontmatter.cover && (
         <div className="absolute inset-x-0 top-0 h-[92vh] overflow-hidden pointer-events-none">
-          <img
-            src={frontmatter.cover}
-            alt={frontmatter.title}
-            className="w-full h-full object-cover object-center"
-          />
+          <picture>
+            {frontmatter.coverDesktop && (
+              <source
+                media="(min-width: 768px)"
+                srcSet={frontmatter.coverDesktop}
+              />
+            )}
+            <img
+              src={frontmatter.cover}
+              alt={frontmatter.title}
+              className="w-full h-full object-cover object-center"
+            />
+          </picture>
           <div
             className="absolute inset-0"
             style={{
