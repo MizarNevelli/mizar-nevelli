@@ -35,15 +35,17 @@ export function BlogListPage() {
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
           {t("blog.eyebrow")}
         </p>
-        <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-white text-balance">
+        <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-balance">
           {t("blog.titleLine1")}
           <br />
           <span className="text-white/35">{t("blog.titleLine2")}</span>
         </h1>
-        <div className="md:max-w-[40vw] mt-2">{t("blog.subtitle")}</div>
+        <div className="md:max-w-[40vw] mt-2 mb-2 md:mb-5">
+          {t("blog.subtitle")}
+        </div>
 
         {/* Post list */}
-        <ul className="mt-5 flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <ul className="flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {posts.map((post, i) => (
             <li key={post.slug} className="border-t border-white/[0.06]">
               <Link
