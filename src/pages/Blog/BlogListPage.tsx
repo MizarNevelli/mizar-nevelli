@@ -24,7 +24,7 @@ const posts: Post[] = Object.entries(modules)
 export function BlogListPage() {
   const { t, i18n } = useTranslation();
   return (
-    <main className="relative h-[100dvh] bg-ink-950 flex flex-col overflow-hidden pt-32 px-6">
+    <main className="relative h-[100dvh] bg-ink-950 flex flex-col overflow-hidden pt-24 md:pt-32 px-6">
       <PageMeta
         title="Blog"
         description="Field notes from the road. Travel dispatches from a remote JavaScript engineer."

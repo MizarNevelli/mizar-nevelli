@@ -436,7 +436,7 @@
     "empty": "Nothing here yet.",
     "postNotFound": "Post not found.",
     "backToList": "Go back to list",
-    "subtitle": "I regularly update these posts with the places I visit that leave the biggest impression on me. All articles are written by hand, and I use LLMs only to help with formatting the .mdx files."
+    "subtitle": "I regularly update these posts with the places I visit, all articles are written by hand, and I use LLMs only to help with formatting."
   },
   "nomadTax": {
     "meta": {

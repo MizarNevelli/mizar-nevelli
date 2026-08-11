@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Nav } from "./components/Nav";
 import { HomePage } from "./pages/Home/HomePage";
 import { AboutPage } from "./pages/About/AboutPage";
@@ -78,5 +79,10 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Analytics />
+    </>
+  );
 }
