@@ -5,6 +5,7 @@
     "js": "JS",
     "jsFeatures": "Feature JS",
     "blog": "Blog",
+    "nomadTax": "Nomad Tax",
     "contact": "Contatti",
     "features": {
       "eventLoop": {
@@ -18,6 +19,10 @@
       "closures": {
         "label": "Closure",
         "description": "Funzioni che si portano dietro il proprio ambito"
+      },
+      "nomadTax": {
+        "label": "Nomad Tax",
+        "description": "Calcolatore rischio residenza fiscale"
       }
     },
     "language": "Lingua"
@@ -431,5 +436,50 @@
     "empty": "Ancora niente qui.",
     "postNotFound": "Post non trovato.",
     "backToList": "Torna alla lista"
+  },
+  "nomadTax": {
+    "meta": {
+      "title": "Calcolatore Nomad Tax",
+      "description": "Monitora i giorni trascorsi in ogni paese e scopri se rischi di innescare la residenza fiscale."
+    },
+    "eyebrow": "Strumento",
+    "titleLine1": "Nomad Tax",
+    "titleLine2": "Calculator",
+    "subtitle": "La maggior parte dei paesi applica la soglia di residenza fiscale a 183 giorni — ma il conteggio avviene su una finestra mobile di 365 giorni, non sull'anno solare. Aggiungi i tuoi viaggi e vedi dove sei davvero.",
+    "residence": {
+      "question": "Dove risiedi attualmente?",
+      "hint": "Il tuo paese di residenza è escluso dai calcoli — sei già residente lì.",
+      "change": "Cambia"
+    },
+    "addTripLabel": "Aggiungi viaggio",
+    "tripsLabel": "Viaggi",
+    "riskLabel": "Analisi del rischio",
+    "emptyResults": "Aggiungi viaggi per vedere la tua esposizione.",
+    "disclaimer": "Questo strumento è puramente informativo. Le regole di residenza fiscale variano per paese e situazione individuale. Consulta sempre un professionista fiscale qualificato prima di prendere decisioni.",
+    "form": {
+      "countryPlaceholder": "Paese",
+      "errorFillAll": "Compila tutti i campi.",
+      "errorEndDate": "La data di fine deve essere successiva alla data di inizio.",
+      "addButton": "Aggiungi viaggio"
+    },
+    "tripList": {
+      "empty": "Nessun viaggio ancora. Aggiungine uno sopra.",
+      "removeAriaLabel": "Rimuovi viaggio",
+      "clearAll": "Cancella tutto"
+    },
+    "summary": {
+      "atRiskTitle": "Soglia di residenza fiscale superata — {{countries}}",
+      "atRiskBody": "183 giorni superati in una finestra mobile di 365 giorni. Consulta un professionista fiscale prima della prossima dichiarazione.",
+      "warningTitle": "Attenzione — {{countries}}",
+      "warningBody": "Sei sulla strada per raggiungere 183 giorni. Ogni giorno aggiuntivo conta.",
+      "noRisk_one": "Nessun rischio di residenza fiscale rilevato in {{count}} paese.",
+      "noRisk_other": "Nessun rischio di residenza fiscale rilevato in {{count}} paesi."
+    },
+    "card": {
+      "daysTotal": "{{count}} giorni totali",
+      "atRiskBadge": "A rischio",
+      "barLabel": "{{days}} / {{threshold}} giorni nella finestra peggiore di 365 giorni",
+      "worstWindow": "Finestra peggiore: {{start}} → {{end}}"
+    }
   }
 }

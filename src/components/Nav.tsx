@@ -12,11 +12,12 @@ const JS_FEATURE_KEYS = [
   { to: "/closures", key: "closures" },
 ] as const;
 
-type TopLinkKey = "home" | "about" | "blog" | "contact";
+type TopLinkKey = "home" | "about" | "blog" | "nomadTax" | "contact";
 const TOP_LINKS: Array<{ to: string; key: TopLinkKey; end?: boolean }> = [
   { to: "/", key: "home", end: true },
   { to: "/about", key: "about" },
   { to: "/blog", key: "blog" },
+  { to: "/nomad-tax", key: "nomadTax" },
   { to: "/contact", key: "contact" },
 ];
 

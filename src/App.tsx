@@ -14,6 +14,7 @@ import { AboutPage } from "./pages/About/AboutPage";
 import { ContactPage } from "./pages/Contact/ContactPage";
 import { BlogListPage } from "./pages/Blog/BlogListPage";
 import { BlogPostPage } from "./pages/Blog/BlogPostPage";
+import { NomadTaxCalculatorPage } from "./pages/NomadTaxCalculator/NomadTaxCalculatorPage";
 
 // Lazy, visualizer pages are heavy and rarely the landing page.
 const EventLoopPage = lazy(() =>
@@ -71,6 +72,7 @@ const router = createBrowserRouter(
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<BlogListPage />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />
+      <Route path="/nomad-tax" element={<NomadTaxCalculatorPage />} />
     </Route>
   )
 );

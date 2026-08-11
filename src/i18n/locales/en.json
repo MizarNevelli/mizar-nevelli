@@ -5,6 +5,7 @@
     "js": "JS",
     "jsFeatures": "JS features",
     "blog": "Blog",
+    "nomadTax": "Nomad Tax",
     "contact": "Contact",
     "features": {
       "eventLoop": {
@@ -18,6 +19,10 @@
       "closures": {
         "label": "Closures",
         "description": "Functions that carry their scope with them"
+      },
+      "nomadTax": {
+        "label": "Nomad Tax",
+        "description": "183 day rolling window risk calculator"
       }
     },
     "language": "Language"
@@ -155,7 +160,7 @@
           "chain() is queued as a microtask.",
           "Call stack empties. Microtasks always run first.",
           "'micro' is logged.",
-          "chain() re-schedules itself — new microtask.",
+          "chain() reschedules itself, new microtask.",
           "Loop drains microtasks before touching the timer again…",
           "'micro' is logged again — the timer keeps waiting.",
           "This is how a runaway promise chain can starve macrotasks."
@@ -432,5 +437,50 @@
     "postNotFound": "Post not found.",
     "backToList": "Go back to list",
     "subtitle": "I regularly update these posts with the places I visit that leave the biggest impression on me. All articles are written by hand, and I use LLMs only to help with formatting the .mdx files."
+  },
+  "nomadTax": {
+    "meta": {
+      "title": "Nomad Tax Calculator",
+      "description": "Track how many days you've spent in each country and find out if you're at risk of triggering tax residency."
+    },
+    "eyebrow": "Tool",
+    "titleLine1": "Nomad Tax",
+    "titleLine2": "Calculator",
+    "subtitle": "Most countries trigger tax residency at 183 days, but the clock runs on a rolling 365 day window, not a calendar year. Add your trips and see where you actually stand.",
+    "residence": {
+      "question": "Where do you currently reside?",
+      "hint": "Your home country is excluded from risk calculations, you're already a resident there.",
+      "change": "Change"
+    },
+    "addTripLabel": "Add trip",
+    "tripsLabel": "Trips",
+    "riskLabel": "Risk assessment",
+    "emptyResults": "Add trips to see your exposure.",
+    "disclaimer": "This tool is for informational purposes only. Tax residency rules vary by country and individual circumstances. Always consult a qualified tax professional before making decisions.",
+    "form": {
+      "countryPlaceholder": "Country",
+      "errorFillAll": "Fill all fields.",
+      "errorEndDate": "End date must be after start date.",
+      "addButton": "Add trip"
+    },
+    "tripList": {
+      "empty": "No trips yet. Add one above.",
+      "removeAriaLabel": "Remove trip",
+      "clearAll": "Clear all"
+    },
+    "summary": {
+      "atRiskTitle": "Tax residency threshold exceeded, {{countries}}",
+      "atRiskBody": "183 days crossed in a rolling 365 day window. Consult a tax professional before your next filing.",
+      "warningTitle": "Watch out, {{countries}}",
+      "warningBody": "You're on track to hit 183 days. Every additional day counts.",
+      "noRisk_one": "No residency risk detected across {{count}} country.",
+      "noRisk_other": "No residency risk detected across {{count}} countries."
+    },
+    "card": {
+      "daysTotal": "{{count}} days total",
+      "atRiskBadge": "At risk",
+      "barLabel": "{{days}} / {{threshold}} days in worst 365 day window",
+      "worstWindow": "Worst window: {{start}} → {{end}}"
+    }
   }
 }
