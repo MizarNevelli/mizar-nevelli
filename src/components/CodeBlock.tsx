@@ -4,11 +4,6 @@ type Props = {
   highlightLine?: number;
 };
 
-/**
- * Minimal monospace code block with a single highlighted line for step-through
- * visualizations. Intentionally not full syntax highlighting — the surrounding
- * animation is what carries the meaning.
- */
 export function CodeBlock({ code, highlightLine }: Props) {
   const lines = code.split("\n");
   return (

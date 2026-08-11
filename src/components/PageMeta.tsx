@@ -1,4 +1,5 @@
-const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
+const SITE_URL =
+  import.meta.env.VITE_SITE_URL ?? "https://mizarnevelli.vercel.app";
 
 type Props = {
   title: string;
