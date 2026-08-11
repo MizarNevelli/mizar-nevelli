@@ -76,13 +76,13 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto mt-4 max-w-6xl px-4 flex items-start justify-between gap-3">
-        {/* ── LEFT PILL — logo + mobile burger ── */}
+        {/* ── LEFT PILL — logo ── */}
         <div className="relative flex-1 md:flex-none">
           <div
             aria-hidden
             className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
           />
-          <nav className="glass rounded-full px-5 py-2.5 flex items-center justify-between md:justify-start gap-3">
+          <nav className="glass rounded-full px-5 h-14 flex items-center gap-3">
             <NavLink to="/" className="flex items-center gap-2 group">
               <span
                 className="relative inline-flex items-center justify-center shrink-0"
@@ -159,27 +159,39 @@ export function Nav() {
                 Mizar
               </span>
             </NavLink>
+          </nav>
+        </div>
 
-            {/* Mobile burger lives inside the logo pill */}
+        {/* ── RIGHT PILL mobile — burger only ── */}
+        <div className="relative md:hidden">
+          <div
+            aria-hidden
+            className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
+          />
+          <nav className="glass rounded-full px-3 h-14 flex items-center justify-center">
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
               aria-expanded={mobileOpen}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              className="md:hidden relative w-9 h-9 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+              className="w-9 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+              style={{
+                touchAction: "manipulation",
+                WebkitTapHighlightColor: "transparent",
+              }}
             >
               <BurgerIcon open={mobileOpen} />
             </button>
           </nav>
         </div>
 
-        {/* ── RIGHT PILL — links + language switcher (desktop only) ── */}
+        {/* ── RIGHT PILL desktop — links + language switcher ── */}
         <div className="relative hidden md:block">
           <div
             aria-hidden
             className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
           />
-          <nav className="glass rounded-full px-3 py-2.5">
+          <nav className="glass rounded-full px-3 h-14 flex items-center">
             <ul className="flex items-center gap-1 text-sm">
               {TOP_LINKS.map((link) => (
                 <li key={link.to}>
