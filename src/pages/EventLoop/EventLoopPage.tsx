@@ -31,11 +31,6 @@ const IDLE_FRAME: Frame = {
   macrotasks: [],
 };
 
-/**
- * Event Loop explainer. State machine:
- *   idle | running | paused | finished
- * Narration and scenario labels are pulled from i18n by scenario id + step.
- */
 export function EventLoopPage() {
   const { t } = useTranslation();
   const [scenarioId, setScenarioId] = useState<ScenarioId>("classic");
@@ -47,7 +42,6 @@ export function EventLoopPage() {
   const lastStep = scenario.timeline.length - 1;
   const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[step];
 
-  // Dynamic key path — cast around the strict typed t() to look up by index.
   const tx = t as (key: string) => string;
   const narration: string =
     status === "idle"
@@ -114,7 +108,6 @@ export function EventLoopPage() {
         </p>
       </header>
 
-      {/* Scenario picker */}
       <div className="mt-12 flex justify-center flex-wrap gap-2">
         {SCENARIO_IDS.map((id) => (
           <button
@@ -131,7 +124,6 @@ export function EventLoopPage() {
         ))}
       </div>
 
-      {/* Progress + status pill */}
       <div className="mt-8 max-w-5xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="eventLoop" />
@@ -166,7 +158,6 @@ export function EventLoopPage() {
         <EventLoopVisualizer frame={frame} />
       </div>
 
-      {/* Narration */}
       <div className="mt-8 min-h-[3.5rem] flex items-start justify-center">
         <AnimatePresence mode="wait">
           <motion.p
@@ -182,7 +173,6 @@ export function EventLoopPage() {
         </AnimatePresence>
       </div>
 
-      {/* Controls */}
       <div className="mt-8 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}

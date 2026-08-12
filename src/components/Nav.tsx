@@ -30,7 +30,6 @@ export function Nav() {
 
   const jsActive = JS_FEATURE_KEYS.some((f) => location.pathname === f.to);
 
-  // Close desktop JS dropdown on outside click + Escape.
   useEffect(() => {
     if (!jsOpen) return;
     const onPointer = (e: MouseEvent) => {
@@ -47,7 +46,6 @@ export function Nav() {
     };
   }, [jsOpen]);
 
-  // Close mobile menu on Escape.
   useEffect(() => {
     if (!mobileOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -57,7 +55,6 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  // Lock body scroll while the mobile overlay is open.
   useEffect(() => {
     if (!mobileOpen) return;
     const original = document.body.style.overflow;
@@ -67,7 +64,6 @@ export function Nav() {
     };
   }, [mobileOpen]);
 
-  // Route change closes everything.
   useEffect(() => {
     setJsOpen(false);
     setMobileOpen(false);
@@ -76,7 +72,6 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto mt-4 max-w-6xl px-4 flex items-start justify-between gap-3">
-        {/* ── LEFT PILL — logo ── */}
         <div className="relative flex-1 md:flex-none">
           <div
             aria-hidden
@@ -155,14 +150,13 @@ export function Nav() {
                   </motion.svg>
                 </motion.span>
               </span>
-              <span className="font-medium tracking-tight bg-gradient-to-r from-accent-soft via-white to-white bg-clip-text text-transparent">
+              <span className="font-medium tracking-widest bg-gradient-to-r from-accent-soft to-white bg-clip-text text-transparent">
                 Mizar
               </span>
             </NavLink>
           </nav>
         </div>
 
-        {/* ── RIGHT PILL mobile — burger only ── */}
         <div className="relative md:hidden">
           <div
             aria-hidden
@@ -185,7 +179,6 @@ export function Nav() {
           </nav>
         </div>
 
-        {/* ── RIGHT PILL desktop — links + language switcher ── */}
         <div className="relative hidden md:block">
           <div
             aria-hidden
@@ -296,7 +289,6 @@ export function Nav() {
         </div>
       </div>
 
-      {/* ────────── MOBILE FULL-SCREEN OVERLAY ────────── */}
       <AnimatePresence>
         {mobileOpen && (
           <MobileMenu

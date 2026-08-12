@@ -9,8 +9,8 @@ import {
   PrimaryControls,
   SpeedControl,
 } from "../VisualizerControls";
-
-type Phase = "capture" | "target" | "bubble";
+import { NestedBoxes, type Phase } from "./NestedBoxes";
+import { PhaseBadge } from "./PhaseBadge";
 type TraceEntry = {
   id: number;
   layer: string;
@@ -122,7 +122,6 @@ export function EventBubblingPage() {
         </p>
       </header>
 
-      {/* Toggles */}
       <div className="mt-10 flex justify-center flex-wrap gap-3 text-sm">
         <label className="border border-white/15 rounded-lg px-4 py-2 flex items-center gap-2 cursor-pointer">
           <input
@@ -150,7 +149,6 @@ export function EventBubblingPage() {
         </label>
       </div>
 
-      {/* Progress + status */}
       <div className="mt-8 max-w-5xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="eventBubbling" />
@@ -229,7 +227,6 @@ export function EventBubblingPage() {
         </div>
       </div>
 
-      {/* Narration */}
       <div className="mt-8 min-h-[3.5rem] flex items-start justify-center">
         <AnimatePresence mode="wait">
           <motion.p
@@ -245,7 +242,6 @@ export function EventBubblingPage() {
         </AnimatePresence>
       </div>
 
-      {/* Controls */}
       <div className="mt-8 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}
@@ -318,109 +314,4 @@ function buildTrace({
     if (!useCapture && layer === stopAt) break;
   }
   return entries;
-}
-
-function PhaseBadge({ phase }: { phase: Phase }) {
-  const styles: Record<Phase, string> = {
-    capture: "bg-sky-500/20 text-sky-300",
-    target: "bg-accent/30 text-accent-soft",
-    bubble: "bg-emerald-500/20 text-emerald-300",
-  };
-  const arrow: Record<Phase, string> = {
-    capture: "↓",
-    target: "◉",
-    bubble: "↑",
-  };
-  return (
-    <span className={`px-2 py-0.5 rounded text-xs ${styles[phase]}`}>
-      {arrow[phase]} {phase}
-    </span>
-  );
-}
-
-type NestedBoxesProps = {
-  activeLayer: string | null;
-  phase: Phase | null;
-  onClickTarget: () => void;
-  idle: boolean;
-};
-
-function NestedBoxes({
-  activeLayer,
-  phase,
-  onClickTarget,
-  idle,
-}: NestedBoxesProps) {
-  const { t } = useTranslation();
-  const phaseColor = (p: Phase | null) => {
-    if (!p) return "transparent";
-    if (p === "capture") return "rgba(56,189,248,0.55)";
-    if (p === "bubble") return "rgba(52,211,153,0.55)";
-    return "rgba(212,160,23,0.65)";
-  };
-  const glow = phaseColor(phase);
-
-  const layer = (name: string, children: React.ReactNode, extraClass = "") => (
-    <motion.div
-      animate={{
-        boxShadow:
-          activeLayer === name
-            ? `inset 0 0 0 2px ${glow}`
-            : "inset 0 0 0 1px rgba(255,255,255,0.08)",
-      }}
-      transition={{ duration: 0.35 }}
-      className={`rounded-xl md:rounded-2xl p-3 md:p-6 relative ${extraClass}`}
-    >
-      <span className="absolute top-2 left-3 text-xs font-mono text-white/40">
-        {name}
-      </span>
-      {children}
-    </motion.div>
-  );
-
-  return (
-    <div className="overflow-hidden rounded-xl md:rounded-2xl mx-1 md:mx-0">
-      {layer(
-        "window",
-        layer(
-          "document",
-          layer(
-            "body",
-            layer(
-              "#outer",
-              layer(
-                "#middle",
-                <motion.button
-                  onClick={onClickTarget}
-                  whileTap={{ scale: 0.97 }}
-                  animate={{
-                    boxShadow:
-                      activeLayer === "#inner"
-                        ? `inset 0 0 0 2px ${glow}`
-                        : idle
-                          ? "inset 0 0 0 1px rgba(212,160,23,0.5)"
-                          : "0 0 0 1px rgba(255,255,255,0.15)",
-                  }}
-                  transition={{ duration: 0.35 }}
-                  className="w-full rounded-xl md:rounded-2xl bg-accent/20 text-white py-7 md:py-8 px-4 mt-3 md:mt-6 font-medium relative"
-                >
-                  <span className="absolute top-2 left-3 text-xs font-mono text-white/60">
-                    #inner
-                  </span>
-                  {idle
-                    ? t("eventBubbling.innerButton.idle")
-                    : t("eventBubbling.innerButton.default")}
-                </motion.button>,
-                "mt-3 md:mt-6 bg-white/[0.02]"
-              ),
-              "mt-3 md:mt-6 bg-white/[0.02]"
-            ),
-            "mt-3 md:mt-6 bg-white/[0.02]"
-          ),
-          "mt-3 md:mt-6 bg-white/[0.02]"
-        ),
-        "bg-white/[0.02]"
-      )}
-    </div>
-  );
 }

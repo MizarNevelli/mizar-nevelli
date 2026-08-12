@@ -31,7 +31,6 @@ export function BlogListPage() {
         path="/blog"
       />
       <div className="max-w-5xl mx-auto w-full flex flex-col flex-1 min-h-0">
-        {/* Header */}
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
           {t("blog.eyebrow")}
         </p>
@@ -44,7 +43,6 @@ export function BlogListPage() {
           {t("blog.subtitle")}
         </div>
 
-        {/* Post list */}
         <ul className="flex-1 min-h-0 overflow-y-auto pb-10 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {posts.map((post, i) => (
             <li key={post.slug} className="border-t border-white/[0.06]">
@@ -53,7 +51,6 @@ export function BlogListPage() {
                 className="group flex items-start justify-between gap-6 py-10 hover:text-white transition-colors"
               >
                 <div className="flex-1 min-w-0 w-full relative pr-4">
-                  {/* Ghost ordinal */}
                   <span
                     aria-hidden
                     className="absolute -top-2 -left-1 text-[5rem] leading-none font-bold text-white/[0.04] select-none pointer-events-none tabular-nums"
@@ -75,7 +72,6 @@ export function BlogListPage() {
                   </p>
                 </div>
 
-                {/* Cover — fades in from the right */}
                 {post.frontmatter.cover && (
                   <div className="absolute inset-y-0 right-0 w-[45vw] hidden sm:block overflow-hidden pointer-events-none">
                     <img

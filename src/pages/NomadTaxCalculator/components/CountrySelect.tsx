@@ -63,7 +63,6 @@ export function CountrySelect({ value, onChange, exclude }: Props) {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Trigger */}
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -94,10 +93,8 @@ export function CountrySelect({ value, onChange, exclude }: Props) {
         </svg>
       </button>
 
-      {/* Dropdown */}
       {open && (
         <div className="absolute z-50 mt-1.5 w-full rounded-xl border border-white/10 bg-ink-900/95 backdrop-blur-xl shadow-2xl shadow-black/60 overflow-hidden">
-          {/* Search */}
           <div className="p-2 border-b border-white/[0.06]">
             <input
               ref={searchRef}
@@ -109,7 +106,6 @@ export function CountrySelect({ value, onChange, exclude }: Props) {
             />
           </div>
 
-          {/* List */}
           <ul
             ref={listRef}
             className="max-h-52 overflow-y-auto py-1 scrollbar-none [&::-webkit-scrollbar]:hidden"

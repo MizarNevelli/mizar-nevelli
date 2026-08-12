@@ -43,7 +43,6 @@ export function ClosuresPage() {
       ? t("closures.idleNarration")
       : tx(`closures.scenarios.${scenarioId}.narrations.${step}`);
 
-  // Accumulated console entries up to (and including) the current step.
   const consoleEntries = useMemo(() => {
     if (status === "idle") return [];
     return scenario.timeline
@@ -112,7 +111,6 @@ export function ClosuresPage() {
         </p>
       </header>
 
-      {/* Scenario picker */}
       <div className="mt-12 flex justify-center flex-wrap gap-2">
         {SCENARIO_IDS.map((id) => (
           <button
@@ -129,7 +127,6 @@ export function ClosuresPage() {
         ))}
       </div>
 
-      {/* Progress + status */}
       <div className="mt-8 max-w-5xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="closures" />
@@ -156,7 +153,6 @@ export function ClosuresPage() {
         </div>
       </div>
 
-      {/* Code + visualizer */}
       <div className="mt-8 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6 items-start">
         <CodeBlock
           code={scenario.code}
@@ -167,12 +163,10 @@ export function ClosuresPage() {
         <ClosuresVisualizer frame={frame} />
       </div>
 
-      {/* Console output */}
       <div className="mt-6">
         <Console entries={consoleEntries} />
       </div>
 
-      {/* Narration */}
       <div className="mt-8 min-h-[3.5rem] flex items-start justify-center">
         <AnimatePresence mode="wait">
           <motion.p
@@ -188,7 +182,6 @@ export function ClosuresPage() {
         </AnimatePresence>
       </div>
 
-      {/* Controls */}
       <div className="mt-8 flex flex-col items-center gap-4">
         <PrimaryControls
           status={status}

@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-
 import { Chapter } from "./Chapter";
+import { FreelanceSection } from "./FreelanceSection";
 import { OffKeyboard } from "./OffKeyboard";
 import { FamilySection } from "./FamilySection";
 import { StackGrid } from "./StackGrid";
@@ -18,15 +18,8 @@ const CHAPTER_KEYS = [
   "origin",
 ] as const;
 
-/**
- * About page — a long-scroll narrative told in seven chapters, with a
- * hobbies split, a stack survey, and a closing CTA. Every section fades in on
- * view; the chapter year rails stick to the viewport as their body scrolls.
- */
 export function AboutPage() {
   const { t } = useTranslation();
-
-  // Hero fades + drifts as user starts to scroll.
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
   const heroY = useTransform(scrollY, [0, 500], [0, -60]);
@@ -35,13 +28,10 @@ export function AboutPage() {
     <main className="relative">
       <PageMeta
         title="About"
-        description="The story behind the name — a developer, seven countries, eight years of JavaScript."
+        description="The story behind the name, a developer, eight years of JavaScript."
         path="/about"
       />
-      {/* ────────── HERO ────────── */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-        {/* Radial vignette — darkest exactly behind the centered text, fully
-           transparent at the corners so the starfield stays visible there. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -49,10 +39,8 @@ export function AboutPage() {
               "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(5,6,10,0.9) 0%, rgba(5,6,10,0.7) 30%, rgba(5,6,10,0) 75%)",
           }}
         />
-        {/* Extra fade at the bottom edge so the hero blends into the chapters. */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
 
-        {/* Labeled Mizar star — a single glowing dot in the corner. */}
         <div className="absolute top-[13%] sm:top-[22%] right-[5%] sm:right-[18%] md:flex flex-col items-end gap-1 pointer-events-none z-10">
           <div className="flex items-baseline gap-2">
             <span className="text-xs text-white/60 [text-shadow:_0_1px_10px_rgba(5,6,10,0.9)]">
@@ -113,9 +101,7 @@ export function AboutPage() {
         </motion.div>
       </section>
 
-      {/* ────────── CHAPTERS ────────── */}
       <section className="relative">
-        {/* Faint vertical thread down the left rail (desktop only) */}
         <div
           aria-hidden
           className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-[calc(50%+220px)] w-px bg-gradient-to-b from-transparent via-white/10 to-transparent pointer-events-none"
@@ -127,16 +113,11 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* ────────── FAMILY ────────── */}
+      <FreelanceSection />
       <FamilySection />
-
-      {/* ────────── STACK ────────── */}
       <StackGrid />
-
-      {/* ────────── OFF THE KEYBOARD ────────── */}
       <OffKeyboard />
 
-      {/* ────────── CLOSING CTA ────────── */}
       <section className="relative py-32 px-6 border-t border-white/10 overflow-hidden">
         <div className="relative max-w-5xl mx-auto text-center">
           <motion.p

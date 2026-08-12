@@ -20,13 +20,11 @@ export function HomePage() {
   const { t } = useTranslation();
   const globeSectionRef = useRef<HTMLElement>(null);
 
-  // Scroll progress *within* the pinned globe section (0 at entry, 1 at exit).
   const { scrollYProgress: globeProgress } = useScroll({
     target: globeSectionRef,
     offset: ["start start", "end end"],
   });
 
-  // Hero fades out as user starts to scroll (Apple hero pattern).
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const heroY = useTransform(scrollY, [0, 400], [0, -80]);
@@ -40,7 +38,6 @@ export function HomePage() {
         path="/"
       />
 
-      {/* ────────── HERO ────────── */}
       <section className="relative z-10 min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -72,10 +69,6 @@ export function HomePage() {
         </motion.div>
       </section>
 
-      {/* ────────── STICKY GLOBE STORY ──────────
-         Height is 400vh so each of the 3 panels gets ~one full viewport of
-         scroll (≈ real seconds of reading time). z-10 + no background means
-         the fixed starfield shows through for the full scroll distance. */}
       <section
         ref={globeSectionRef}
         className="relative z-10"
@@ -83,7 +76,6 @@ export function HomePage() {
       >
         <div className="sticky top-0 h-[100dvh] flex items-center overflow-hidden">
           <div className="mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl px-6 w-full">
-            {/* Globe — capped on mobile so it never overflows 100vh alongside the text */}
             <div className="relative order-2 md:order-1 mx-auto w-full max-w-[min(52dvh,100%)] md:max-w-none">
               <div
                 className="absolute -inset-20 blur-2xl pointer-events-none"
@@ -99,7 +91,6 @@ export function HomePage() {
               </div>
             </div>
 
-            {/* Panel column — three headings crossfade + slide */}
             <div className="relative order-1 md:order-2 h-56 md:h-96">
               <StoryPanel
                 progress={globeProgress}
@@ -141,14 +132,9 @@ export function HomePage() {
           </div>
         </div>
 
-        {/* Fade from stars into ink-950. Placed at the absolute bottom of the
-           400dvh section — not inside the sticky div — so it only scrolls
-           into view during the final portion of the globe scroll, never
-           visible at the top where it would look like a hard cut. */}
         <div className="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-b from-transparent to-ink-950 pointer-events-none" />
       </section>
 
-      {/* ────────── STATS ────────── */}
       <section className="relative z-10 bg-ink-950 py-28 px-6 border-t border-white/[0.07]">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 border border-white/[0.06] rounded-xl overflow-hidden">
           <ScrollReveal delay={0}>
@@ -174,7 +160,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ────────── EXPLAINERS ────────── */}
       <section className="relative z-10 bg-ink-950 py-28 px-6 border-t border-white/[0.07]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
@@ -234,9 +219,6 @@ export function HomePage() {
 
 type StoryPanelProps = {
   progress: MotionValue<number>;
-  /** [enter, exit] on the parent scroll progress. Panel is fully visible in
-   *  the middle 70% of the range and hard-crossfades in/out at the edges so
-   *  two panels never overlap while readable. */
   range: [number, number];
   eyebrow: string;
   heading: React.ReactNode;
@@ -254,8 +236,6 @@ function StoryPanel({ progress, range, eyebrow, heading }: StoryPanelProps) {
     [0, 1, 1, 0]
   );
 
-  // Slide up from below on enter, continue upward on exit — keeps panels
-  // spatially separated during the crossfade so text never stacks.
   const y = useTransform(
     progress,
     [enter, fadeIn, fadeOut, exit],

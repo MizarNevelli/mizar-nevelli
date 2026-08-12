@@ -52,13 +52,9 @@ export function FamilySection() {
                 alt="Akela Nevelli"
                 className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.78] contrast-[1.12] scale-[1.02]"
               />
-              {/* bottom fade → page background */}
               <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink-950 via-ink-950/50 to-transparent pointer-events-none" />
-              {/* top shadow */}
               <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-ink-950/60 to-transparent pointer-events-none" />
-              {/* warm accent glow at the base */}
               <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-accent/20 to-transparent pointer-events-none" />
-              {/* inset frame */}
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/[0.08] pointer-events-none" />
             </div>
           </div>

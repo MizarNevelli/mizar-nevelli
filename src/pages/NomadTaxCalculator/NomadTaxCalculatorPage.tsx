@@ -43,7 +43,6 @@ export function NomadTaxCalculatorPage() {
           {t("nomadTax.subtitle")}
         </p>
 
-        {/* Residence step */}
         {!residenceCountry ? (
           <div className="mb-12 max-w-sm">
             <p className="text-white font-medium mb-3">
@@ -71,10 +70,8 @@ export function NomadTaxCalculatorPage() {
           </div>
         )}
 
-        {/* Main grid — only shown after residence is set */}
         {residenceCountry && (
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-10">
-            {/* Left: input */}
             <div>
               <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">
                 {t("nomadTax.addTripLabel")}
@@ -95,7 +92,6 @@ export function NomadTaxCalculatorPage() {
               )}
             </div>
 
-            {/* Right: results */}
             <div>
               <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">
                 {t("nomadTax.riskLabel")}

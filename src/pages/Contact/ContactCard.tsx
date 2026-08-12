@@ -97,7 +97,6 @@ export function ContactCard({
           </span>
         </a>
 
-        {/* Compact CTA for narrow screens */}
         <a
           href={href}
           target={external ? "_blank" : undefined}

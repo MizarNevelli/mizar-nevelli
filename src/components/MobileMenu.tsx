@@ -66,7 +66,6 @@ export function MobileMenu({
             </MobileLink>
           ))}
 
-          {/* Flattened JS features */}
           <MobileLink delay={0.05 + topLinks.length * 0.06}>
             <div className="pt-4 border-t border-white/10">
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 font-mono mb-4">
@@ -108,7 +107,6 @@ export function MobileMenu({
         </MobileLink>
       </motion.div>
 
-      {/* After the scrollable div in DOM order so it sits on top of it */}
       <AnimatedCloseButton onClick={onClose} />
     </motion.div>
   );

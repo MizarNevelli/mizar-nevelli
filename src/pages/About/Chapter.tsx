@@ -19,7 +19,6 @@ export function Chapter({ chapterKey }: ChapterProps) {
       ref={ref}
       className="relative grid md:grid-cols-[minmax(0,220px)_minmax(0,1fr)] gap-6 md:gap-16 py-20 md:py-28"
     >
-      {/* Sticky year rail */}
       <aside className="md:sticky md:top-32 self-start">
         <div className="relative flex md:flex-col items-baseline md:items-start gap-4 md:gap-3 overflow-hidden">
           <span
@@ -38,7 +37,6 @@ export function Chapter({ chapterKey }: ChapterProps) {
         </div>
       </aside>
 
-      {/* Chapter body */}
       <div>
         <motion.p
           initial={{ opacity: 0, y: 12 }}

@@ -330,6 +330,17 @@
         "adjacent": "E, ogni tanto"
       }
     },
+    "freelance": {
+      "eyebrow": "Freelance",
+      "title": "Lavori selezionati.",
+      "homerisk": {
+        "client": "PCA Broker",
+        "name": "Homerisk",
+        "year": "2024 →",
+        "description": "Sistema di gestione per un intermediario assicurativo. Gestisce portafogli clienti, tracciamento delle polizze e flussi documentali su più linee di prodotto. Sviluppato da zero come unico frontend engineer.",
+        "badge": "Privato"
+      }
+    },
     "closing": {
       "eyebrow": "Al momento",
       "title": "location: undefined",

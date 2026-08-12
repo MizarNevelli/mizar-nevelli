@@ -330,6 +330,17 @@
         "adjacent": "And, occasionally"
       }
     },
+    "freelance": {
+      "eyebrow": "Freelance",
+      "title": "Selected work.",
+      "homerisk": {
+        "client": "PCA Broker",
+        "name": "Homerisk",
+        "year": "2026",
+        "description": "A management system for an insurance broker. Handles customers files and document workflows across multiple product lines. Starting from a prevoius developed read only poc i develoed the main logic behind leading the frontend.",
+        "badge": "Private"
+      }
+    },
     "closing": {
       "eyebrow": "Currently",
       "title": "location: undefined",

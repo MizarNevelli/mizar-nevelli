@@ -119,7 +119,6 @@ export function BlogPostPage() {
         }
         path={`/blog/${post.slug}`}
       />
-      {/* Cover image — absolutely positioned, bleeds behind title and into prose */}
       {frontmatter.cover && (
         <div className="absolute inset-x-0 top-0 h-[92vh] overflow-hidden pointer-events-none">
           <picture>
@@ -145,7 +144,6 @@ export function BlogPostPage() {
         </div>
       )}
 
-      {/* Title — floats over the image */}
       <div
         className="relative z-10 flex items-end px-6"
         style={{
@@ -164,9 +162,7 @@ export function BlogPostPage() {
         </div>
       </div>
 
-      {/* Metadata + prose — flows directly below, image already faded */}
       <div className="relative z-10 max-w-2xl mx-auto px-6 pt-8 pb-32">
-        {/* Back link + date */}
         <div className="flex items-center justify-between mb-12">
           <Link
             to="/blog"
@@ -182,7 +178,6 @@ export function BlogPostPage() {
           </time>
         </div>
 
-        {/* MDX content */}
         <MDXProvider
           components={components as Record<string, React.ComponentType>}
         >
