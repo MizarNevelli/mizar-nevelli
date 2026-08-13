@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { PlayIcon, PauseIcon, ReplayIcon } from "../components/Icons";
+import { PlayIcon, PauseIcon, ReplayIcon } from "./Icons";
 
 export type Status = "idle" | "running" | "paused" | "finished";
 export type Speed = "slow" | "normal" | "fast";

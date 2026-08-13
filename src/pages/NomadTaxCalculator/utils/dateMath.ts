@@ -1,4 +1,4 @@
-import { THRESHOLD } from "../../../constants";
+import { THRESHOLD } from "../../../utils/constants";
 import type { Trip, RiskWindow, CountryRiskResult } from "../types";
 
 function toDayNum(dateStr: string): number {

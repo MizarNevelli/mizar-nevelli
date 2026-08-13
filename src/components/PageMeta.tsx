@@ -1,4 +1,4 @@
-import { SITE_URL } from "../constants";
+import { SITE_URL } from "../utils/constants";
 
 type Props = {
   title: string;

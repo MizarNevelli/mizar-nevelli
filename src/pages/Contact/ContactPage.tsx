@@ -10,7 +10,7 @@ import {
   LINKEDIN_URL,
   WHATSAPP_DISPLAY,
   WHATSAPP_NUMBER,
-} from "../../constants";
+} from "../../utils/constants";
 
 export function ContactPage() {
   const { t } = useTranslation();

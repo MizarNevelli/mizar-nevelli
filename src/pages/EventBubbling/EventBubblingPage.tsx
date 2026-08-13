@@ -8,7 +8,7 @@ import {
   StatusPill,
   PrimaryControls,
   SpeedControl,
-} from "../VisualizerControls";
+} from "../../components/VisualizerControls";
 import { NestedBoxes, type Phase } from "./NestedBoxes";
 import { PhaseBadge } from "./PhaseBadge";
 type TraceEntry = {

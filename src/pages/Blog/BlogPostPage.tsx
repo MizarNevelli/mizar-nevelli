@@ -4,8 +4,7 @@ import { MDXProvider } from "@mdx-js/react";
 import type { Post, PostFrontmatter } from "./types";
 import { PageMeta } from "../../components/PageMeta";
 import { formatDate } from "../../utils/format";
-
-import { SITE_URL } from "../../constants";
+import { SITE_URL } from "../../utils/constants";
 
 const modules = import.meta.glob<{
   default: React.ComponentType;

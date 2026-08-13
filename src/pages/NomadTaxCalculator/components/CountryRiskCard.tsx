@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type { CountryRiskResult } from "../types";
 import { countryName } from "../utils/countryName";
-import { THRESHOLD } from "../../../constants";
+import { THRESHOLD } from "../../../utils/constants";
 
 type Props = {
   result: CountryRiskResult;

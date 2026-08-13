@@ -17,7 +17,7 @@ import {
   SpeedControl,
   type Status,
   type Speed,
-} from "../VisualizerControls";
+} from "../../components/VisualizerControls";
 
 const SPEED_MS: Record<Speed, number> = {
   slow: 2400,
