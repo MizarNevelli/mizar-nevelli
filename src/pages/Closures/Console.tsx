@@ -8,7 +8,7 @@ type ConsoleProps = {
 /**
  * A dev-tools style console box. Accumulates `console.log`-like entries and
  * animates each new line in. The whole point of the for-var vs for-let
- * scenarios lives here — the console output is the punchline.
+ * scenarios lives here, the console output is the punchline.
  */
 export function Console({ entries }: ConsoleProps) {
   const { t } = useTranslation();

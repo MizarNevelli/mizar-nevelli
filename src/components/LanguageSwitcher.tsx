@@ -5,8 +5,8 @@ import { SUPPORTED_LANGUAGES, type LanguageCode } from "../i18n";
 
 type LanguageSwitcherProps = {
   /**
-   * `"dropdown"` (default) — compact button opens a popover. Fits the desktop nav.
-   * `"inline"` — language options rendered as tappable pills, no hidden state.
+   * `"dropdown"` (default): compact button opens a popover. Fits the desktop nav.
+   * `"inline"`: language options rendered as tappable pills, no hidden state.
    *              Use inside surfaces where a downward-opening popover would
    *              overflow (e.g. the bottom of the mobile menu).
    */

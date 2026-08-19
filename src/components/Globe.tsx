@@ -67,7 +67,7 @@ export function Globe({
 
     // ResizeObserver delivers sizes without forcing a layout reflow.
     // Create the globe once on the first callback (real size guaranteed),
-    // then only update width/height on subsequent resizes — no destroy/recreate,
+    // then only update width/height on subsequent resizes, no destroy/recreate,
     // which eliminates the "no buffer bound to enabled attribute" WebGL error.
     const ro = new ResizeObserver((entries) => {
       const width = entries[0]?.contentRect.width;

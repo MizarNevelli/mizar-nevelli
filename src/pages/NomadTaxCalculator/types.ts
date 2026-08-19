@@ -6,8 +6,8 @@ export type Trip = {
 };
 
 export type RiskWindow = {
-  windowStart: string; // YYYY-MM-DD — first day of the worst 365-day window
-  windowEnd: string; // YYYY-MM-DD — windowStart + 364 days
+  windowStart: string; // YYYY-MM-DD: first day of the worst 365-day window
+  windowEnd: string; // YYYY-MM-DD: windowStart + 364 days
   days: number; // how many days in that country fell inside this window
 };
 

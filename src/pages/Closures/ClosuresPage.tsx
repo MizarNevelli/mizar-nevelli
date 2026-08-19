@@ -96,7 +96,7 @@ export function ClosuresPage() {
     <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <PageMeta
         title="Closures"
-        description="Functions that carry their scope — an interactive guide to JavaScript closures."
+        description="Functions that carry their scope, an interactive guide to JavaScript closures."
         path="/closures"
       />
       <header className="text-center max-w-5xl mx-auto">

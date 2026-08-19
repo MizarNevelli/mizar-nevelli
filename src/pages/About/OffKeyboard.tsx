@@ -83,7 +83,7 @@ function HorizonTile({ variant, title, sub, delay, inView }: HorizonTileProps) {
         <p className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
           {title}
         </p>
-        <p className="mt-2 text-white/60 text-sm">— {sub}</p>
+        <p className="mt-2 text-white/60 text-sm">{sub}</p>
       </div>
       <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none">
         {variant === "snow" ? (

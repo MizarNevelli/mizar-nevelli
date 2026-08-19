@@ -6,7 +6,7 @@ type BurgerIconProps = {
 
 /**
  * Animated burger → X icon. Both lines share the same geometry (a horizontal
- * line at y=8) and are moved into position via CSS transforms — that way
+ * line at y=8) and are moved into position via CSS transforms, that way
  * framer-motion never has to interpolate raw SVG y1/y2 attributes, which need
  * seed values before they can animate.
  */

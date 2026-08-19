@@ -69,7 +69,7 @@
       "eventLoop": {
         "eyebrow": "Concorrenza",
         "title": "L'event loop",
-        "body": "Call stack, task queue, microtask — guardali collaborare frame dopo frame."
+        "body": "Call stack, task queue, microtask: guardali collaborare frame dopo frame."
       },
       "eventBubbling": {
         "eyebrow": "Eventi DOM",
@@ -114,7 +114,7 @@
     "visualizer": {
       "stack": {
         "title": "Call stack",
-        "hint": "LIFO — una funzione alla volta"
+        "hint": "LIFO, una funzione alla volta"
       },
       "microtasks": {
         "title": "Coda dei microtask",
@@ -129,15 +129,15 @@
       "classic": {
         "label": "setTimeout + Promise",
         "narrations": [
-          "La riga 1 viene eseguita in modo sincrono — viene loggato 'A'.",
+          "La riga 1 viene eseguita in modo sincrono, viene loggato 'A'.",
           "setTimeout consegna la callback alle Web API.",
           "Anche con un ritardo di 0 ms, la callback attende nella coda dei macrotask.",
           "L'handler .then viene messo in coda tra i microtask.",
           "I microtask vengono sempre eseguiti prima del prossimo macrotask.",
-          "La riga 11 parte — viene loggato 'D'. Il codice sincrono viene sempre prima.",
+          "La riga 11 parte, viene loggato 'D'. Il codice sincrono viene sempre prima.",
           "Il call stack è vuoto. Il loop svuota ora la coda dei microtask.",
-          "La callback .then viene eseguita — viene loggato 'C'.",
-          "Ora scatta il macrotask — viene loggato 'B'. Ordine finale: A, D, C, B."
+          "La callback .then viene eseguita, viene loggato 'C'.",
+          "Ora scatta il macrotask, viene loggato 'B'. Ordine finale: A, D, C, B."
         ]
       },
       "promises": {
@@ -145,7 +145,7 @@
         "narrations": [
           "Viene creata una promise già risolta.",
           "Il primo .then viene messo in coda come microtask.",
-          "Il codice sincrono viene per primo — viene loggato 'sync'.",
+          "Il codice sincrono viene per primo, viene loggato 'sync'.",
           "Stack vuoto. La coda dei microtask si svuota.",
           "Viene loggato 'start'; restituire 'next' pianifica il prossimo .then.",
           "Il secondo .then si unisce subito alla coda dei microtask.",
@@ -160,9 +160,9 @@
           "chain() viene messa in coda come microtask.",
           "Il call stack si svuota. I microtask vengono sempre prima.",
           "Viene loggato 'micro'.",
-          "chain() si ripianifica da sola — nuovo microtask.",
+          "chain() si ripianifica da sola, nuovo microtask.",
           "Il loop svuota i microtask prima di tornare al timer…",
-          "Viene loggato di nuovo 'micro' — il timer continua ad aspettare.",
+          "Viene loggato di nuovo 'micro', il timer continua ad aspettare.",
           "Ecco come una catena di promise fuori controllo può affamare i macrotask."
         ]
       }
@@ -176,7 +176,7 @@
     "toggles": {
       "useCapture": "useCapture",
       "stopPropagation": "stopPropagation a:",
-      "none": "— nessuno —"
+      "none": "nessuno"
     },
     "status": {
       "idle": "Pronto",
@@ -210,9 +210,9 @@
     },
     "idleNarration": "Pronto. Clicca il box interno per lanciare un evento e tracciarne il percorso.",
     "narrations": {
-      "captureStart": "Inizia la fase di cattura. L'evento parte dall'alto — window — e scende.",
+      "captureStart": "Inizia la fase di cattura. L'evento parte dall'alto (window) e scende.",
       "capture": "Fase di cattura: passa attraverso {{layer}} scendendo.",
-      "target": "Raggiunto il target: {{layer}}. Questa è la fase target — dove il click è effettivamente avvenuto.",
+      "target": "Raggiunto il target: {{layer}}. Questa è la fase target, dove il click è effettivamente avvenuto.",
       "bubbleEnd": "Di nuovo a window. L'evento ha finito di risalire.",
       "bubble": "Fase di bubbling: l'evento risale attraverso {{layer}}."
     }
@@ -221,8 +221,8 @@
     "eyebrow": "Fatti sentire",
     "titleLine1": "Costruiamo qualcosa,",
     "titleLine2": "o solo due chiacchiere.",
-    "description": "Ovunque ci sia una connessione, rispondo. Manda una mail o un messaggio — quello che preferisci nel momento.",
-    "footer": "Di solito rispondo entro un giorno — fuso permettendo.",
+    "description": "Ovunque ci sia una connessione, rispondo. Manda una mail o un messaggio, quello che preferisci nel momento.",
+    "footer": "Di solito rispondo entro un giorno, fuso permettendo.",
     "cards": {
       "email": {
         "label": "Email",
@@ -248,7 +248,7 @@
       "eyebrow": "Chi sono",
       "titleLine1": "C'è una stella",
       "titleLine2": "che si chiama Mizar.",
-      "subtitle": "Software engineer, prendo il nome da ζ Ursae Majoris — la seconda stella dalla punta del manico del Grande Carro. Visibile a occhio nudo, parte di un sistema sestuplo. A me è toccato il nome; al cielo, i diritti di battesimo.",
+      "subtitle": "Software engineer, prendo il nome da ζ Ursae Majoris, la seconda stella dalla punta del manico del Grande Carro. Visibile a occhio nudo, parte di un sistema sestuplo. A me è toccato il nome; al cielo, i diritti di battesimo.",
       "scrollHint": "Leggi la storia",
       "starLabel": "Mizar, la stella",
       "starSub": "nel manico del Grande Carro"
@@ -273,14 +273,14 @@
         "place": "Brescia · Machina Lonati",
         "eyebrow": "Capitolo III · Il cambio di rotta",
         "title": "Un diploma tecnico europeo, e un cavallo di Troia.",
-        "body": "Tornato in Italia. Machina Lonati, un percorso ITS di due anni in Digital Marketing. Mi ero iscritto per il marketing. Sono rimasto per quello che c'era dietro — più capivo come i siti <em>convertivano</em>, più volevo sapere come venivano <em>costruiti</em>."
+        "body": "Tornato in Italia. Machina Lonati, un percorso ITS di due anni in Digital Marketing. Mi ero iscritto per il marketing. Sono rimasto per quello che c'era dietro: più capivo come i siti <em>convertivano</em>, più volevo sapere come venivano <em>costruiti</em>."
       },
       "firstCommit": {
         "year": "2018",
         "place": "Magma Studio",
         "eyebrow": "Capitolo IV · Il primo commit",
         "title": "Il piccolo brivido di spedire qualcosa di vero.",
-        "body": "Primo stage. Temi WordPress, landing page custom, un po' di jQuery — lo stack quotidiano dei piccoli studi. Ho anche fatto da ponte tra lo studio e un medico che voleva una piattaforma: fatturato +20% quel trimestre. È stato il momento in cui ho capito la leva del codice."
+        "body": "Primo stage. Temi WordPress, landing page custom, un po' di jQuery, lo stack quotidiano dei piccoli studi. Ho anche fatto da ponte tra lo studio e un medico che voleva una piattaforma: fatturato +20% quel trimestre. È stato il momento in cui ho capito la leva del codice."
       },
       "engineering": {
         "year": "2019",
@@ -294,20 +294,20 @@
         "place": "Palmabit",
         "eyebrow": "Capitolo VI · Lo stack matura",
         "title": "I problemi più difficili, in ingegneria, raramente sono il codice.",
-        "body": "Due anni a rilasciare React e Node in team multidisciplinari — un gestionale automotive, poi una piattaforma per un operatore telco italiano. La comunicazione tra team è diventata una competenza a cui potevo puntare il dito. I test, quelli veri, sono diventati un'abitudine."
+        "body": "Due anni a rilasciare React e Node in team multidisciplinari: un gestionale automotive, poi una piattaforma per un operatore telco italiano. La comunicazione tra team è diventata una competenza a cui potevo puntare il dito. I test, quelli veri, sono diventati un'abitudine."
       },
       "now": {
         "year": "2022",
         "place": "Spartan Tech",
         "eyebrow": "Capitolo VII · Oggi",
         "title": "React, Next, e notarizzato on-chain.",
-        "body": "Il full restyling di un marketplace di orologi di lusso notarizzato su Algorand — Core Web Vitals +10%. Una piattaforma custom per una società medica — il 95% delle feature richieste, spedite in un MVP misurato in mesi, non in trimestri. Nel 2023–24 ho studiato blockchain seriamente a Masterz, così il lavoro on-chain ha una base solida sotto."
+        "body": "Il full restyling di un marketplace di orologi di lusso notarizzato su Algorand, Core Web Vitals +10%. Una piattaforma custom per una società medica, il 95% delle feature richieste, spedite in un MVP misurato in mesi, non in trimestri. Nel 2023–24 ho studiato blockchain seriamente a Masterz, così il lavoro on-chain ha una base solida sotto."
       }
     },
     "offKeyboard": {
       "eyebrow": "Fuori tastiera",
       "title": "Colleziono due tipi di orizzonti.",
-      "body": "Quelli coperti di neve, e quelli che si allungano sull'acqua. Sciando da quando mi reggevo in piedi. Nuotando da quando so trattenere il fiato. Entrambi mi ricordano che la fluidità è la stessa ovunque — pratica profonda, che sembra facile.",
+      "body": "Quelli coperti di neve, e quelli che si allungano sull'acqua. Sciando da quando mi reggevo in piedi. Nuotando da quando so trattenere il fiato. Entrambi mi ricordano che la fluidità è la stessa ovunque, pratica profonda, che sembra facile.",
       "snow": "Neve",
       "snowSub": "da quando mi reggo in piedi",
       "water": "Acqua",
@@ -351,7 +351,7 @@
   "closures": {
     "eyebrow": "Ambito & memoria",
     "title": "Le closure, spiegate.",
-    "description": "Una closure è una funzione che si porta dietro l'ambito in cui è nata. È quello che permette alle callback di 'ricordare' il loro contesto — ed è la ragione del famoso bug del for con var.",
+    "description": "Una closure è una funzione che si porta dietro l'ambito in cui è nata. È quello che permette alle callback di 'ricordare' il loro contesto, ed è la ragione del famoso bug del for con var.",
     "stepLabel": "Passo",
     "status": {
       "idle": "Pronto",
@@ -386,13 +386,13 @@
       "basic": {
         "label": "Cattura base",
         "narrations": [
-          "Nulla è ancora stato eseguito — solo lo scope globale, che contiene la dichiarazione di outer.",
+          "Nulla è ancora stato eseguito, solo lo scope globale, che contiene la dichiarazione di outer.",
           "const f = outer() chiama outer. Un nuovo scope di outer() viene messo sullo stack.",
           "const secret = 42 aggiunge secret allo scope di outer.",
           "inner viene creata dentro outer. Porta con sé un riferimento allo scope di outer.",
-          "outer ritorna inner. Normalmente il suo scope sparirebbe — ma f ora tiene un riferimento a inner, che tiene lo scope di outer. Resta vivo come 'catturato'.",
+          "outer ritorna inner. Normalmente il suo scope sparirebbe, ma f ora tiene un riferimento a inner, che tiene lo scope di outer. Resta vivo come 'catturato'.",
           "f() esegue la inner catturata. Un nuovo scope di inner() viene creato, collegato allo scope catturato di outer.",
-          "return secret cerca secret — non lo trova localmente, quindi risale la catena fino allo scope catturato e legge 42.",
+          "return secret cerca secret, non lo trova localmente, quindi risale la catena fino allo scope catturato e legge 42.",
           "inner ritorna 42. La console stampa 42. Questa è una closure."
         ]
       },
@@ -402,40 +402,40 @@
           "makeCounter() parte. Il suo scope viene messo sullo stack.",
           "let count = 0 vincola count nello scope di makeCounter.",
           "Viene creato un oggetto con inc e get. Entrambe le arrow function catturano lo scope di makeCounter.",
-          "makeCounter ritorna. Il suo scope è ora tenuto in vita da due closure — resta come 'catturato'.",
+          "makeCounter ritorna. Il suo scope è ora tenuto in vita da due closure, resta come 'catturato'.",
           "c.inc() parte. ++count porta count da 0 a 1, nello scope catturato.",
-          "c.inc() parte di nuovo. count passa da 1 a 2 — stesso scope, stesso binding.",
+          "c.inc() parte di nuovo. count passa da 1 a 2, stesso scope, stesso binding.",
           "c.get() legge count dallo scope condiviso: 2.",
-          "console.log stampa 2. Entrambe le closure vedono lo stesso stato privato — è il pattern del modulo."
+          "console.log stampa 2. Entrambe le closure vedono lo stesso stato privato: è il pattern del modulo."
         ]
       },
       "forVar": {
         "label": "for + var (il bug)",
         "narrations": [
-          "for (var i = 0; ...) parte. Trattandosi di var, i vive nello scope circostante — non in ogni iterazione.",
-          "setTimeout pianifica una callback. La sua arrow cattura lo scope circostante — quello che contiene i.",
+          "for (var i = 0; ...) parte. Trattandosi di var, i vive nello scope circostante, non in ogni iterazione.",
+          "setTimeout pianifica una callback. La sua arrow cattura lo scope circostante, quello che contiene i.",
           "i++ → i ora è 1. Secondo setTimeout, seconda callback pianificata, cattura lo stesso scope.",
-          "i++ → i è 2. Terzo setTimeout, terza callback in coda — sempre lo stesso scope.",
+          "i++ → i è 2. Terzo setTimeout, terza callback in coda, sempre lo stesso scope.",
           "i++ → i è 3. La condizione fallisce, il ciclo termina. Ma i nello scope condiviso ora è bloccato a 3.",
           "Lo stack è vuoto. L'event loop pesca dalla coda dei task.",
-          "Callback 1 parte. Legge i dallo scope condiviso — 3. Stampa 3.",
-          "Callback 2 parte. Stesso scope condiviso, stesso i — stampa 3.",
+          "Callback 1 parte. Legge i dallo scope condiviso: 3. Stampa 3.",
+          "Callback 2 parte. Stesso scope condiviso, stesso i, stampa 3.",
           "Callback 3 parte. Stampa 3. Tutte e tre hanno visto lo stesso binding, nello stesso istante."
         ]
       },
       "forLet": {
         "label": "for + let (la soluzione)",
         "narrations": [
-          "Stesso ciclo, ma con let. let è block-scoped — ogni iterazione riceve il proprio scope nuovo.",
+          "Stesso ciclo, ma con let. let è block-scoped, ogni iterazione riceve il proprio scope nuovo.",
           "Iterazione 0: viene creato un nuovo block scope con il suo i = 0. setTimeout lo cattura.",
-          "L'iterazione termina. Normalmente il block scope sparirebbe — ma la callback in coda lo tiene in vita. Resta come 'catturato'.",
+          "L'iterazione termina. Normalmente il block scope sparirebbe, ma la callback in coda lo tiene in vita. Resta come 'catturato'.",
           "Iterazione 1: un nuovo block scope con i = 1. Il secondo setTimeout cattura questo.",
           "Anche quello scope è catturato. Ora sono due gli scope indipendenti tenuti in vita.",
           "Iterazione 2: scope nuovo, i = 2. Terzo setTimeout, terza cattura.",
           "Il ciclo termina. Tre scope catturati restano vivi, ciascuno con il proprio i.",
-          "Callback 1 parte. Legge dallo scope dell'iterazione 0 — 0. Stampa 0.",
-          "Callback 2 parte. Scope dell'iterazione 1 — 1.",
-          "Callback 3 parte. Scope dell'iterazione 2 — 2. Tre memorie separate, una per iterazione."
+          "Callback 1 parte. Legge dallo scope dell'iterazione 0: 0. Stampa 0.",
+          "Callback 2 parte. Scope dell'iterazione 1: 1.",
+          "Callback 3 parte. Scope dell'iterazione 2: 2. Tre memorie separate, una per iterazione."
         ]
       }
     }
@@ -456,10 +456,10 @@
     "eyebrow": "Strumento",
     "titleLine1": "Nomad Tax",
     "titleLine2": "Calculator",
-    "subtitle": "La maggior parte dei paesi applica la soglia di residenza fiscale a 183 giorni — ma il conteggio avviene su una finestra mobile di 365 giorni, non sull'anno solare. Aggiungi i tuoi viaggi e vedi dove sei davvero.",
+    "subtitle": "La maggior parte dei paesi applica la soglia di residenza fiscale a 183 giorni, ma il conteggio avviene su una finestra mobile di 365 giorni, non sull'anno solare. Aggiungi i tuoi viaggi e vedi dove sei davvero.",
     "residence": {
       "question": "Dove risiedi attualmente?",
-      "hint": "Il tuo paese di residenza è escluso dai calcoli — sei già residente lì.",
+      "hint": "Il tuo paese di residenza è escluso dai calcoli, sei già residente lì.",
       "change": "Cambia"
     },
     "addTripLabel": "Aggiungi viaggio",
@@ -479,9 +479,9 @@
       "clearAll": "Cancella tutto"
     },
     "summary": {
-      "atRiskTitle": "Soglia di residenza fiscale superata — {{countries}}",
+      "atRiskTitle": "Soglia di residenza fiscale superata: {{countries}}",
       "atRiskBody": "183 giorni superati in una finestra mobile di 365 giorni. Consulta un professionista fiscale prima della prossima dichiarazione.",
-      "warningTitle": "Attenzione — {{countries}}",
+      "warningTitle": "Attenzione: {{countries}}",
       "warningBody": "Sei sulla strada per raggiungere 183 giorni. Ogni giorno aggiuntivo conta.",
       "noRisk_one": "Nessun rischio di residenza fiscale rilevato in {{count}} paese.",
       "noRisk_other": "Nessun rischio di residenza fiscale rilevato in {{count}} paesi."

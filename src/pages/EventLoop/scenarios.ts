@@ -3,7 +3,7 @@
  *
  * Only *structural* data lives here (code, per-frame queue state, highlighted
  * line). Human-readable strings (scenario labels, per-frame narration) live in
- * the i18n JSON files under `eventLoop.scenarios.<id>` — the page looks them
+ * the i18n JSON files under `eventLoop.scenarios.<id>`, the page looks them
  * up by scenario id + frame index.
  *
  * This is deliberately not a real JS interpreter: the goal is pedagogical

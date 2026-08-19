@@ -114,7 +114,7 @@
     "visualizer": {
       "stack": {
         "title": "Call stack",
-        "hint": "LIFO — one function at a time"
+        "hint": "LIFO, one function at a time"
       },
       "microtasks": {
         "title": "Microtask queue",
@@ -129,15 +129,15 @@
       "classic": {
         "label": "setTimeout + Promise",
         "narrations": [
-          "Line 1 runs synchronously — 'A' is logged.",
+          "Line 1 runs synchronously, 'A' is logged.",
           "setTimeout hands its callback to the Web APIs.",
           "Even with a 0 ms delay, the callback waits in the macrotask queue.",
           "The .then handler is scheduled on the microtask queue.",
           "Microtasks always run before the next macrotask.",
-          "Line 11 runs — 'D' is logged. Sync code still first.",
+          "Line 11 runs, 'D' is logged. Sync code still first.",
           "Call stack is empty. The loop drains microtasks next.",
-          "The .then callback runs — 'C' is logged.",
-          "Now the macrotask fires — 'B' is logged. Final order: A, D, C, B."
+          "The .then callback runs, 'C' is logged.",
+          "Now the macrotask fires, 'B' is logged. Final order: A, D, C, B."
         ]
       },
       "promises": {
@@ -145,7 +145,7 @@
         "narrations": [
           "A resolved promise is created.",
           "The first .then is scheduled as a microtask.",
-          "Sync code runs first — 'sync' is logged.",
+          "Sync code runs first, 'sync' is logged.",
           "Stack empty. Microtask queue drains.",
           "'start' is logged; returning 'next' schedules the next .then.",
           "The second .then joins the microtask queue immediately.",
@@ -162,7 +162,7 @@
           "'micro' is logged.",
           "chain() reschedules itself, new microtask.",
           "Loop drains microtasks before touching the timer again…",
-          "'micro' is logged again — the timer keeps waiting.",
+          "'micro' is logged again, the timer keeps waiting.",
           "This is how a runaway promise chain can starve macrotasks."
         ]
       }
@@ -176,7 +176,7 @@
     "toggles": {
       "useCapture": "useCapture",
       "stopPropagation": "stopPropagation at:",
-      "none": "— none —"
+      "none": "none"
     },
     "status": {
       "idle": "Ready",
@@ -210,9 +210,9 @@
     },
     "idleNarration": "Ready. Click the inner box to fire an event and trace its journey.",
     "narrations": {
-      "captureStart": "Capture phase begins. The event starts at the very top — window — and travels down.",
+      "captureStart": "Capture phase begins. The event starts at the very top (window) and travels down.",
       "capture": "Capture phase: passing through {{layer}} on the way down.",
-      "target": "Reached the target: {{layer}}. This is the target phase — where the click actually happened.",
+      "target": "Reached the target: {{layer}}. This is the target phase, where the click actually happened.",
       "bubbleEnd": "Back at window. The event has finished bubbling all the way up.",
       "bubble": "Bubble phase: the event rises through {{layer}}."
     }
@@ -386,13 +386,13 @@
       "basic": {
         "label": "Basic capture",
         "narrations": [
-          "Nothing has run yet — just the global scope, holding the declaration of outer.",
+          "Nothing has run yet, just the global scope, holding the declaration of outer.",
           "const f = outer() calls outer. A fresh outer() scope is pushed on the stack.",
           "const secret = 42 adds secret to outer's scope.",
           "inner is created inside outer. It carries a reference to outer's scope.",
-          "outer returns inner. Normally its scope would vanish — but f now holds a reference to inner, which holds outer's scope. It stays alive as 'captured'.",
+          "outer returns inner. Normally its scope would vanish, but f now holds a reference to inner, which holds outer's scope. It stays alive as 'captured'.",
           "f() runs the captured inner. A new inner() scope is pushed, linked to the captured outer.",
-          "return secret looks up secret — not found locally, so it walks the chain to the captured outer, and reads 42.",
+          "return secret looks up secret, not found locally, so it walks the chain to the captured outer, and reads 42.",
           "inner returns 42. The console prints 42. That's a closure."
         ]
       },
@@ -402,24 +402,24 @@
           "makeCounter() runs. Its scope pushes on the stack.",
           "let count = 0 binds count in makeCounter's scope.",
           "An object with inc and get is created. Both arrow functions capture makeCounter's scope.",
-          "makeCounter returns. Its scope is held by two closures now — it stays as 'captured'.",
+          "makeCounter returns. Its scope is held by two closures now, it stays as 'captured'.",
           "c.inc() runs. ++count bumps count from 0 to 1 in the captured scope.",
-          "c.inc() runs again. count goes from 1 to 2 — same scope, same binding.",
+          "c.inc() runs again. count goes from 1 to 2, same scope, same binding.",
           "c.get() reads count from the shared captured scope: 2.",
-          "console.log prints 2. Both closures agree on the same private state — that's the module pattern."
+          "console.log prints 2. Both closures agree on the same private state. That's the module pattern."
         ]
       },
       "forVar": {
         "label": "for + var (the bug)",
         "narrations": [
-          "for (var i = 0; ...) starts. Because it's var, i lives in the surrounding scope — not in each iteration.",
-          "setTimeout schedules a callback. Its arrow captures the surrounding scope — the one holding i.",
+          "for (var i = 0; ...) starts. Because it's var, i lives in the surrounding scope, not in each iteration.",
+          "setTimeout schedules a callback. Its arrow captures the surrounding scope, the one holding i.",
           "i++ → i is now 1. Second setTimeout schedules another callback, capturing the same scope.",
-          "i++ → i is 2. Third setTimeout, third callback in the queue — still capturing the same scope.",
+          "i++ → i is 2. Third setTimeout, third callback in the queue, still capturing the same scope.",
           "i++ → i is 3. The condition fails, the loop exits. But i in the shared scope is now stuck at 3.",
           "The stack is empty. The event loop reaches for the task queue.",
-          "Callback 1 fires. It reads i from the shared scope — 3. Logs 3.",
-          "Callback 2 fires. Same shared scope, same i — logs 3.",
+          "Callback 1 fires. It reads i from the shared scope: 3. Logs 3.",
+          "Callback 2 fires. Same shared scope, same i, logs 3.",
           "Callback 3 fires. Logs 3. All three saw the same binding, at the same moment in time."
         ]
       },
@@ -433,9 +433,9 @@
           "That scope is captured too. Now two independent scopes are being kept alive.",
           "Iteration 2: fresh scope, i = 2. Third setTimeout captures it.",
           "The loop exits. Three captured scopes are still around, each with its own i.",
-          "Callback 1 fires. It reads from iteration 0's scope — 0. Logs 0.",
-          "Callback 2 fires. Iteration 1's scope — 1.",
-          "Callback 3 fires. Iteration 2's scope — 2. Three separate memories, one per iteration."
+          "Callback 1 fires. It reads from iteration 0's scope: 0. Logs 0.",
+          "Callback 2 fires. Iteration 1's scope: 1.",
+          "Callback 3 fires. Iteration 2's scope: 2. Three separate memories, one per iteration."
         ]
       }
     }

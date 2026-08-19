@@ -93,7 +93,7 @@ export function EventLoopPage() {
     <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <PageMeta
         title="Event Loop"
-        description="A visual walkthrough of the JavaScript event loop — call stack, microtasks, and task queue."
+        description="A visual walkthrough of the JavaScript event loop: call stack, microtasks, and task queue."
         path="/event-loop"
       />
       <header className="text-center max-w-5xl mx-auto">
