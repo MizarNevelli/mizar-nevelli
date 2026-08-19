@@ -29,6 +29,7 @@ export function HomePage() {
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const heroY = useTransform(scrollY, [0, 400], [0, -80]);
   const currYear = new Date().getFullYear();
+  const yearsOfExp = `${currYear - 2018}y`;
 
   return (
     <main className="relative">
@@ -139,7 +140,7 @@ export function HomePage() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 border border-white/[0.06] rounded-xl overflow-hidden">
           <ScrollReveal delay={0}>
             <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
-              <StatCard value="8y" label={t("home.stats.writingJs")} />
+              <StatCard value={yearsOfExp} label={t("home.stats.writingJs")} />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
