@@ -27,7 +27,7 @@ export function BlogListPage() {
     <main className="relative h-[100dvh] bg-ink-950 flex flex-col overflow-hidden pt-24 md:pt-32 px-6">
       <PageMeta
         title="Blog"
-        description="Field notes from the road. Travel dispatches from a remote JavaScript engineer."
+        description="Notes from the road. Travel memories from a remote JavaScript engineer."
         path="/blog"
       />
       <div className="max-w-5xl mx-auto w-full flex flex-col flex-1 min-h-0">
@@ -77,9 +77,9 @@ export function BlogListPage() {
                     <img
                       src={post.frontmatter.cover}
                       alt={post.frontmatter.title}
-                      className="w-full h-full object-cover opacity-[0.04] group-hover:opacity-95 transition-opacity duration-500"
+                      className="w-full h-full object-cover opacity-[0.02] group-hover:opacity-95 transition-opacity duration-400"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-transparent to-transparent" />
+                    <div className="absolute inset-0 w-[60%] bg-gradient-to-r from-ink-950 via-transparent to-transparent" />
                   </div>
                 )}
               </Link>
@@ -87,7 +87,7 @@ export function BlogListPage() {
           ))}
         </ul>
 
-        {posts.length === 0 && (
+        {!posts.length && (
           <p className="mt-20 text-white/30 text-sm">{t("blog.empty")}</p>
         )}
       </div>
