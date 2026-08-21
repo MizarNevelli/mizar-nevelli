@@ -57,10 +57,12 @@ export function HomePage() {
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <HeroChip />
-          <h1 className="mt-5 text-5xl md:text-8xl font-semibold tracking-tight text-white text-balance [text-shadow:_0_2px_40px_rgba(5,6,10,0.5)]">
-            {t("home.titleLine1")}
+          <h1 className="mt-5 text-5xl md:text-8xl font-semibold tracking-tight text-balance">
+            <span className="bg-gradient-to-r from-white via-[rgba(212,160,23,0.9)] to-white bg-[length:300%_100%] bg-clip-text text-transparent animate-shimmer">
+              {t("home.titleLine1")}
+            </span>
             <br />
-            {t("home.titleLine2")}
+            <span className="text-white/35">{t("home.titleLine2")}</span>
           </h1>
           <p className="mt-8 text-base md:text-lg text-white/50 max-w-xl mx-auto text-balance [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
             {t("home.descriptionPrefix")}

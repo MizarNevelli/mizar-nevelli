@@ -27,7 +27,7 @@ export function Chapter({ chapterKey }: ChapterProps) {
           >
             {tx(`${base}.year`)}
           </span>
-          <div className="relative text-5xl md:text-6xl font-semibold text-white/90 tracking-tight tabular-nums">
+          <div className="relative text-5xl md:text-5xl font-semibold text-white/90 tracking-tight tabular-nums">
             {tx(`${base}.year`)}
           </div>
           <div className="relative flex items-center gap-2 text-xs uppercase tracking-widest text-white/40">

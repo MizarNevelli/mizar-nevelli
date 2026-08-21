@@ -29,7 +29,7 @@ export function OffKeyboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-balance leading-[1.05] max-w-5xl"
+          className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance leading-[1.05] max-w-5xl"
         >
           {t("about.offKeyboard.title")}
         </motion.h2>

@@ -62,11 +62,16 @@ export default {
           "0%,100%": { opacity: "1" },
           "50%": { opacity: "0" },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "200% center" },
+          "100%": { backgroundPosition: "-200% center" },
+        },
       },
       animation: {
         float: "float 4s ease-in-out infinite",
         "pulse-glow": "pulseGlow 2.4s ease-in-out infinite",
         blink: "blink 1.1s step-start infinite",
+        shimmer: "shimmer 6s linear infinite",
       },
     },
   },

@@ -34,7 +34,7 @@ export function BlogListPage() {
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
           {t("blog.eyebrow")}
         </p>
-        <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white text-balance">
+        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance">
           {t("blog.titleLine1")}
           <br />
           <span className="text-white/35">{t("blog.titleLine2")}</span>
