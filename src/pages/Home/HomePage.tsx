@@ -1,6 +1,9 @@
 import {
   motion,
+  useMotionTemplate,
+  useMotionValue,
   useScroll,
+  useSpring,
   useTransform,
   type MotionValue,
 } from "framer-motion";
@@ -31,6 +34,12 @@ export function HomePage() {
   const currYear = new Date().getFullYear();
   const yearsOfExp = `${currYear - 2018}y`;
 
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const mouseX = useSpring(rawX, { stiffness: 400, damping: 40 });
+  const mouseY = useSpring(rawY, { stiffness: 400, damping: 40 });
+  const spotlightMask = useMotionTemplate`radial-gradient(380px at ${mouseX}px ${mouseY}px, white 0%, transparent 100%)`;
+
   return (
     <main className="relative">
       <PageMeta
@@ -55,15 +64,29 @@ export function HomePage() {
             willChange: "transform, opacity",
           }}
           className="relative z-10 text-center px-6 max-w-4xl"
+          onMouseMove={(e) => {
+            const { left, top } = e.currentTarget.getBoundingClientRect();
+            rawX.set(e.clientX - left);
+            rawY.set(e.clientY - top);
+          }}
         >
           <HeroChip />
-          <h1 className="mt-5 text-5xl md:text-8xl font-semibold tracking-tight text-balance">
-            <span className="bg-gradient-to-r from-white via-[rgba(212,160,23,0.9)] to-white bg-[length:300%_100%] bg-clip-text text-transparent animate-shimmer">
-              {t("home.titleLine1")}
-            </span>
-            <br />
-            <span className="text-white/35">{t("home.titleLine2")}</span>
-          </h1>
+          <div className="relative mt-5">
+            {/* base layer — always dim */}
+            <h1 className="text-5xl md:text-8xl font-semibold tracking-tight text-balance select-none">
+              <span className="block text-white/[0.18]">{t("home.titleLine1")}</span>
+              <span className="block text-white/[0.07]">{t("home.titleLine2")}</span>
+            </h1>
+            {/* spotlight layer — revealed by cursor mask */}
+            <motion.h1
+              aria-hidden
+              style={{ WebkitMaskImage: spotlightMask, maskImage: spotlightMask }}
+              className="absolute inset-0 text-5xl md:text-8xl font-semibold tracking-tight text-balance pointer-events-none"
+            >
+              <span className="block text-white">{t("home.titleLine1")}</span>
+              <span className="block text-white/40">{t("home.titleLine2")}</span>
+            </motion.h1>
+          </div>
           <p className="mt-8 text-base md:text-lg text-white/50 max-w-xl mx-auto text-balance [text-shadow:_0_2px_20px_rgba(5,6,10,0.9)]">
             {t("home.descriptionPrefix")}
             <span className="text-white/80">{t("home.descriptionName")}</span>
