@@ -157,27 +157,29 @@ export function Nav() {
           </nav>
         </div>
 
-        <div className="relative md:hidden">
-          <div
-            aria-hidden
-            className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
-          />
-          <nav className="glass rounded-full px-3 h-14 flex items-center justify-center">
-            <button
-              type="button"
-              onClick={() => setMobileOpen((o) => !o)}
-              aria-expanded={mobileOpen}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              className="w-9 flex items-center justify-center text-white/80 hover:text-white transition-colors"
-              style={{
-                touchAction: "manipulation",
-                WebkitTapHighlightColor: "transparent",
-              }}
-            >
-              <BurgerIcon open={mobileOpen} />
-            </button>
-          </nav>
-        </div>
+        {!mobileOpen && (
+          <div className="relative md:hidden">
+            <div
+              aria-hidden
+              className="nav-border-glow absolute inset-[-1.5px] rounded-full pointer-events-none"
+            />
+            <nav className="glass rounded-full px-3 h-14 flex items-center justify-center">
+              <button
+                type="button"
+                onClick={() => setMobileOpen((o) => !o)}
+                aria-expanded={mobileOpen}
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                className="w-9 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+                style={{
+                  touchAction: "manipulation",
+                  WebkitTapHighlightColor: "transparent",
+                }}
+              >
+                <BurgerIcon open={mobileOpen} />
+              </button>
+            </nav>
+          </div>
+        )}
 
         <div className="relative hidden md:block">
           <div

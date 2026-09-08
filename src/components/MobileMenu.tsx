@@ -118,7 +118,7 @@ function AnimatedCloseButton({ onClick }: { onClick: () => void }) {
       type="button"
       onClick={onClick}
       aria-label="Close menu"
-      className="absolute top-[26px] right-9 w-9 h-9 flex flex-col items-center justify-center gap-[5px] text-white/80 hover:text-white transition-colors"
+      className="absolute top-9 right-9 flex flex-col items-center justify-center gap-[5px] text-white/80 hover:text-white transition-colors"
     >
       <motion.span
         className="block w-6 h-px bg-current rounded-full origin-center"
@@ -155,6 +155,7 @@ function MobileLink({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      className="list-none"
     >
       {children}
     </motion.li>
