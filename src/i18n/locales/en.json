@@ -34,7 +34,6 @@
     "descriptionPrefix": "I'm ",
     "descriptionName": "Mizar",
     "descriptionSuffix": ", a JavaScript engineer. Remote by habit, on the move by choice. This is a corner of the internet where I pull apart something about myself and the language I love.",
-    "scrollHint": "Scroll to explore",
     "panels": {
       "one": {
         "eyebrow": "01 · One language, one love",
@@ -249,7 +248,6 @@
       "titleLine1": "There's a star",
       "titleLine2": "called Mizar.",
       "subtitle": "Software engineer, named after ζ Ursae Majoris, the second star from the tip of the Big Dipper's handle. Naked eye visible, part of a sextuple system. I got the name, the sky got the naming rights.",
-      "scrollHint": "Read the story",
       "starLabel": "Mizar, the star",
       "starSub": "in the Big Dipper's handle"
     },

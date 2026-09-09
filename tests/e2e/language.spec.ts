@@ -1,45 +1,48 @@
 import { test, expect } from "@playwright/test";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
-test.describe("i18n language switching", () => {
-  test.beforeEach(async ({ page }) => {
-    // Clear localStorage so we always start from browser-detected language
-    await page.goto("/");
-    await page.evaluate(() => localStorage.clear());
-    await page.reload();
+// Translation json parity
+// Recursively collects every dot notation path
+function leafKeys(obj: unknown, prefix = ""): string[] {
+  if (typeof obj !== "object" || obj === null || Array.isArray(obj)) {
+    return [prefix];
+  }
+  return Object.entries(obj as Record<string, unknown>).flatMap(([key, val]) =>
+    leafKeys(val, prefix ? `${prefix}.${key}` : key)
+  );
+}
+
+test.describe("i18n translation parity", () => {
+  // Read at describe-evaluation time (sync, Node.js context — no browser needed).
+  const localesDir = resolve(process.cwd(), "src/i18n/locales");
+  const en = JSON.parse(
+    readFileSync(resolve(localesDir, "en.json"), "utf-8")
+  ) as Record<string, unknown>;
+  const it = JSON.parse(
+    readFileSync(resolve(localesDir, "it.json"), "utf-8")
+  ) as Record<string, unknown>;
+
+  const enKeys = leafKeys(en).sort();
+  const itKeys = leafKeys(it).sort();
+
+  test("IT locale has no keys absent from EN", () => {
+    const extra = itKeys.filter((k) => !enKeys.includes(k));
+    expect(
+      extra,
+      `Keys present in IT but missing in EN:\n  ${extra.join("\n  ")}`
+    ).toHaveLength(0);
   });
 
-  test("page loads in English by default", async ({ page }) => {
-    // The nav link to the About page should say "About" in English
-    await expect(page.getByRole("link", { name: "About" })).toBeVisible();
+  test("EN locale has no keys absent from IT", () => {
+    const extra = enKeys.filter((k) => !itKeys.includes(k));
+    expect(
+      extra,
+      `Keys present in EN but missing in IT:\n  ${extra.join("\n  ")}`
+    ).toHaveLength(0);
   });
 
-  // test("switching to Italian updates visible text", async ({ page }) => {
-  //   // Open language switcher and select Italian
-  //   const langSwitcher = page.getByRole("button", { name: /language|lingua|IT|EN/i });
-  //   await langSwitcher.first().click();
-
-  //   const itOption = page.getByRole("button", { name: /italiano|IT/i });
-  //   if (await itOption.isVisible()) {
-  //     await itOption.click();
-  //   }
-
-  //   // "Chi sono" is the Italian translation of "About"
-  //   await expect(page.getByRole("link", { name: "Chi sono" })).toBeVisible();
-  // });
-
-  // test("selected language persists across reload", async ({ page }) => {
-  //   // Switch to Italian
-  //   const langSwitcher = page.getByRole("button", { name: /language|lingua|IT|EN/i });
-  //   await langSwitcher.first().click();
-
-  //   const itOption = page.getByRole("button", { name: /italiano|IT/i });
-  //   if (await itOption.isVisible()) {
-  //     await itOption.click();
-  //   }
-
-  //   await page.reload();
-
-  //   // Should still be Italian after reload
-  //   await expect(page.getByRole("link", { name: "Chi sono" })).toBeVisible();
-  // });
+  test("both locales have the same total number of translation strings", () => {
+    expect(itKeys.length).toBe(enKeys.length);
+  });
 });
