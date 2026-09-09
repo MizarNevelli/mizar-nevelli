@@ -95,7 +95,6 @@ export function AboutPage() {
             className="mt-16 flex items-center justify-center gap-3 text-xs uppercase tracking-widest text-white/40"
           >
             <span className="inline-block h-px w-8 bg-white/20" />
-            <span>{t("about.hero.scrollHint")}</span>
             <span className="inline-block h-px w-8 bg-white/20" />
           </motion.div>
         </motion.div>
