@@ -16,9 +16,9 @@ type TopLinkKey = "home" | "about" | "blog" | "nomadTax" | "contact";
 const TOP_LINKS: Array<{ to: string; key: TopLinkKey; end?: boolean }> = [
   { to: "/", key: "home", end: true },
   { to: "/about", key: "about" },
+  { to: "/contact", key: "contact" },
   { to: "/blog", key: "blog" },
   { to: "/nomad-tax", key: "nomadTax" },
-  { to: "/contact", key: "contact" },
 ];
 
 export function Nav() {
