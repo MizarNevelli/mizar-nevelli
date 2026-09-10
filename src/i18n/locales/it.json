@@ -569,7 +569,7 @@
           "Counter è dirty. React chiama la funzione. useState restituisce count+1. Il nuovo JSX viene differenziato col fiber esistente.",
           "Counter.sibling = Footer. Le props di Footer non sono cambiate: bailout.",
           "Fase di render completata. Solo Counter ha prodotto nuovo output. Commit: una singola mutazione DOM al nodo di Counter.",
-          "L'albero WIP diventa corrente con uno swap di puntatore O(1). L'albero precedente viene schedulato per il GC."
+          "React scambia i due alberi aggiornando un solo puntatore. Il vecchio albero viene tenuto come riserva, così React può riutilizzare i suoi fiber node al prossimo render invece di riallocare tutto da zero."
         ]
       },
       "effects": {
@@ -589,6 +589,7 @@
       "increment": "+ Incrementa",
       "reconciling": "Aggiornamento...",
       "effectsNote": "useEffect sincronizza document.title"
-    }
+    },
+    "interactiveIdleNarration": "Clicca il pulsante per avviare un render e osservare il fiber tree rispondere."
   }
 }

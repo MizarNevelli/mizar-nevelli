@@ -114,7 +114,7 @@ export function EventBubblingPage() {
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventBubbling.eyebrow")}
         </p>
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white text-balance">
+        <h1 className="text-5xl font-semibold tracking-tight text-white text-balance">
           {t("eventBubbling.title")}
         </h1>
         <p className="mt-6 text-white/60 text-lg text-balance">

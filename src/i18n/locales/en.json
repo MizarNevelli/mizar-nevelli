@@ -506,7 +506,7 @@
     "title": "React Fiber, visualized.",
     "description": "Fiber is the internal data structure behind every React component. It forms a linked list tree that React traverses, diffs, and commits, all while remaining interruptible.",
     "stepLabel": "Step",
-    "idleNarration": "Pick a scenario and press Run to step through React's internals.",
+    "idleNarration": "Press Run to step through React's internals.",
     "status": {
       "idle": "Ready",
       "running": "Running",
@@ -545,7 +545,7 @@
       "initialRender": {
         "label": "Initial render",
         "narrations": [
-          "Pick a scenario and press Run to step through React's internals.",
+          "Press Run to step through React's internals.",
           "React.createElement returns a plain JS object. React allocates the first Fiber for App, the root unit of work in the scheduler.",
           "React walks depth-first. App.child → Header. A new fiber is linked: no array, just a pointer.",
           "Header.child → Logo. Logo has no children. React begins walking back up.",
@@ -569,7 +569,7 @@
           "Counter is dirty. React calls the function. useState returns count+1. New JSX output is diffed against the existing fiber.",
           "Counter.sibling = Footer. Footer's props unchanged: bailout.",
           "Render phase done. Only Counter produced new output. Commit: a single DOM mutation to Counter's node.",
-          "WIP tree swaps to current via an O(1) pointer swap. Previous tree is scheduled for GC. Minimal allocations."
+          "React swaps the trees by updating a single pointer. The old tree is kept as a spare so React can reuse its fiber nodes next render, instead of allocating everything from scratch."
         ]
       },
       "effects": {
@@ -589,6 +589,7 @@
       "increment": "+ Increment",
       "reconciling": "Updating...",
       "effectsNote": "useEffect syncs document.title"
-    }
+    },
+    "interactiveIdleNarration": "Click the button to trigger a render and watch the fiber tree respond."
   }
 }

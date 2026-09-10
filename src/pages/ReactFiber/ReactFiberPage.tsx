@@ -1,157 +1,61 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CodeBlock } from "../../components/CodeBlock";
 import { FiberTreeVisualizer } from "./FiberTreeVisualizer";
 import { PageMeta } from "../../components/PageMeta";
-import {
-  SCENARIOS,
-  SCENARIO_IDS,
-  IDLE_FRAME,
-  type FiberFrame,
-  type ScenarioId,
-} from "./scenarios";
+import { SCENARIOS, SCENARIO_IDS, type ScenarioId } from "./scenarios";
 import {
   StatusPill,
   PrimaryControls,
   SpeedControl,
-  type Status,
-  type Speed,
 } from "../../components/VisualizerControls";
+import { DemoPanel } from "./DemoPanel";
+import { useTimelinePlayer } from "../NomadTaxCalculator/hooks/useTimelinePlayer";
+import { useStepPlayer } from "../NomadTaxCalculator/hooks/useStepPlayer";
 
-function useTimelinePlayer() {
-  const ids = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const [frame, setFrame] = useState<FiberFrame>(IDLE_FRAME);
-  const [narrationIdx, setNarrationIdx] = useState<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const cancel = useCallback(() => {
-    ids.current.forEach(clearTimeout);
-    ids.current = [];
-  }, []);
-
-  const play = useCallback(
-    (timeline: FiberFrame[], stepMs = 500) => {
-      cancel();
-      setIsPlaying(true);
-      setFrame(timeline[0]);
-      setNarrationIdx(0);
-      let elapsed = stepMs;
-      timeline.slice(1).forEach((f, raw) => {
-        const i = raw + 1;
-        const id = setTimeout(() => {
-          setFrame(f);
-          setNarrationIdx(i);
-          if (i === timeline.length - 1) setIsPlaying(false);
-        }, elapsed);
-        ids.current.push(id);
-        elapsed += stepMs;
-      });
-    },
-    [cancel]
-  );
-
-  const reset = useCallback(() => {
-    cancel();
-    setIsPlaying(false);
-    setFrame(IDLE_FRAME);
-    setNarrationIdx(null);
-  }, [cancel]);
-
-  useEffect(() => cancel, [cancel]);
-
-  return { frame, narrationIdx, isPlaying, play, reset };
-}
-
-const SPEED_MS: Record<Speed, number> = { slow: 2400, normal: 1600, fast: 900 };
-
-function useStepPlayer(timeline: FiberFrame[]) {
-  const [status, setStatus] = useState<Status>("idle");
-  const [step, setStep] = useState(0);
-  const [speed, setSpeed] = useState<Speed>("normal");
-
-  const lastStep = timeline.length - 1;
-  const safeStep = Math.min(step, lastStep);
-  const frame = status === "idle" ? IDLE_FRAME : timeline[safeStep];
-
-  useEffect(() => {
-    if (status !== "running") return;
-    if (step >= lastStep) { setStatus("finished"); return; }
-    const id = window.setTimeout(() => setStep((s) => s + 1), SPEED_MS[speed]);
-    return () => window.clearTimeout(id);
-  }, [status, step, speed, lastStep]);
-
-  const start   = () => { setStep(0); setStatus("running"); };
-  const resume  = () => setStatus("running");
-  const pause   = () => setStatus("paused");
-  const reset   = () => { setStatus("idle"); setStep(0); };
-  const forward = () => {
-    if (status === "idle") setStatus("paused");
-    if (step >= lastStep) { setStatus("finished"); return; }
-    setStep((s) => s + 1);
-    if (status === "running") setStatus("paused");
-  };
-  const back = () => {
-    if (status === "idle") return;
-    if (status === "finished" || status === "running") setStatus("paused");
-    setStep((s) => Math.max(0, s - 1));
-  };
-
-  return { status, step: safeStep, speed, setSpeed, frame, start, resume, pause, reset, forward, back };
-}
-
-interface DemoPanelProps {
+function NarrationLog({
+  scenarioId,
+  narrationIdx,
+  playCount,
+}: {
   scenarioId: Exclude<ScenarioId, "initialRender">;
-  count: number;
-  isPlaying: boolean;
-  onIncrement: () => void;
-}
-
-function DemoPanel({ scenarioId, count, isPlaying, onIncrement }: DemoPanelProps) {
+  narrationIdx: number | null;
+  playCount: number;
+}) {
   const { t } = useTranslation();
+  const tx = (key: string) => t(key as never);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  if (narrationIdx === null) {
+    return (
+      <p className="text-center text-white/35 text-sm">
+        {t("reactFiber.interactiveIdleNarration")}
+      </p>
+    );
+  }
+
   return (
-    <div className="relative flex flex-col items-center justify-center gap-7 rounded-2xl border border-white/[0.08] bg-white/[0.015] min-h-[200px] overflow-hidden p-10">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(212,160,23,0.04), transparent)",
-        }}
-      />
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={count}
-          initial={{ y: -16, opacity: 0, filter: "blur(6px)" }}
-          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-          exit={{ y: 16, opacity: 0, filter: "blur(6px)" }}
-          transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
-          className="text-7xl font-mono tabular-nums font-semibold text-white leading-none select-none"
+    <div className="flex flex-col gap-3 px-1">
+      {Array.from({ length: narrationIdx + 1 }, (_, i) => (
+        <motion.div
+          key={`${playCount}-${i}`}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="flex gap-3 text-sm leading-relaxed"
         >
-          {count}
-        </motion.span>
-      </AnimatePresence>
-
-      <motion.button
-        onClick={onIncrement}
-        disabled={isPlaying}
-        whileTap={{ scale: 0.93 }}
-        className="px-8 py-3 rounded-xl bg-accent/10 border border-accent/25 text-accent-soft font-medium hover:bg-accent/[0.18] transition-colors disabled:opacity-40 disabled:cursor-not-allowed text-sm"
-      >
-        {isPlaying ? (
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            {t("reactFiber.demoPanel.reconciling")}
+          <span className="shrink-0 font-mono text-xs text-white/20 pt-0.5 w-4 text-right select-none">
+            {i + 1}
           </span>
-        ) : (
-          t("reactFiber.demoPanel.increment")
-        )}
-      </motion.button>
-
-      {scenarioId === "effects" && (
-        <p className="text-[11px] font-mono text-white/20 absolute bottom-3">
-          {t("reactFiber.demoPanel.effectsNote")}
-        </p>
-      )}
+          <span
+            className={i === narrationIdx ? "text-white/90" : "text-white/30"}
+          >
+            {tx(`reactFiber.scenarios.${scenarioId}.narrations.${i}`)}
+          </span>
+        </motion.div>
+      ))}
+      <div ref={bottomRef} />
     </div>
   );
 }
@@ -159,34 +63,27 @@ function DemoPanel({ scenarioId, count, isPlaying, onIncrement }: DemoPanelProps
 export function ReactFiberPage() {
   const { t } = useTranslation();
   const [scenarioId, setScenarioId] = useState<ScenarioId>("initialRender");
-
   // interactive state (stateUpdate + effects)
   const [count, setCount] = useState(0);
   const player = useTimelinePlayer();
-
   // step-based state (initialRender)
   const stepper = useStepPlayer(SCENARIOS.initialRender.timeline);
-
   const tx = (key: string) => t(key as never);
   const isInteractive = scenarioId !== "initialRender";
   const scenario = SCENARIOS[scenarioId];
 
-  // derive current frame + narration depending on mode
   const frame = isInteractive ? player.frame : stepper.frame;
-  const narration: string = isInteractive
-    ? player.narrationIdx === null
+  const narration: string =
+    stepper.status === "idle"
       ? t("reactFiber.idleNarration")
-      : tx(`reactFiber.scenarios.${scenarioId}.narrations.${player.narrationIdx}`)
-    : stepper.status === "idle"
-    ? t("reactFiber.idleNarration")
-    : tx(`reactFiber.scenarios.initialRender.narrations.${stepper.step}`);
+      : tx(`reactFiber.scenarios.initialRender.narrations.${stepper.step}`);
 
   // reset both players on scenario switch
   useEffect(() => {
     player.reset();
     stepper.reset();
     setCount(0);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scenarioId]);
 
   const handleIncrement = () => {
@@ -203,17 +100,17 @@ export function ReactFiberPage() {
         path="/react-fiber"
       />
 
-      <header className="text-center max-w-5xl mx-auto">
+      <div className="text-center max-w-5xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("reactFiber.eyebrow")}
         </p>
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white text-balance">
+        <h1 className="text-5xl font-semibold tracking-tight text-white text-balance">
           {t("reactFiber.title")}
         </h1>
         <p className="mt-6 text-white/60 text-lg max-w-2xl mx-auto text-balance">
           {t("reactFiber.description")}
         </p>
-      </header>
+      </div>
 
       {/* scenario selector */}
       <div className="mt-12 flex justify-center flex-wrap gap-2">
@@ -312,7 +209,11 @@ export function ReactFiberPage() {
               >
                 {t("reactFiber.controls.next")}
               </button>
-              <SpeedControl speed={stepper.speed} ns="reactFiber" onChange={stepper.setSpeed} />
+              <SpeedControl
+                speed={stepper.speed}
+                ns="reactFiber"
+                onChange={stepper.setSpeed}
+              />
             </div>
           </div>
         </>
@@ -337,19 +238,12 @@ export function ReactFiberPage() {
             <FiberTreeVisualizer frame={frame} />
           </div>
 
-          <div className="mt-10 min-h-[3.5rem] flex items-start justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={`${scenarioId}-${player.narrationIdx}`}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.28 }}
-                className="text-center text-white/75 max-w-2xl text-lg leading-relaxed"
-              >
-                {narration}
-              </motion.p>
-            </AnimatePresence>
+          <div className="mt-10 mx-auto w-full">
+            <NarrationLog
+              scenarioId={scenarioId as Exclude<ScenarioId, "initialRender">}
+              narrationIdx={player.narrationIdx}
+              playCount={player.playCount}
+            />
           </div>
         </>
       )}
