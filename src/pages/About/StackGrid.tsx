@@ -38,7 +38,7 @@ export function StackGrid() {
   const inView = useInView(ref, { once: true, amount: 0.25 });
 
   return (
-    <section ref={ref} className="py-24 md:py-32 px-6">
+    <section ref={ref} className="py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 8 }}

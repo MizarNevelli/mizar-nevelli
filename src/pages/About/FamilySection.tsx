@@ -12,15 +12,15 @@ export function FamilySection() {
   const inView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="relative py-24 md:py-32 px-6">
+    <section ref={ref} className="relative py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="border-t border-white/10 pt-8"
+          className="border-t border-white/10 pt-12"
         >
-          <div className="grid md:grid-cols-[1fr_200px] gap-8 md:gap-12 items-start">
+          <div className="grid md:grid-cols-[1fr_300px] gap-8 md:gap-12 items-start">
             <div>
               <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">
                 {t("about.family.eyebrow")}
@@ -44,18 +44,28 @@ export function FamilySection() {
             </div>
 
             <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{ aspectRatio: "3/4" }}
+              className="relative"
+              style={
+                {
+                  aspectRatio: "3/4",
+                  maskImage: [
+                    "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
+                    "linear-gradient(to bottom, transparent 0%, black 16%, black 68%, transparent 100%)",
+                  ].join(", "),
+                  maskComposite: "intersect",
+                  WebkitMaskImage: [
+                    "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
+                    "linear-gradient(to bottom, transparent 0%, black 16%, black 68%, transparent 100%)",
+                  ].join(", "),
+                  WebkitMaskComposite: "source-in",
+                } as React.CSSProperties
+              }
             >
               <img
                 src={AKELA_PHOTO}
                 alt="Akela Nevelli"
-                className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.78] contrast-[1.12] scale-[1.02]"
+                className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.78] contrast-[1.12]"
               />
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink-950 via-ink-950/50 to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-ink-950/60 to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-accent/20 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/[0.08] pointer-events-none" />
             </div>
           </div>
         </motion.div>

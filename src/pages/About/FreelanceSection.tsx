@@ -13,7 +13,7 @@ export function FreelanceSection() {
 
   return (
     <section className="max-w-5xl mx-auto px-6 border-t border-white/10">
-      <div ref={ref} className="py-16 md:py-24">
+      <div ref={ref} className="py-16">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
