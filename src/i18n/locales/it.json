@@ -23,6 +23,10 @@
       "nomadTax": {
         "label": "Nomad Tax",
         "description": "Calcolatore rischio residenza fiscale"
+      },
+      "reactFiber": {
+        "label": "React Fiber",
+        "description": "Come funziona il reconciler di React sotto al cofano"
       }
     },
     "language": "Lingua"
@@ -79,6 +83,11 @@
         "eyebrow": "Ambito & memoria",
         "title": "Closure",
         "body": "Funzioni che portano con sé il luogo in cui sono nate. La fonte delle callback, degli hook e del famoso bug del ciclo."
+      },
+      "reactFiber": {
+        "eyebrow": "Internals",
+        "title": "React Fiber",
+        "body": "Il reconciler dietro ogni hook e ogni re-render. Visualizza il fiber tree, i bailout e gli effect in tempo reale."
       }
     },
     "featureCardCta": "Esplora",
@@ -490,6 +499,96 @@
       "atRiskBadge": "A rischio",
       "barLabel": "{{days}} / {{threshold}} giorni nella finestra peggiore di 365 giorni",
       "worstWindow": "Finestra peggiore: {{start}} → {{end}}"
+    }
+  },
+  "reactFiber": {
+    "eyebrow": "Motore di riconciliazione",
+    "title": "React Fiber, visualizzato.",
+    "description": "Fiber è la struttura dati interna dietro ogni componente React. Forma un albero a lista collegata che React attraversa, differenzia e committe, rimanendo sempre interrompibile.",
+    "stepLabel": "Passo",
+    "idleNarration": "Scegli uno scenario e premi Avvia per esplorare gli internals di React.",
+    "status": {
+      "idle": "Pronto",
+      "running": "In esecuzione",
+      "paused": "In pausa",
+      "finished": "Terminato"
+    },
+    "controls": {
+      "run": "Avvia scenario",
+      "pause": "Pausa",
+      "resume": "Riprendi",
+      "reset": "Ripristina",
+      "replay": "Ripeti",
+      "prev": "← Prec",
+      "next": "Succ →"
+    },
+    "speed": {
+      "slow": "lento",
+      "normal": "normale",
+      "fast": "veloce"
+    },
+    "legend": {
+      "child": "figlio",
+      "sibling": "fratello",
+      "fc": "Componente funzione",
+      "hook": "Ha hook"
+    },
+    "phases": {
+      "new": "Creato",
+      "render": "Render",
+      "bailout": "Bailout",
+      "dirty": "Dirty",
+      "commit": "Commit",
+      "effect": "Effect"
+    },
+    "scenarios": {
+      "initialRender": {
+        "label": "Render iniziale",
+        "narrations": [
+          "Scegli uno scenario e premi Avvia per esplorare gli internals di React.",
+          "React.createElement restituisce un oggetto JS semplice. React alloca il primo Fiber per App, l'unità di lavoro radice nello scheduler.",
+          "React scende in profondità. App.child → Header. Un nuovo fiber viene collegato: nessun array, solo un puntatore.",
+          "Header.child → Logo. Logo non ha figli. React inizia a risalire l'albero.",
+          "Logo.sibling → Nav. I puntatori sibling formano una lista collegata: traversal O(1) senza allocazione di array.",
+          "I figli di Header sono completati. React segue Header.sibling → Page.",
+          "Page.child → Counter. Counter chiama useState. React aggiunge un nodo hook alla lista memoizedHooks di questo fiber.",
+          "Counter.sibling → Footer. Tutti i fiber creati. L'albero work-in-progress (WIP) è completo.",
+          "Fase di render completata. Il diff è in memoria, zero mutazioni al DOM finora. Questa fase è interrompibile.",
+          "Fase di commit: React percorre la lista degli effetti e applica tutte le mutazioni DOM in un unico passaggio sincrono.",
+          "L'albero è live. Ogni fiber memorizza props, state, una lista di hook e un puntatore al suo nodo DOM (stateNode)."
+        ]
+      },
+      "stateUpdate": {
+        "label": "Aggiornamento di stato",
+        "narrations": [
+          "L'albero è stabile. Counter ha count=0. Qualsiasi chiamata a setCount pianifica lavoro attraverso lo scheduler di React.",
+          "setCount viene chiamato. React segna il fiber di Counter con un aggiornamento pendente e un effectTag: Update.",
+          "React inizia a costruire un albero work-in-progress (WIP), un clone superficiale. Double buffering: la UI live non viene toccata.",
+          "WIP App: props e context invariati. React legge un flag e fa bailout: l'intero sotto-albero viene saltato in O(1).",
+          "Header, Logo, Nav, Page fanno tutti bailout. Nessuna funzione componente chiamata, solo la lettura di un flag per nodo.",
+          "Counter è dirty. React chiama la funzione. useState restituisce count+1. Il nuovo JSX viene differenziato col fiber esistente.",
+          "Counter.sibling = Footer. Le props di Footer non sono cambiate: bailout.",
+          "Fase di render completata. Solo Counter ha prodotto nuovo output. Commit: una singola mutazione DOM al nodo di Counter.",
+          "L'albero WIP diventa corrente con uno swap di puntatore O(1). L'albero precedente viene schedulato per il GC."
+        ]
+      },
+      "effects": {
+        "label": "Ciclo di vita useEffect",
+        "narrations": [
+          "L'albero è stabile. Counter ha il conteggio corrente. deps=[count] è registrato nel fiber.",
+          "setCount viene chiamato. React marca Counter come dirty e lo pianifica attraverso lo scheduler.",
+          "Counter re-renderizza. useState restituisce count+1. Il nuovo JSX viene differenziato col fiber esistente.",
+          "useEffect controlla le deps. count è cambiato, quindi l'effect viene ri-accodato nella lista degli effetti passivi.",
+          "Commit: React applica la mutazione DOM in modo sincrono. Il browser può ora paintare.",
+          "Dopo il paint: il cleanup precedente viene eseguito prima, poi la nuova callback parte. document.title viene aggiornato.",
+          "Ciclo completato. Il nuovo cleanup è memorizzato nel fiber, in attesa del prossimo aggiornamento."
+        ]
+      }
+    },
+    "demoPanel": {
+      "increment": "+ Incrementa",
+      "reconciling": "Aggiornamento...",
+      "effectsNote": "useEffect sincronizza document.title"
     }
   }
 }

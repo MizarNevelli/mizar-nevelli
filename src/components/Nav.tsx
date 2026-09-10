@@ -10,6 +10,7 @@ const JS_FEATURE_KEYS = [
   { to: "/event-loop", key: "eventLoop" },
   { to: "/event-bubbling", key: "eventBubbling" },
   { to: "/closures", key: "closures" },
+  { to: "/react-fiber", key: "reactFiber" },
 ] as const;
 
 type TopLinkKey = "home" | "about" | "blog" | "nomadTax" | "contact";

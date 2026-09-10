@@ -33,6 +33,11 @@ const ClosuresPage = lazy(() =>
     default: m.ClosuresPage,
   }))
 );
+const ReactFiberPage = lazy(() =>
+  import("./pages/ReactFiber/ReactFiberPage").then((m) => ({
+    default: m.ReactFiberPage,
+  }))
+);
 const SpaceScene = lazy(() =>
   import("./components/SpaceScene").then((m) => ({ default: m.SpaceScene }))
 );
@@ -70,6 +75,7 @@ const router = createBrowserRouter(
       <Route path="/event-loop" element={<EventLoopPage />} />
       <Route path="/event-bubbling" element={<EventBubblingPage />} />
       <Route path="/closures" element={<ClosuresPage />} />
+      <Route path="/react-fiber" element={<ReactFiberPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<BlogListPage />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />

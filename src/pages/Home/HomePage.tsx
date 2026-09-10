@@ -235,7 +235,7 @@ export function HomePage() {
             </div>
           </ScrollReveal>
 
-          <div className="mt-14 grid md:grid-cols-3 md:gap-x-12">
+          <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 md:gap-x-12">
             <ScrollReveal delay={0.1}>
               <FeatureCard
                 to="/event-loop"
@@ -264,6 +264,16 @@ export function HomePage() {
                 body={t("home.features.closures.body")}
                 cta={t("home.featureCardCta")}
                 index={2}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.4}>
+              <FeatureCard
+                to="/react-fiber"
+                eyebrow={t("home.features.reactFiber.eyebrow")}
+                title={t("home.features.reactFiber.title")}
+                body={t("home.features.reactFiber.body")}
+                cta={t("home.featureCardCta")}
+                index={3}
               />
             </ScrollReveal>
           </div>

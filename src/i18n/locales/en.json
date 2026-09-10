@@ -23,6 +23,10 @@
       "nomadTax": {
         "label": "Nomad Tax",
         "description": "183 day rolling window risk calculator"
+      },
+      "reactFiber": {
+        "label": "React Fiber",
+        "description": "How React's reconciler works under the hood"
       }
     },
     "language": "Language"
@@ -79,6 +83,11 @@
         "eyebrow": "Scope & memory",
         "title": "Closures",
         "body": "Functions that carry their birthplace with them. The source of callbacks, hooks, and that infamous loop bug."
+      },
+      "reactFiber": {
+        "eyebrow": "Internals",
+        "title": "React Fiber",
+        "body": "The reconciler behind every hook and re-render. Visualize the fiber tree, bailouts, and effects in real time."
       }
     },
     "featureCardCta": "Explore",
@@ -490,6 +499,96 @@
       "atRiskBadge": "At risk",
       "barLabel": "{{days}} / {{threshold}} days in worst 365 day window",
       "worstWindow": "Worst window: {{start}} → {{end}}"
+    }
+  },
+  "reactFiber": {
+    "eyebrow": "Reconciliation engine",
+    "title": "React Fiber, visualized.",
+    "description": "Fiber is the internal data structure behind every React component. It forms a linked list tree that React traverses, diffs, and commits, all while remaining interruptible.",
+    "stepLabel": "Step",
+    "idleNarration": "Pick a scenario and press Run to step through React's internals.",
+    "status": {
+      "idle": "Ready",
+      "running": "Running",
+      "paused": "Paused",
+      "finished": "Finished"
+    },
+    "controls": {
+      "run": "Run scenario",
+      "pause": "Pause",
+      "resume": "Resume",
+      "reset": "Reset",
+      "replay": "Replay",
+      "prev": "← Prev",
+      "next": "Next →"
+    },
+    "speed": {
+      "slow": "slow",
+      "normal": "normal",
+      "fast": "fast"
+    },
+    "legend": {
+      "child": "child",
+      "sibling": "sibling",
+      "fc": "Function component",
+      "hook": "Has hook"
+    },
+    "phases": {
+      "new": "Created",
+      "render": "Render",
+      "bailout": "Bailout",
+      "dirty": "Dirty",
+      "commit": "Commit",
+      "effect": "Effect"
+    },
+    "scenarios": {
+      "initialRender": {
+        "label": "Initial render",
+        "narrations": [
+          "Pick a scenario and press Run to step through React's internals.",
+          "React.createElement returns a plain JS object. React allocates the first Fiber for App, the root unit of work in the scheduler.",
+          "React walks depth-first. App.child → Header. A new fiber is linked: no array, just a pointer.",
+          "Header.child → Logo. Logo has no children. React begins walking back up.",
+          "Logo.sibling → Nav. Sibling pointers form a singly-linked list: O(1) traversal with zero array allocation.",
+          "Header's children done. React follows Header.sibling → Page.",
+          "Page.child → Counter. Counter calls useState. React appends a hook node to this fiber's memoized hook list.",
+          "Counter.sibling → Footer. All fibers created. The work-in-progress (WIP) tree is complete.",
+          "Render phase complete. The full diff is in memory, zero DOM mutations so far. This phase is interruptible.",
+          "Commit phase: React walks the effect list (not the whole tree) and flushes all DOM mutations in a single synchronous pass.",
+          "Tree is live. Every fiber stores props, state, a hook linked-list, and a pointer to its DOM node (stateNode)."
+        ]
+      },
+      "stateUpdate": {
+        "label": "State update",
+        "narrations": [
+          "The tree is stable. Counter holds count=0. Any setCount call schedules work through React's scheduler.",
+          "setCount fires. React marks Counter's fiber with a pending update and an effectTag: Update flag.",
+          "React begins building a work-in-progress (WIP) tree, a shallow clone. Double buffering: the live UI is untouched.",
+          "WIP App: props and context unchanged. React reads a tag flag and bails out: the entire subtree is skipped in O(1).",
+          "Header, Logo, Nav, Page all bail out in turn. No component functions called, just a single flag read per node.",
+          "Counter is dirty. React calls the function. useState returns count+1. New JSX output is diffed against the existing fiber.",
+          "Counter.sibling = Footer. Footer's props unchanged: bailout.",
+          "Render phase done. Only Counter produced new output. Commit: a single DOM mutation to Counter's node.",
+          "WIP tree swaps to current via an O(1) pointer swap. Previous tree is scheduled for GC. Minimal allocations."
+        ]
+      },
+      "effects": {
+        "label": "useEffect lifecycle",
+        "narrations": [
+          "Tree is stable. Counter holds the current count. deps=[count] is recorded on the fiber.",
+          "setCount fires. React marks Counter dirty and schedules it through the scheduler.",
+          "Counter re-renders. useState returns count+1. New JSX is diffed against the existing fiber.",
+          "useEffect checks deps. count changed, so the effect is re-queued in the passive effects list.",
+          "Commit: React flushes the DOM mutation synchronously. The browser can now paint.",
+          "After paint: the previous cleanup runs first, then the new callback fires. document.title is updated.",
+          "Cycle done. The new cleanup is stored on the fiber, waiting for the next update."
+        ]
+      }
+    },
+    "demoPanel": {
+      "increment": "+ Increment",
+      "reconciling": "Updating...",
+      "effectsNote": "useEffect syncs document.title"
     }
   }
 }
