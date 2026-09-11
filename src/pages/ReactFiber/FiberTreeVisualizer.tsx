@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useT } from "../../hooks/useT";
 import type { FiberFrame, NodeId, NodePhase } from "./scenarios";
 
 const W = 100;
@@ -284,8 +284,7 @@ function PhaseBadge({ phase, label }: { phase: NodePhase; label: string }) {
 }
 
 export function FiberTreeVisualizer({ frame }: { frame: FiberFrame }) {
-  const { t } = useTranslation();
-  const tx = (key: string) => t(key as never);
+  const { tx } = useT();
 
   const lineVisible = (from: NodeId, to: NodeId) =>
     frame.nodes[from] !== "hidden" && frame.nodes[to] !== "hidden";

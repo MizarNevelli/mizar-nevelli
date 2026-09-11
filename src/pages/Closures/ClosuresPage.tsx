@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useT } from "../../hooks/useT";
 import { CodeBlock } from "../../components/CodeBlock";
 import { ClosuresVisualizer } from "./ClosuresVisualizer";
 import { PageMeta } from "../../components/PageMeta";
@@ -26,7 +26,7 @@ const SPEED_MS: Record<Speed, number> = {
 };
 
 export function ClosuresPage() {
-  const { t } = useTranslation();
+  const { t, tx } = useT();
   const [scenarioId, setScenarioId] = useState<ScenarioId>("basic");
   const [status, setStatus] = useState<Status>("idle");
   const [step, setStep] = useState(0);
@@ -37,7 +37,6 @@ export function ClosuresPage() {
   const safeStep = Math.min(step, lastStep);
   const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[safeStep];
 
-  const tx = (key: string) => t(key as never);
   const narration: string =
     status === "idle"
       ? t("closures.idleNarration")

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useT } from "../../hooks/useT";
 import { CodeBlock } from "../../components/CodeBlock";
 import { FiberTreeVisualizer } from "./FiberTreeVisualizer";
 import { PageMeta } from "../../components/PageMeta";
@@ -23,8 +23,7 @@ function NarrationLog({
   narrationIdx: number | null;
   playCount: number;
 }) {
-  const { t } = useTranslation();
-  const tx = (key: string) => t(key as never);
+  const { t, tx } = useT();
   const bottomRef = useRef<HTMLDivElement>(null);
 
   if (narrationIdx === null) {
@@ -61,14 +60,13 @@ function NarrationLog({
 }
 
 export function ReactFiberPage() {
-  const { t } = useTranslation();
+  const { t, tx } = useT();
   const [scenarioId, setScenarioId] = useState<ScenarioId>("initialRender");
   // interactive state (stateUpdate + effects)
   const [count, setCount] = useState(0);
   const player = useTimelinePlayer();
   // step-based state (initialRender)
   const stepper = useStepPlayer(SCENARIOS.initialRender.timeline);
-  const tx = (key: string) => t(key as never);
   const isInteractive = scenarioId !== "initialRender";
   const scenario = SCENARIOS[scenarioId];
 

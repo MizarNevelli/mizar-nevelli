@@ -1,18 +1,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
+import { useT } from "../../hooks/useT";
 
 type ChapterProps = {
   chapterKey: string;
 };
 
 export function Chapter({ chapterKey }: ChapterProps) {
-  const { t } = useTranslation();
+  const { tx } = useT();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
-
   const base = `about.chapters.${chapterKey}`;
-  const tx = (key: string) => t(key as never);
 
   return (
     <article
