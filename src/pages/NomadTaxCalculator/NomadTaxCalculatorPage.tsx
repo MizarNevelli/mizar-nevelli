@@ -5,8 +5,8 @@ import { TripList } from "./components/TripList";
 import { CountryRiskCard } from "./components/CountryRiskCard";
 import { RiskSummary } from "./components/RiskSummary";
 import { CountrySelect } from "./components/CountrySelect";
-import { useTripTracker } from "./hooks/useTripTracker";
-import { useResidencyRisk } from "./hooks/useResidencyRisk";
+import { useTripTracker } from "../../hooks/useTripTracker";
+import { useResidencyRisk } from "../../hooks/useResidencyRisk";
 import { countryName } from "./utils/countryName";
 
 export function NomadTaxCalculatorPage() {

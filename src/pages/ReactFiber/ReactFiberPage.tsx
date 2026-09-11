@@ -11,8 +11,8 @@ import {
   SpeedControl,
 } from "../../components/VisualizerControls";
 import { DemoPanel } from "./DemoPanel";
-import { useTimelinePlayer } from "../NomadTaxCalculator/hooks/useTimelinePlayer";
-import { useStepPlayer } from "../NomadTaxCalculator/hooks/useStepPlayer";
+import { useTimelinePlayer } from "../../hooks/useTimelinePlayer";
+import { useStepPlayer } from "../../hooks/useStepPlayer";
 
 function NarrationLog({
   scenarioId,

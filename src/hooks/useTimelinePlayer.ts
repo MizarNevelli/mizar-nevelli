@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { IDLE_FRAME, type FiberFrame } from "../../ReactFiber/scenarios";
+import { IDLE_FRAME, type FiberFrame } from "../pages/ReactFiber/scenarios";
 
 export function useTimelinePlayer() {
   const ids = useRef<ReturnType<typeof setTimeout>[]>([]);

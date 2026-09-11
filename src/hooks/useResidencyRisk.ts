@@ -1,6 +1,9 @@
 import { useMemo } from "react";
-import type { Trip, CountryRiskResult } from "../types";
-import { computeResidencyRisk } from "../utils/dateMath";
+import type {
+  Trip,
+  CountryRiskResult,
+} from "../pages/NomadTaxCalculator/types";
+import { computeResidencyRisk } from "../pages/NomadTaxCalculator/utils/dateMath";
 
 export function useResidencyRisk(
   trips: Trip[],

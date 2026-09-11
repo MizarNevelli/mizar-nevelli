@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Speed, Status } from "../../../components/VisualizerControls";
-import { IDLE_FRAME, type FiberFrame } from "../../ReactFiber/scenarios";
+import type { Speed, Status } from "../components/VisualizerControls";
+import { IDLE_FRAME, type FiberFrame } from "../pages/ReactFiber/scenarios";
 
 const SPEED_MS: Record<Speed, number> = { slow: 2400, normal: 1600, fast: 900 };
 

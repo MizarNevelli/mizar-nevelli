@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import type { Trip } from "../types";
+import type { Trip } from "../pages/NomadTaxCalculator/types";
 
 const TRIPS_KEY = "nomad-trips-v1";
 const RESIDENCE_KEY = "nomad-residence-v1";
@@ -23,7 +23,8 @@ function uid(): string {
 
 export function useTripTracker() {
   const [trips, setTrips] = useState<Trip[]>(loadTrips);
-  const [residenceCountry, setResidenceCountryState] = useState<string>(loadResidence);
+  const [residenceCountry, setResidenceCountryState] =
+    useState<string>(loadResidence);
 
   const setResidenceCountry = useCallback((code: string) => {
     setResidenceCountryState(code);
@@ -52,5 +53,12 @@ export function useTripTracker() {
     localStorage.removeItem(TRIPS_KEY);
   }, []);
 
-  return { trips, addTrip, removeTrip, clearAll, residenceCountry, setResidenceCountry };
+  return {
+    trips,
+    addTrip,
+    removeTrip,
+    clearAll,
+    residenceCountry,
+    setResidenceCountry,
+  };
 }
