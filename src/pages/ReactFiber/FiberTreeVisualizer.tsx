@@ -290,7 +290,7 @@ export function FiberTreeVisualizer({ frame }: { frame: FiberFrame }) {
     frame.nodes[from] !== "hidden" && frame.nodes[to] !== "hidden";
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 min-w-0 w-full">
       <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4 overflow-hidden">
         <svg
           viewBox="-30 10 580 260"

@@ -39,7 +39,7 @@ export function StackGrid() {
 
   return (
     <section ref={ref} className="py-16 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

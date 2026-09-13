@@ -105,7 +105,7 @@ export function AboutPage() {
           aria-hidden
           className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-[calc(50%+220px)] w-px bg-gradient-to-b from-transparent via-white/10 to-transparent pointer-events-none"
         />
-        <div className="max-w-5xl mx-auto px-6 divide-y divide-white/10">
+        <div className="max-w-6xl mx-auto px-6 divide-y divide-white/10">
           {CHAPTER_KEYS.map((k) => (
             <Chapter key={k} chapterKey={k} />
           ))}
@@ -118,7 +118,7 @@ export function AboutPage() {
       <OffKeyboard />
 
       <section className="relative py-32 px-6 border-t border-white/10 overflow-hidden">
-        <div className="relative max-w-5xl mx-auto text-center">
+        <div className="relative max-w-6xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -12,7 +12,7 @@ export function FreelanceSection() {
   const inView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="max-w-5xl mx-auto px-6 border-t border-white/10">
+    <section className="max-w-6xl mx-auto px-6 border-t border-white/10">
       <div ref={ref} className="py-16">
         <motion.p
           initial={{ opacity: 0, y: 10 }}

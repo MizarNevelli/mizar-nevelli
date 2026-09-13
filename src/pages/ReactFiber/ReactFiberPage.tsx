@@ -91,14 +91,14 @@ export function ReactFiberPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 px-6 mx-auto">
+    <main className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <PageMeta
         title="React Fiber"
         description={t("reactFiber.description")}
         path="/react-fiber"
       />
 
-      <div className="text-center max-w-5xl mx-auto">
+      <div className="text-center max-w-6xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("reactFiber.eyebrow")}
         </p>
@@ -130,7 +130,7 @@ export function ReactFiberPage() {
       {/* ── Initial render: step-based layout ── */}
       {!isInteractive && (
         <>
-          <div className="mt-8 max-w-5xl mx-auto">
+          <div className="mt-8 max-w-6xl mx-auto">
             <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
               <StatusPill status={stepper.status} ns="reactFiber" />
               <span>
@@ -221,7 +221,7 @@ export function ReactFiberPage() {
       {isInteractive && (
         <>
           <div className="mt-10 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-6 items-start">
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 min-w-0">
               <DemoPanel
                 scenarioId={scenarioId as Exclude<ScenarioId, "initialRender">}
                 count={count}

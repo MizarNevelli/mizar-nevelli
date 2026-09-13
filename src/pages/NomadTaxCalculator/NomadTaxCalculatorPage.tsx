@@ -30,7 +30,7 @@ export function NomadTaxCalculatorPage() {
         path="/nomad-tax"
       />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
           {t("nomadTax.eyebrow")}
         </p>

@@ -16,7 +16,7 @@ export function OffKeyboard() {
       ref={ref}
       className="relative py-24 md:py-32 border-y border-white/10"
     >
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -29,7 +29,7 @@ export function OffKeyboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance leading-[1.05] max-w-5xl"
+          className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance leading-[1.05] max-w-6xl"
         >
           {t("about.offKeyboard.title")}
         </motion.h2>

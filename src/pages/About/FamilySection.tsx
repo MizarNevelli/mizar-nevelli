@@ -13,7 +13,7 @@ export function FamilySection() {
 
   return (
     <section ref={ref} className="relative py-16 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

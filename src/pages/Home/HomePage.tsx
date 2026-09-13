@@ -196,7 +196,7 @@ export function HomePage() {
       </section>
 
       <section className="relative z-10 bg-ink-950 py-28 px-6 border-t border-white/[0.07]">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 border border-white/[0.06] rounded-xl overflow-hidden">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 border border-white/[0.06] rounded-xl overflow-hidden">
           <ScrollReveal delay={0}>
             <div className="border-b md:border-b-0 md:border-r border-white/[0.06] p-8 md:p-10">
               <StatCard value={yearsOfExp} label={t("home.stats.writingJs")} />

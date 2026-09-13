@@ -30,10 +30,10 @@ export function BlogListPage() {
         description="Notes from the road. Travel memories from a remote JavaScript engineer."
         path="/blog"
       />
-      <div className="max-w-5xl mx-auto w-full flex flex-col flex-1 min-h-0">
-        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
+      <div className="max-w-6xl mx-auto w-full flex flex-col flex-1 min-h-0">
+        {/* <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent-soft mb-4">
           {t("blog.eyebrow")}
-        </p>
+        </p> */}
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white text-balance">
           {t("blog.titleLine1")}
           <br />

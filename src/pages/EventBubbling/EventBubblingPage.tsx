@@ -110,7 +110,7 @@ export function EventBubblingPage() {
         description="See how DOM events propagate through the tree, step by step."
         path="/event-bubbling"
       />
-      <header className="text-center max-w-5xl mx-auto">
+      <header className="text-center max-w-6xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("eventBubbling.eyebrow")}
         </p>
@@ -149,7 +149,7 @@ export function EventBubblingPage() {
         </label>
       </div>
 
-      <div className="mt-8 max-w-5xl mx-auto">
+      <div className="mt-8 max-w-6xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="eventBubbling" />
           <span>

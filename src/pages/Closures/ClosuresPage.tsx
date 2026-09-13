@@ -98,7 +98,7 @@ export function ClosuresPage() {
         description="Functions that carry their scope, an interactive guide to JavaScript closures."
         path="/closures"
       />
-      <header className="text-center max-w-5xl mx-auto">
+      <header className="text-center max-w-6xl mx-auto">
         <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
           {t("closures.eyebrow")}
         </p>
@@ -126,7 +126,7 @@ export function ClosuresPage() {
         ))}
       </div>
 
-      <div className="mt-8 max-w-5xl mx-auto">
+      <div className="mt-8 max-w-6xl mx-auto">
         <div className="flex items-center justify-between text-xs uppercase tracking-widest text-white/40 mb-2">
           <StatusPill status={status} ns="closures" />
           <span>
