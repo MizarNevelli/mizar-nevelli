@@ -449,12 +449,12 @@
   },
   "blog": {
     "eyebrow": "Field Notes",
-    "titleLine1": "Dispatches",
+    "titleLine1": "Notes",
     "titleLine2": "from the road.",
     "empty": "Nothing here yet.",
     "postNotFound": "Post not found.",
     "backToList": "Go back to list",
-    "subtitle": "I regularly update these posts with the places I visit, all articles are written by hand, and I use LLMs only to help with formatting."
+    "subtitle": "I regularly update these writings, all articles are written by hand, I use LLMs only to help with formatting."
   },
   "nomadTax": {
     "meta": {
