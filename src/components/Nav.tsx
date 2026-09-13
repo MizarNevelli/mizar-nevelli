@@ -72,7 +72,7 @@ export function Nav() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="mx-auto mt-4 max-w-6xl flex items-start justify-between gap-3">
+      <div className="mx-auto mt-4 max-w-6xl px-4 md:px-0 flex items-start justify-between gap-3">
         <div className="relative flex-1 md:flex-none">
           <div
             aria-hidden
