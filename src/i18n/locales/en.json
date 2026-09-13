@@ -210,7 +210,8 @@
       "title": "Propagation log",
       "empty_prefix": "Click ",
       "empty_suffix": " or press Run to fire an event.",
-      "listener": "listener ({{phase}})"
+      "listener": "listener ({{phase}})",
+      "traversal": "traversal only"
     },
     "innerButton": {
       "idle": "Click to fire an event",

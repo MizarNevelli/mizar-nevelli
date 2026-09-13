@@ -210,7 +210,8 @@
       "title": "Log di propagazione",
       "empty_prefix": "Clicca ",
       "empty_suffix": " o premi Avvia per lanciare un evento.",
-      "listener": "listener ({{phase}})"
+      "listener": "listener ({{phase}})",
+      "traversal": "solo traversata"
     },
     "innerButton": {
       "idle": "Cliccami per lanciare un evento",

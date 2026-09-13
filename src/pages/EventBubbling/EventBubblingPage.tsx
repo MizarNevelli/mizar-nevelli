@@ -16,6 +16,7 @@ type TraceEntry = {
   id: number;
   layer: string;
   phase: Phase;
+  listenerFires: boolean;
   narrationKey: string;
   narrationParams?: Record<string, string>;
 };
@@ -206,7 +207,7 @@ export function EventBubblingPage() {
                   key={entry.id}
                   initial={{ opacity: 0, x: -8 }}
                   animate={{
-                    opacity: 1,
+                    opacity: entry.listenerFires ? 1 : 0.3,
                     x: 0,
                     backgroundColor:
                       i === step
@@ -217,9 +218,13 @@ export function EventBubblingPage() {
                   className="flex items-center gap-3 rounded-lg px-2 py-1 min-w-0 overflow-hidden"
                 >
                   <PhaseBadge phase={entry.phase} />
-                  <span className="text-white/90">{entry.layer}</span>
+                  <span className={entry.listenerFires ? "text-white/90" : "text-white/50"}>
+                    {entry.layer}
+                  </span>
                   <span className="text-white/40 truncate">
-                    {t("eventBubbling.log.listener", { phase: entry.phase })}
+                    {entry.listenerFires
+                      ? t("eventBubbling.log.listener", { phase: entry.phase })
+                      : t("eventBubbling.log.traversal")}
                   </span>
                 </motion.div>
               ))}
@@ -286,39 +291,34 @@ function buildTrace({
   const push = (
     layer: string,
     phase: Phase,
+    listenerFires: boolean,
     narrationKey: string,
     narrationParams?: Record<string, string>
   ) => {
-    entries.push({ id: id++, layer, phase, narrationKey, narrationParams });
+    entries.push({ id: id++, layer, phase, listenerFires, narrationKey, narrationParams });
   };
 
-  if (useCapture) {
-    for (const layer of LAYERS) {
-      if (layer === TARGET) break;
-      const key =
-        layer === "window"
-          ? "eventBubbling.narrations.captureStart"
-          : "eventBubbling.narrations.capture";
-      push(layer, "capture", key, { layer });
-      if (layer === stopAt) return entries;
-    }
-    push(TARGET, "target", "eventBubbling.narrations.target", {
-      layer: TARGET,
-    });
-  } else {
-    push(TARGET, "target", "eventBubbling.narrations.target", {
-      layer: TARGET,
-    });
-    if (stopAt === TARGET) return entries;
-    for (const layer of [...LAYERS].reverse()) {
-      if (layer === TARGET) continue;
-      const key =
-        layer === "window"
-          ? "eventBubbling.narrations.bubbleEnd"
-          : "eventBubbling.narrations.bubble";
-      push(layer, "bubble", key, { layer });
-      if (layer === stopAt) break;
-    }
+  for (const layer of LAYERS) {
+    if (layer === TARGET) break;
+    const key =
+      layer === "window"
+        ? "eventBubbling.narrations.captureStart"
+        : "eventBubbling.narrations.capture";
+    push(layer, "capture", useCapture, key, { layer });
+    if (useCapture && layer === stopAt) return entries;
+  }
+
+  push(TARGET, "target", true, "eventBubbling.narrations.target", { layer: TARGET });
+  if (stopAt === TARGET) return entries;
+
+  for (const layer of [...LAYERS].reverse()) {
+    if (layer === TARGET) continue;
+    const key =
+      layer === "window"
+        ? "eventBubbling.narrations.bubbleEnd"
+        : "eventBubbling.narrations.bubble";
+    push(layer, "bubble", !useCapture, key, { layer });
+    if (!useCapture && layer === stopAt) break;
   }
 
   return entries;
