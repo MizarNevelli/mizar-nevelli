@@ -161,7 +161,7 @@ export function BlogPostPage() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-2xl mx-auto px-6 pt-8 pb-32">
+      <div className="relative z-10 max-w-2xl mx-auto pt-8 pb-32">
         <div className="flex items-center justify-between mb-12">
           <Link
             to="/blog"

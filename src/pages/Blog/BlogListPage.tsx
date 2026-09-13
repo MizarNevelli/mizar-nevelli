@@ -53,7 +53,7 @@ export function BlogListPage() {
                 <div className="flex-1 min-w-0 w-full relative pr-4">
                   <span
                     aria-hidden
-                    className="absolute -top-2 -left-1 text-[5rem] leading-none font-bold text-white/[0.04] select-none pointer-events-none tabular-nums"
+                    className="absolute -top-2 -left-1 text-[4rem] leading-none font-bold text-white/[0.15] select-none pointer-events-none tabular-nums"
                   >
                     {formatOrdinal(i)}
                   </span>
