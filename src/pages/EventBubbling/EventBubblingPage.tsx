@@ -11,6 +11,7 @@ import {
 } from "../../components/VisualizerControls";
 import { NestedBoxes, type Phase } from "./NestedBoxes";
 import { PhaseBadge } from "./PhaseBadge";
+
 type TraceEntry = {
   id: number;
   layer: string;
@@ -291,27 +292,34 @@ function buildTrace({
     entries.push({ id: id++, layer, phase, narrationKey, narrationParams });
   };
 
-  for (const layer of LAYERS) {
-    if (layer === TARGET) break;
-    const key =
-      layer === "window"
-        ? "eventBubbling.narrations.captureStart"
-        : "eventBubbling.narrations.capture";
-    push(layer, "capture", key, { layer });
-    if (useCapture && layer === stopAt) return entries;
+  if (useCapture) {
+    for (const layer of LAYERS) {
+      if (layer === TARGET) break;
+      const key =
+        layer === "window"
+          ? "eventBubbling.narrations.captureStart"
+          : "eventBubbling.narrations.capture";
+      push(layer, "capture", key, { layer });
+      if (layer === stopAt) return entries;
+    }
+    push(TARGET, "target", "eventBubbling.narrations.target", {
+      layer: TARGET,
+    });
+  } else {
+    push(TARGET, "target", "eventBubbling.narrations.target", {
+      layer: TARGET,
+    });
+    if (stopAt === TARGET) return entries;
+    for (const layer of [...LAYERS].reverse()) {
+      if (layer === TARGET) continue;
+      const key =
+        layer === "window"
+          ? "eventBubbling.narrations.bubbleEnd"
+          : "eventBubbling.narrations.bubble";
+      push(layer, "bubble", key, { layer });
+      if (layer === stopAt) break;
+    }
   }
 
-  push(TARGET, "target", "eventBubbling.narrations.target", { layer: TARGET });
-  if (stopAt === TARGET) return entries;
-
-  for (const layer of [...LAYERS].reverse()) {
-    if (layer === TARGET) continue;
-    const key =
-      layer === "window"
-        ? "eventBubbling.narrations.bubbleEnd"
-        : "eventBubbling.narrations.bubble";
-    push(layer, "bubble", key, { layer });
-    if (!useCapture && layer === stopAt) break;
-  }
   return entries;
 }
