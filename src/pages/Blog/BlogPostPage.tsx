@@ -109,7 +109,7 @@ export function BlogPostPage() {
   const { frontmatter, Component } = post;
 
   return (
-    <main className="relative min-h-[100dvh] bg-ink-950">
+    <main className="relative min-h-[100dvh] bg-ink-950 px-6">
       <PageMeta
         title={frontmatter.title}
         description={frontmatter.excerpt}
