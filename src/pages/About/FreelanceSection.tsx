@@ -1,11 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useT } from "../../hooks/useT";
 
 const TAGS = ["React", "TypeScript", "React Router", "Tailwind CSS"];
 
 export function FreelanceSection() {
-  const { tx } = useTranslation();
+  const { tx } = useT();
 
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
