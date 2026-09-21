@@ -5,8 +5,7 @@ import { useTranslation } from "react-i18next";
 const TAGS = ["React", "TypeScript", "React Router", "Tailwind CSS"];
 
 export function FreelanceSection() {
-  const { t } = useTranslation();
-  const tx = (k: string) => t(k as never);
+  const { tx } = useTranslation();
 
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useT } from "../../hooks/useT";
 import { EventLoopVisualizer } from "./EventLoopVisualizer";
 import { CodeBlock } from "../../components/CodeBlock";
 import { PageMeta } from "../../components/PageMeta";
@@ -32,7 +32,7 @@ const IDLE_FRAME: Frame = {
 };
 
 export function EventLoopPage() {
-  const { t } = useTranslation();
+  const { t, tx } = useT();
   const [scenarioId, setScenarioId] = useState<ScenarioId>("classic");
   const [status, setStatus] = useState<Status>("idle");
   const [step, setStep] = useState(0);
@@ -41,8 +41,6 @@ export function EventLoopPage() {
   const scenario = SCENARIOS[scenarioId];
   const lastStep = scenario.timeline.length - 1;
   const frame = status === "idle" ? IDLE_FRAME : scenario.timeline[step];
-
-  const tx = t as (key: string) => string;
   const narration: string =
     status === "idle"
       ? t("eventLoop.idleNarration")

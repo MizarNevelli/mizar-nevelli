@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useT } from "../hooks/useT";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 type TopLink = {
@@ -25,8 +25,7 @@ export function MobileMenu({
   topLinks,
   jsFeatureKeys,
 }: MobileMenuProps) {
-  const { t } = useTranslation();
-  const tx = t as (key: string) => string;
+  const { t, tx } = useT();
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `block text-4xl font-semibold tracking-tight ${
