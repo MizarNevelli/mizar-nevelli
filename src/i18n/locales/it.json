@@ -40,19 +40,24 @@
     "descriptionSuffix": ", uno sviluppatore JavaScript che lavora da remoto, ovunque ci sia una connessione. Questo è un piccolo playground dedicato al linguaggio che amo, raccontato con i pixel invece delle parole.",
     "panels": {
       "one": {
-        "eyebrow": "01 · Da remoto, per scelta",
-        "line1": "Un laptop, un segnale,",
-        "line2": "e il mondo diventa un ufficio."
+        "eyebrow": "01 · {{years}} anni di mestiere",
+        "line1": "Apre ancora Chrome.",
+        "line2": "Consegna ancora."
       },
       "two": {
-        "eyebrow": "02 · Quindici fusi orari",
-        "line1": "Rilasciando feature da caffè,",
-        "line2": "treni e terrazze sui tetti."
+        "eyebrow": "02 · Senza indirizzo fisso",
+        "line1": "Lavora da qualunque posto",
+        "line2": "regga il Wi-Fi."
       },
       "three": {
-        "eyebrow": "03 · Un linguaggio, un loop",
-        "line1": "JavaScript muove il browser",
-        "line2": "e alimenta il viaggio."
+        "eyebrow": "03 · Legge la spec",
+        "line1": "Stack Overflow ha chiuso la domanda.",
+        "line2": "L'AI ha allucinato la risposta."
+      },
+      "four": {
+        "eyebrow": "04 · Ha fatto questo",
+        "line1": "Perché leggere dell'event bubbling",
+        "line2": "non è lo stesso che vederlo."
       }
     },
     "stats": {

@@ -40,19 +40,24 @@
     "descriptionSuffix": ", a JavaScript engineer. Remote by habit, on the move by choice. This is a corner of the internet where I pull apart something about myself and the language I love.",
     "panels": {
       "one": {
-        "eyebrow": "01 · One language, one love",
-        "line1": "JavaScript runs in the browser",
-        "line2": "and it powers the journey."
+        "eyebrow": "01 · {{years}} years in",
+        "line1": "Still opens Chrome.",
+        "line2": "Still ships the feature."
       },
       "two": {
-        "eyebrow": "02 · Remote by design",
-        "line1": "A laptop, a signal,",
-        "line2": "and the world becomes an office."
+        "eyebrow": "02 · No fixed address",
+        "line1": "Works from wherever",
+        "line2": "the WiFi holds."
       },
       "three": {
-        "eyebrow": "03 · Various time zones",
-        "line1": "Shipping features from cafés,",
-        "line2": "trains, and rooftop balconies."
+        "eyebrow": "03 · Reads the spec",
+        "line1": "Stack Overflow closed the question.",
+        "line2": "The AI hallucinated the answer."
+      },
+      "four": {
+        "eyebrow": "04 · Built this",
+        "line1": "Because reading about event bubbling",
+        "line2": "is not the same as watching it."
       }
     },
     "stats": {

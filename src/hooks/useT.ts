@@ -2,5 +2,6 @@ import { useTranslation } from "react-i18next";
 
 export function useT() {
   const { t } = useTranslation();
-  return { t, tx: (key: string) => t(key as never) };
+  const tx = t as (key: string, params?: Record<string, string>) => string;
+  return { t, tx };
 }

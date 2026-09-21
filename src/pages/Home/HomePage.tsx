@@ -8,7 +8,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { lazy, Suspense, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useT } from "../../hooks/useT";
 import { ScrollReveal } from "../../components/ScrollReveal";
 import { HeroChip } from "./HeroChip";
 import { StatCard } from "./StatCard";
@@ -20,7 +20,7 @@ const Globe = lazy(() =>
 );
 
 export function HomePage() {
-  const { t } = useTranslation();
+  const { t, tx } = useT();
   const globeSectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress: globeProgress } = useScroll({
@@ -154,8 +154,8 @@ export function HomePage() {
             <div className="relative order-1 md:order-2 h-56 md:h-96">
               <StoryPanel
                 progress={globeProgress}
-                range={[0.0, 0.35]}
-                eyebrow={t("home.panels.one.eyebrow")}
+                range={[0.0, 0.27]}
+                eyebrow={tx("home.panels.one.eyebrow", { years: String(currYear - 2018) })}
                 heading={
                   <>
                     {t("home.panels.one.line1")}
@@ -166,7 +166,7 @@ export function HomePage() {
               />
               <StoryPanel
                 progress={globeProgress}
-                range={[0.33, 0.67]}
+                range={[0.24, 0.52]}
                 eyebrow={t("home.panels.two.eyebrow")}
                 heading={
                   <>
@@ -178,13 +178,25 @@ export function HomePage() {
               />
               <StoryPanel
                 progress={globeProgress}
-                range={[0.65, 1.0]}
+                range={[0.49, 0.76]}
                 eyebrow={t("home.panels.three.eyebrow")}
                 heading={
                   <>
                     {t("home.panels.three.line1")}
                     <br />
                     {t("home.panels.three.line2")}
+                  </>
+                }
+              />
+              <StoryPanel
+                progress={globeProgress}
+                range={[0.73, 1.0]}
+                eyebrow={t("home.panels.four.eyebrow")}
+                heading={
+                  <>
+                    {t("home.panels.four.line1")}
+                    <br />
+                    {t("home.panels.four.line2")}
                   </>
                 }
               />
