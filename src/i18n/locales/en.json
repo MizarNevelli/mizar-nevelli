@@ -314,7 +314,7 @@
         "place": "Spartan Tech",
         "eyebrow": "Now",
         "title": "React, Next and notarizations.",
-        "body": "At Spartan Tech, among various projects, we mainly develop MVPs. I led the rebuild of Watchype, a luxury watch marketplace where every piece is certified and notarized on Algorand. I also designed and delivered a custom platform for a medical society, 95% of the requested scope shipped in an MVP measured in months."
+        "body": "At Spartan Tech the work is mostly MVPs. I led the rebuild of a luxury watch marketplace where every piece is certified and notarized on Algorand. I built a custom platform for a medical society: 95% of the requested scope shipped in an MVP measured in months, with thousands of paying users. I also packaged a Next.js PWA into a native iOS app using an experimental tool and released it on the App Store."
       }
     },
     "offKeyboard": {
